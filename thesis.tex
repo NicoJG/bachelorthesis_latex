@@ -113,6 +113,8 @@
   autolang=hyphen, % load hyphenation rules for if language of bibentry is not
                    % german, has to be loaded with \setotherlanguages
                    % in the references.bib use langid={en} for english sources
+  sorting=none,    % Sort the references numbering by first appearance
+  style=numeric,   % use numbers for references
 ]{biblatex}
 \addbibresource{references.bib}  % the bib file to use
 \DefineBibliographyStrings{english}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
