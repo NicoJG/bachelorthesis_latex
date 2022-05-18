@@ -1,4 +1,4 @@
-$cleanup_mode = 1;
+$cleanup_mode = 0;
 $out_dir = "build";
 $pdflatex = "lualatex -interaction=nonstopmode -halt-on-error %O %S";
 $pdf_mode = 1;
