@@ -4,6 +4,7 @@
 
 \section{The Standard Model of particle physics}
 
+% SM intro
 While quantum field theory (QFT) is the general construct to describe physics phenomena in the microscopic world, the Standard Model builds on top of this to describe the fundamental particles and their interactions.
 The Standard Model classifies particles by their properties and interaction partners. 
 The first categorization is based on the spin of a particle. If a particle has a whole numbered spin it is called a boson and if it has a half numbered spin it is called a fermion.
@@ -11,10 +12,11 @@ There are twelve fundamental fermions with spin $1/2$, which make up the matter 
 There are four fundamental gauge bosons with spin $1$, which describe the interactions between particles. 
 And there is one fundamental scalar boson (the Higgs-boson) with spin $0$, which describes how particles get their mass.
 
+% fermions
 Only three fermions make up most of the matter in the universe. These are up and down quarks and electrons.
 The up quark has charge $2/3e$, the down quark has charge $-1/3e$ and the electron has charge $-1e$.
 There is another particle, that belongs to this group, known as the electron-neutrino, which is neutrally charged and only plays a part in the decay or transformations of particles.
-Each fermion has a corresponding antiparticle with all charge-like properties inverted.
+Each fermion has a corresponding antiparticle with all charge-like properties inverted and is denoted by a bar over the particle symbol.
 These four particles, together with their antiparticles, form the so-called first generation of particles.
 There are three known particle generations, each with exactly the same structure and properties as the first generation, except of the mass, which rises with each generation of the corresponding particle.
 Each generation has one up-like quark (up~$u$, charm~$c$, top~$t$), one down-like quark (down~$d$, strange~$s$, bottom~$b$), one electron-like lepton (electron~$e$, muon~$\mu$, tau~$\tau$) and one neutrino (electron-neutrino~$\nu_e$, muon-neutrino~$\nu_\mu$, tau-neutrino~$\nu_\tau$).
@@ -24,19 +26,30 @@ The Standard Model assumes the neutrinos to be massless, but this is still to be
 \begin{table}
     \centering
     \caption{Listing of all fundamental fermions and the corresponding masses. \cite{pdg}}
-    \begin{tabular}{c c c c c c}
+    \begin{tabular}{c c c}
         \toprule
-        \multicolumn{3}{c}{quarks} & \multicolumn{3}{c}{leptons} \\
+        \multicolumn{3}{c}{quarks} \\
         \midrule
-        $u$ & $c$ & $t$ & $e$ & $\mu$ & $\tau$ \\
-        $\qty{2.2}{\mega\eV}$ & $\qty{1.27}{\giga\eV}$ & $\qty{172.8}{\giga\eV}$ & $\qty{0.511}{\mega\eV}$ & $\qty{105.658}{\mega\eV}$ & $\qty{1.777}{\giga\eV}$ \\
-        $d$ & $s$ & $b$ & $\nu_e$ & $\nu_\mu$ & $\nu_\tau$ \\
-        $\qty{4.7}{\mega\eV}$ & $\qty{93}{\mega\eV}$ & $\qty{4.18}{\giga\eV}$ & $<\qty{1.1}{\eV}$ & $<\qty{1.1}{\eV}$ & $<\qty{1.1}{\eV}$ \\
+        $u$ & $c$ & $t$ \\
+        $\qty{2.2}{\mega\eV}$ & $\qty{1.27}{\giga\eV}$ & $\qty{172.8}{\giga\eV}$ \\
+        $d$ & $s$ & $b$ \\
+        $\qty{4.7}{\mega\eV}$ & $\qty{93}{\mega\eV}$ & $\qty{4.18}{\giga\eV}$ \\
+        \bottomrule
+    \end{tabular}
+    \begin{tabular}{c c c}
+        \toprule
+        \multicolumn{3}{c}{leptons} \\
+        \midrule
+        $e$ & $\mu$ & $\tau$ \\
+        $\qty{0.511}{\mega\eV}$ & $\qty{105.658}{\mega\eV}$ & $\qty{1.777}{\giga\eV}$ \\
+        $\nu_e$ & $\nu_\mu$ & $\nu_\tau$ \\
+        $<\qty{1.1}{\eV}$ & $<\qty{1.1}{\eV}$ & $<\qty{1.1}{\eV}$ \\
         \bottomrule
     \end{tabular}
     \label{tab:fermion_masses}
 \end{table}
 
+% bosons
 The bosons on the other hand are the mediators of the fundamental forces.
 The photon~$\gamma$ is chargeless and mediates the electromagnetic force.
 The electromagnetic force is described in quantum electrodynamics (QED) and couples to the charge of a particle.
@@ -57,7 +70,7 @@ The mediators of the weak force are the $Z$-boson with charge $0e$ and the $W^\p
 The weak force is described in quantum flavourdynamics (QFD) and is the only known way to change the flavour (species) of a particle.
 The $Z$ boson couples to every other particle in the Standard Model except of the gluon.
 The $W$ boson couples either a lepton to the corresponding neutrino or any up-like quark to any down-like quark.
-Radioactive decays such as the $\beta^-$-decay ($n \rightarrow p + e^- + \bar{\nu_e}$) or the $\beta^+$-decay ($p \rightarrow n + e^+ + \nu_e$) result from the weak force.
+Radioactive decays such as the $\beta^-$-decay ($n \rightarrow p + e^- + \bar{\nu}_e$) or the $\beta^+$-decay ($p \rightarrow n + e^+ + \nu_e$) result from the weak force.
 
 The Higgs-boson~$H$ is responsible for the masses of each particle.
 It is chargeless, has spin $0$ and is part of the Higgs mechanism, in which the interaction of a particle with the Higgs field results in its mass.
@@ -79,3 +92,8 @@ It is the last experimentally found fundamental particle and was first observed 
     \label{tab:boson_masses}
 \end{table}
 
+% still missing:
+% CP violation
+% B mesons and the decays
+% Sameside and opposite side
+%
