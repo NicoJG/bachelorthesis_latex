@@ -5,52 +5,44 @@
 \section{The Standard Model of particle physics}
 
 % SM intro
-While quantum field theory (QFT) is the general construct to describe physics phenomena in the microscopic world, the Standard Model builds on top of this to describe the fundamental particles and their interactions.
-The Standard Model classifies particles by their properties and interaction partners. 
-The first categorization is based on the spin of a particle. If a particle has a whole numbered spin it is called a boson and if it has a half numbered spin it is called a fermion.
-There are twelve fundamental fermions with spin $1/2$, which make up the matter in the universe.
+Physics phenomena on the smallest observed length scales are described by a quantum field theory known as the Standard Model.
+The Standard Model classifies fundamental particles by their properties and describes all interactions between them. 
+The first categorization is based on the spin of a particle. 
+A particle is called a boson, if its spin is whole numbered, and it is called a fermion, if its spin is half numbered.
+There are twelve fundamental fermions with spin $\frac{1}{2}$, which make up the matter in the universe.
 There are four fundamental gauge bosons with spin $1$, which describe the interactions between particles. 
-And there is one fundamental scalar boson (the Higgs-boson) with spin $0$, which describes how particles get their mass.
-
-% fermions
-Only three fermions make up most of the matter in the universe. These are up and down quarks and electrons.
-The up quark has charge $2/3e$, the down quark has charge $-1/3e$ and the electron has charge $-1e$.
-There is another particle, that belongs to this group, known as the electron-neutrino, which is neutrally charged and only plays a part in the decay or transformations of particles.
-Each fermion has a corresponding antiparticle with all charge-like properties inverted and is denoted by a bar over the particle symbol.
-These four particles, together with their antiparticles, form the so-called first generation of particles.
-There are three known particle generations, each with exactly the same structure and properties as the first generation, except of the mass, which rises with each generation of the corresponding particle.
-Each generation has one up-like quark (up~$u$, charm~$c$, top~$t$), one down-like quark (down~$d$, strange~$s$, bottom~$b$), one electron-like lepton (electron~$e$, muon~$\mu$, tau~$\tau$) and one neutrino (electron-neutrino~$\nu_e$, muon-neutrino~$\nu_\mu$, tau-neutrino~$\nu_\tau$).
-\autoref{tab:fermion_masses} lists each fundamental fermion and its mass.
-The Standard Model assumes the neutrinos to be massless, but this is still to be verified experimentally.
+And there is one fundamental scalar boson (the Higgs-boson) with spin $0$, which describes how particles get their masses.
+Additionally, each particle has a corresponding antiparticle. 
+Antiparticles have the same properties as particles but all charge-like properties are inverted.
+The following paragraphs briefly introduce each fundamental particle listed in \autoref{tab:sm_particles}.
 
 \begin{table}
     \centering
-    \caption{Listing of all fundamental fermions and the corresponding masses. \cite{pdg}}
-    \begin{tabular}{c c c}
+    \caption{Listing of all fundamental particles in the Standard Model.}
+    \begin{tabular}{c c c | c c c | c c c c | c}
         \toprule
-        \multicolumn{3}{c}{quarks} \\
+        \multicolumn{6}{c|}{fermion} & \multicolumn{5}{c}{boson} \\
+        \multicolumn{3}{c}{quark} & \multicolumn{3}{c|}{lepton} & \multicolumn{4}{c}{gauge-boson} & \multicolumn{1}{c}{scalar-boson} \\
         \midrule
-        $u$ & $c$ & $t$ \\
-        $\qty{2.2}{\mega\eV}$ & $\qty{1.27}{\giga\eV}$ & $\qty{172.8}{\giga\eV}$ \\
-        $d$ & $s$ & $b$ \\
-        $\qty{4.7}{\mega\eV}$ & $\qty{93}{\mega\eV}$ & $\qty{4.18}{\giga\eV}$ \\
+        $u$ & $c$ & $t$ & $e$ & $\mu$ & $\tau$ & \multirow{2}{*}{$\gamma$} & \multirow{2}{*}{$g$} & \multirow{2}{*}{$Z$} & \multirow{2}{*}{$W^\pm$} & \multirow{2}{*}{$H$} \\
+        $d$ & $s$ & $b$ & $\nu_e$ & $\nu_\mu$ & $\nu_\tau$ &&&&& \\
         \bottomrule
     \end{tabular}
-    \begin{tabular}{c c c}
-        \toprule
-        \multicolumn{3}{c}{leptons} \\
-        \midrule
-        $e$ & $\mu$ & $\tau$ \\
-        $\qty{0.511}{\mega\eV}$ & $\qty{105.658}{\mega\eV}$ & $\qty{1.777}{\giga\eV}$ \\
-        $\nu_e$ & $\nu_\mu$ & $\nu_\tau$ \\
-        $<\qty{1.1}{\eV}$ & $<\qty{1.1}{\eV}$ & $<\qty{1.1}{\eV}$ \\
-        \bottomrule
-    \end{tabular}
-    \label{tab:fermion_masses}
+    \label{tab:sm_particles}
 \end{table}
+
+% fermions
+Only three fermions make up all the atomic matter. 
+These are the up quark with charge $\frac{2}{3}e$, the down quark with charge $-\frac{1}{3}e$ and the electron with charge $-1e$.
+There is another particle, that belongs to this group, known as the electron-neutrino, which is neutrally charged and plays a part in decay processes as well as in fission and fusion.
+These four particles, together with their antiparticles, form the so-called first generation of particles.
+The second and third particle generations have the same structure as the first generation, but the masses of the corresponding particles rise with each generation.
+Each generation has one up-like quark (up~$u$, charm~$c$, top~$t$), one down-like quark (down~$d$, strange~$s$, bottom~$b$), one charged lepton (electron~$e$, muon~$\mu$, tau~$\tau$) and one uncharged lepton (electron-neutrino~$\nu_e$, muon-neutrino~$\nu_\mu$, tau-neutrino~$\nu_\tau$).
+In the Standard Model neutrinos are massless, but this assumption was proven wrong through the observation of neutrino oscillations. \cite{Fukuda1998,Ahmad2002}
 
 % bosons
 The bosons on the other hand are the mediators of the fundamental forces.
+
 The photon~$\gamma$ is chargeless and mediates the electromagnetic force.
 The electromagnetic force is described in quantum electrodynamics (QED) and couples to the charge of a particle.
 Every charged particle radiates an electromagnetic field radially outwards, with a potential that falls off with $1/r$.
@@ -61,12 +53,12 @@ The strong force couples to the color-charge (red, green, blue, anti-red, anti-g
 In contrast to QED, not only the quarks are color-charged but also the force-carrier particle, the gluon, is color-charged.
 This leads to flux-tubes between the quarks and consequently to the so-called color-confinement.
 The color-confinement states that only neutrally color-charged particles can exist in isolation.
-A particle is color neutral if either a color is canceled with the corresponding anti-color or all three colors are present once.
+A particle is color neutral if either a color is canceled with the corresponding anti-color or all three colors are present in equal amounts.
 This is why quarks cannot be observed directly, but only collections of quarks called hadrons.
-There are multiple classes of hadrons, but the most common classes are baryons (three quarks) and mesons (two quarks).
-The strong force is also responsible for the bound state of baryons, like neutrons ($udd$) and protons ($uud$) in the atomic nucleus.
+There are multiple classes of hadrons, but the most common classes are mesons (two quarks) and baryons (three quarks).
+The strong force is also responsible for binding of neutrons ($udd$) and protons ($uud$) in the atomic nucleus.
 
-The mediators of the weak force are the $Z$-boson with charge $0e$ and the $W^\pm$-boson with charge $\pm 1e$.
+The mediators of the weak force are the chargeless $Z$-boson and the $W^\pm$-boson with charge $\pm 1e$.
 The weak force is described in quantum flavourdynamics (QFD) and is the only known way to change the flavour (species) of a particle.
 The $Z$ boson couples to every other particle in the Standard Model except of the gluon.
 The $W$ boson couples either a lepton to the corresponding neutrino or any up-like quark to any down-like quark.
@@ -74,23 +66,7 @@ Radioactive decays such as the $\beta^-$-decay ($n \rightarrow p + e^- + \bar{\n
 
 The Higgs-boson~$H$ is responsible for the masses of each particle.
 It is chargeless, has spin $0$ and is part of the Higgs mechanism, in which the interaction of a particle with the Higgs field results in its mass.
-It is the last experimentally found fundamental particle and was first observed at ATLAS at the LHC in 2012.
-
-\autoref{tab:boson_masses} lists each fundamental boson and its mass.
-
-\begin{table}
-    \centering
-    \caption{Listing of all fundamental bosons and the corresponding masses. \cite{pdg}}
-    \begin{tabular}{c c c c c}
-        \toprule
-        \multicolumn{5}{c}{bosons} \\
-        \midrule
-        $\gamma$ & $g$ & $Z$ & $W^\pm$ & $H$ \\
-        $0$ & $0$ & $\qty{91.19}{\giga\eV}$ & $\qty{80.38}{\giga\eV}$ & $\qty{125.25}{\giga\eV}$ \\
-        \bottomrule
-    \end{tabular}
-    \label{tab:boson_masses}
-\end{table}
+It is the last experimentally found fundamental particle and was first observed at ATLAS and at CMS at the LHC in 2012. \cite{HiggsATLAS,HiggsCMS}
 
 % still missing:
 % CP violation

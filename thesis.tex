@@ -18,6 +18,8 @@
   cleardoublepage=plain,  % no header/footer on blank pages
 ]{tudothesis}
 
+% Package for insertion of line numbers
+\usepackage{lineno}
 
 % Warning, if another latex run is needed
 \usepackage[aux]{rerunfilecheck}
@@ -79,6 +81,7 @@
 %------------------------------------------------------------------------------
 
 \usepackage{booktabs}       % \toprule, \midrule, \bottomrule, etc
+\usepackage{multirow}       % multiple row spanning cells
 
 %------------------------------------------------------------------------------
 %-------------------------------- graphics -------------------------------------
@@ -144,6 +147,7 @@
 \titlehead{\includegraphics[height=1.5cm]{logos/tu-logo.pdf}}
 
 \begin{document}
+\begin{linenumbers}
 \frontmatter
 \maketitle
 
@@ -171,4 +175,5 @@
 
 \cleardoublepage
 \input{content/eid_versicherung.tex}
+\end{linenumbers}
 \end{document}
