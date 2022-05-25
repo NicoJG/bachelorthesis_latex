@@ -1,6 +1,5 @@
 build/
 *.swp
-*.pdf
 
 *.DS_Store
 .vscode/
