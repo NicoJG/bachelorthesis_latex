@@ -1,71 +1,33 @@
 \section{$B$ mesons in proton-proton collisions}
 
+In a proton-proton collision ($pp$ collision) many different particles are produced through the strong interaction.
+When this includes the decay of a gluon into a $b\bar{b}$ pair, it can lead to the production of a $B$ meson.
 $B$ mesons are composed of one $b$ quark and one of the $u/d/c/s$ quarks.
 Relevant for this thesis are the uncharged $B$ mesons
 \begin{align*}
     B^0 &= \bar{b}d \, , & \bar{B}^0 &= b\bar{d} \, , & B_s^0 &= \bar{b}s \, , & \bar{B}_s^0 &= b\bar{s} \, .
 \end{align*}
 
-In a proton-proton collision many different particles can be produced through the strong force.
-The origin of a $B$ meson is the production of a $b\bar{b}$ pair from a gluon.
-This $B$ meson then decays into other particles which can be detected.
-These particles are the signal decay particles.
-Since the $b$ quark has to pair up with a different quark which itself is produced 
-
-For a $B$ meson to be produced it is necessary that a $b\bar{b}$-pair is produced
-
-In a $pp$-collision $B$-mesons are produced in pairs, because of the production of $b\bar{b}$-pairs through the strong interaction. 
-The $B$-meson of interest for an analysis is called the signal $B$ and its partner is called the opposite $B$.
-The underlying event is therefore often divided into same side tracks and opposite side tracks, depending on the origin of its particle.
-Each side can then be further divided into fragmentation tracks and decay tracks. (see \autoref{fig:ft_scheme})
-At LHCb, this track classification is often used in flavour tagging algorithms, and it is also used in this thesis.
+At LHCb, a frequent goal is to analyse $B$ meson candidates in $pp$ collisions, often called the signal $B$.
+This can be done by using information about the particles of the signal decay. 
+Or it can be done by analysing all particles which are associated to the signal $B$.
+The latter method is independent of the signal decay channel, and it is often used in flavour tagging algorithms at LHCb. 
+A similar method is used in this thesis.
+An example sketch of such an associated event is shown in \autoref{fig:ft_scheme}. 
+This sketch excludes particles which are associated with the $pp$ collision event but not with the signal $B$.
+Those particles are called the background of an event.
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/FlavourTaggingScheme.pdf}
-    \caption{Track classification used in flavour tagging algorithms. \cite{ft_scheme}}
+    \caption{Schematic overview of the underlying principles of LHCb's flavour tagging algorithms \cite{ft_scheme}.}
     \label{fig:ft_scheme}
 \end{figure}
 
-
-%\begin{table}
-%    \centering
-%    \caption{Listing of $B$-mesons and their quark contents.}
-%    \begin{tabular}{c c c c | c c c c}
-%        \toprule
-%        \multicolumn{4}{c}{uncharged $B$-mesons} & \multicolumn{4}{c}{charged $B$-mesons} \\
-%        \midrule
-%        $B_d^0$ & $\bar{B}_d^0$ & $B_s^0$ & $\bar{B}_s^0$ & $B_u^-$ & $B_u^+$ & $B_c^-$ & $B_c^+$ \\
-%        $b\bar{d}$ & $\bar{b}d$ & $b\bar{s}$ & $\bar{b}s$ & $b\bar{u}$ & $\bar{b}u$ & $b\bar{c}$ & $\bar{b}c$ \\
-%        \bottomrule
-%    \end{tabular}
-%    \label{tab:B_mesons}
-%\end{table}
-
-%\begin{table}
-%    \centering
-%    \caption{Listing of $B$-mesons and their quark contents.}
-%    \begin{tabular}{c c | c c}
-%        \toprule
-%        \multicolumn{2}{c}{uncharged $B$-mesons} & \multicolumn{2}{c}{charged $B$-mesons} \\
-%        \midrule
-%        $B^0 = b\bar{d}$ & $B_s^0 = b\bar{s}$ & $B^- = b\bar{u}$ & $B_c^- = b\bar{c}$ \\
-%        $\bar{B}^0 = \bar{b}d$ & $\bar{B}_s^0 = \bar{b}s$ & $B^+ = \bar{b}u$ & $B_c^+ = \bar{b}c$ \\
-%        \bottomrule
-%    \end{tabular}
-%    \label{tab:B_mesons}
-%\end{table}
-
-%\begin{align*}
-%    \text{uncharged:} & B_d^0 = b\bar{d}, & \bar{B}_d^0 = \bar{b}d, & B_s^0 = b\bar{s}, & \bar{B}_s^0 = \bar{b}s \\
-%    \text{charged:} & B_u^- = b\bar{u} & B_u^+ = \bar{b}u & B_c^- = b\bar{c} & B_c^+ = \bar{b}c
-%\end{align*}
-
-
-
-%The decay channels used in this thesis are
-%\begin{align*}
-%    B_d^0/\bar{B}_d^0 &\rightarrow J/\psi + K*^0 \, , \\
-%    B_s^0/\bar{B}_s^0 &\rightarrow D_s^- + \pi^+ \, \text{and} \\
-%    B_d^0/\bar{B}_d^0/B_s^0/\bar{B}_s^0 &\rightarrow J/\psi + K_S^0 \, .
-%\end{align*}
+The collision point of a $pp$ pair is called the primary vertex~(PV), and the decay point of the signal $B$ is called the secondary vertex~(SV).
+Due to the high mass of $b$ quarks, an associated event can roughly be separated into two sides.
+The same side~(SS) contains particles of the signal decay.
+It also contains particles produced in association with the non-$b$ valence quark of the $B$ meson.
+These particles are called the SS fragmentation.
+The opposite side~(OS) contains all particles associated with the $b$ quark not in the signal $B$.
+The combined information about the SS fragmentation and the OS allows the identification of the signal $B$ flavour.
