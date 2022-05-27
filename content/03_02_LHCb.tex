@@ -1,31 +1,42 @@
 \section{The LHCb detector}
 
-The data used in this thesis originates from the LHCb Detector at the particle collider LHC or simulations thereof.
-This detector is mainly focused on decays in which a bottom or a charm quark is involved to do precision measurements on the CP-violation and on rare decays. 
-To accomplish this it has been build as a single arm forward-spectrometer, because the majority of $b$-/$c$-Hadron pairs are produced with velocities inside a cone around the beampipe.
+LHCb is a particle detector with the main focus on decays in which $b$ or $c$ quarks are involved.
+Its goals are precision measurements on the CP-violation and on rare decays. 
+To accomplish this it has been build as a single arm forward-spectrometer covering angles to the beam pipe from $\qty{10}{\milli\radian}$ to $\qty{300}{\milli\radian}$ \cite{LHCb}. 
+This is because the majority of high energetic $b$-/$c$-hadron pairs, produced in $pp$ collisions, have velocities in roughly the same direction as one of the incident protons.
 An overview of the detector is shown in \autoref{fig:lhcb_detector}.
-Its components are described briefly in this chapter.
+The following paragraphs briefly describe the components of the LHCb detector based on the article \enquote{The LHCb Detector at the LHC}\cite{LHCb}.
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/lhcb_detector.png}
-    \caption{View of the LHCb detector. \cite{lhcb_detector}}
+    \caption{View of the LHCb detector \cite{LHCb}. }
     \label{fig:lhcb_detector}
 \end{figure}
 
-A particle produced at the collision point travels through the Vertex Locator (VELO) first. 
-Here, the track of charged particles is measured using semi-conductor detectors. 
-With this the point of the $pp$-collision (primary vertex) and the decay point of B mesons (secondary vertex) can be reconstructed.
-The tracks of all the particles are further measured by the Tracking-System (TT, T1, T2, T3), and the induced track curve by the magnet helps measuring the particles momentum.
+A particle produced at the primary vertex first traverses the Vertex Locator (VELO). 
+There, the tracks of charged particles are measured using silicon semiconductor sensors. 
+This information then is primarily used to reconstruct the position of the primary and secondary vertices of the decay particles.
 
-The next detector, the Ring Imaging Cherenkov detector 1 (RICH1), measures the Cherenkov radiation produced by charged particles passing through two different optically dense materials. 
-Using this, the particles veloctiy can be measured. The RICH2 detector relies on the same principles, but is sensitive in a higher momentum range than RICH2.
+Beyond the VELO, the Tracking System then further measures the position over time of the same particles. 
+This is done in the Tracker Turicensis (TT) before the magnet and in the Trackers T1, T2 and T3 behind the magnet.
+The dipole magnet bends the particle tracks so that the particles' momentum can be inferred.
+While the TT and the inner parts of the T1-T3 also use silicon semiconductor sensors, the outer parts of the T1-T3 use scintillating fibre detectors.
 
-Most particles are then dissipated in the calorimeters, where particle showers are induced. Summing up the particle showers energy yields the total energy of an incoming particle.
-The calorimeters are the only detector components that allow observing uncharged particles. In the electromagnetic calorimeter (ECAL) light particles such as electrons, positrons and photons are absorbed and in the hadronic calorimeter (HCAL) the heavier particles are absorbed.
+The Ring Imaging Cherenkov detectors (RICH1, RICH2) are used to measure the velocities of the particles.
+By traversing optically dense materials, charged particles induce the emission of Cherenkov radiation.
+This radiation is then detected using photo multipliers and its opening angle is closely related to the velocity of a particle.
 
-Only muons and neutrinos can pass almost unaffected through the calorimeters. Therefore the muon chambers (M1, M2, M3, M4, M5) have the purpose to stop and detect muons by using similar detectors to the ones used in the Tracking-System, but with iron absorbers in between the layers.
+The calorimeters (SPD/PS, ECAL, HCAL) stop most particles and measure their energy.
+In dense materials particles induce particle showers with its size directly related to the energy deposited.
+Each calorimeter is structured in alternating layers of absorbers and scintillators.
+The electronic calorimeter (ECAL) absorbs electrons, positrons and photons, and the hadronic calorimeter (HCAL) absorbs any hadrons.
+These are the only detectors at LHCb which can detect chargeless particles, and they are critical for particle identification.
 
-All these detector components are utilised to determine various features of each tracks, such as the momentum, the energy and the invariant mass.
+To identify particles as muons the muon chambers (M1-M5) stop and track charged particles which pass through the calorimeters without absorption.
+They use iron layers to stop the muons and multi-wire proportional chambers to detect them.
+
+The only known particles that pass through the LHCb detector undetected are neutrinos.
+They are indirectly measured through analysis of the missing transversal momentum and energy. 
 
 
