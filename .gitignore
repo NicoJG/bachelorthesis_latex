@@ -1,5 +1,10 @@
 build/
 *.swp
 
-*.DS_Store
+# For Visual Studio Code files:
 .vscode/
+
+# OS specific trash containers (MacOS, Windows, Linux):
+.DS_Store
+$RECYCLE.BIN/
+.Trash-*
