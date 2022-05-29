@@ -1,0 +1,90 @@
+% Excluding all features for feature extraction
+
+% MC cuts:
+"B_BKGCAT" == 0 | == 50
+"B_DIRA_OWNPV" > 0.9999
+"B_IPCHI2_OWNPV" < 16
+
+% SS classifier:
+"Tr_p_proj",
+"Tr_diff_pt",
+"Tr_diff_z",
+"Tr_diff_eta",
+"Tr_cos_diff_phi",
+"Tr_T_AALLSAMEBPV",
+"Tr_T_BPVIP",
+"Tr_T_BPVIPCHI2",
+"Tr_T_MinIP",
+"Tr_T_ConIso_p_ult",
+"Tr_T_IPCHI2_trMother",
+"Tr_T_IP_trMother",
+"Tr_T_IP_trPUS",
+"Tr_T_MinBDT_ult",
+"Tr_T_Mother_VtxChi2",
+"Tr_T_NbNonIsoTr_ult",
+"Tr_T_PT",
+"Tr_T_SumBDT_ult",
+"Tr_T_SumMinBDT_ult",
+"Tr_T_Sum_of_trackp",
+"Tr_T_TRGHOSTPROB"
+-> "Tr_is_SS" -> "Tr_ProbSS"
+
+% B classifier:
+"event_id"
+"Tr_ProbSS",
+"Tr_diff_z", # already above
+"Tr_p_proj", # already above
+"Tr_diff_pt", # already above
+"Tr_diff_p",
+"Tr_cos_diff_phi", # already above
+"Tr_diff_eta", # already above
+"Tr_T_IPCHI2_trMother", # already above
+"Tr_T_IP_trMother", # already above
+"Tr_T_IP_trPUS", # already above
+"Tr_T_MinIP", # already above
+"Tr_T_MinIPChi2",
+"Tr_T_PROBNNe",
+"Tr_T_PROBNNghost",
+"Tr_T_PROBNNk",
+"Tr_T_PROBNNmu",
+"Tr_T_PROBNNp",
+"Tr_T_PROBNNpi",
+"Tr_T_P",
+"Tr_T_PT", # already above
+"Tr_T_VeloCharge",
+"Tr_T_SumBDT_ult", # already above
+"Tr_T_MinBDT_ult" # already above
+-> "B_is_strange" -> "B_ProbBs"
+
+% BKG BDT:
+"B_IP_OWNPV",
+"Jpsi_IP_OWNPV",
+"KS0_IP_OWNPV",
+"piplus_PT",
+"piminus_PT",
+"KS0_PT",
+"B_LOKI_ETA",
+"KS0_FD_OWNPV",
+"KS0_LOKI_ETA",
+"KS0_PZ",
+"muplus_IP_OWNPV",
+"muminus_IP_OWNPV",
+"B_LOKI_DTF_CHI2NDOF"
+-> "BKG_BDT"
+
+% Lambda cut:
+"piminus_P",
+"piminus_PX",
+"piminus_PY",
+"piminus_PZ",
+"piminus_ProbNNp",
+"piplus_P",
+"piplus_PX",
+"piplus_PY",
+"piplus_PZ",
+"piplus_ProbNNp"
+
+% Test Data Cuts:
+"N" !=0 ,
+"KS0_TAU" > 0.5*10**-3 ,
+"B_LOKI_DTF_CHI2NDOF" <5
