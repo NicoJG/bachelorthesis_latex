@@ -3,3 +3,16 @@
 % Belongs in the methodology chapter:
 % The aim of this thesis is to distinguish $B_d$ and $B_s$ mesons without information about the signal decay.
 % This means it is irrelevant which quarks are antiquarks, and it is expected that only information about the same side is relevant here.
+
+The goal of this thesis is to develop an algorithm that can distinguish $B_d$ mesons from $B_s$ mesons produced in $pp$-collisions.
+This algorithm should be independent of the signal decay channel and therefore only uses data on the associated event.
+As mentioned in \autoref{sec:B_mesons}, only the SS fragmentation is expected to contain relevant information.
+Thus, before classifying the signal $B$, every track in the associated event is assigned an estimated probability of being a SS fragmentation track.
+
+This chapter describes the methods and results of developing the mentioned algorithm.
+
+
+\input{04_01_data.tex}
+\input{04_02_SS_classifier.tex}
+\input{04_03_B_classifier.tex}
+\input{04_04_test_on_data.tex}
