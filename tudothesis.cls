@@ -65,19 +65,24 @@
 \RequirePackage{translations}
 
 \DeclareTranslation{German}{thesisclass}{Arbeit zur Erlangung des akademischen Grades}
-\DeclareTranslation{English}{thesisclass}{Thesis for obtaining the academic degree}
+%\DeclareTranslation{English}{thesisclass}{Thesis for obtaining the academic degree}
+\DeclareTranslation{English}{thesisclass}{Arbeit zur Erlangung des akademischen Grades}
 
 \DeclareTranslation{German}{birthplace}{geboren in}
-\DeclareTranslation{English}{birthplace}{born in}
+%\DeclareTranslation{English}{birthplace}{born in}
+\DeclareTranslation{English}{birthplace}{geboren in}
 
 \DeclareTranslation{German}{firstcorrector}{Erstgutachter}
-\DeclareTranslation{English}{firstcorrector}{Reviewer}
+%\DeclareTranslation{English}{firstcorrector}{Reviewer}
+\DeclareTranslation{English}{firstcorrector}{Erstgutachter}
 
 \DeclareTranslation{German}{secondcorrector}{Zweitgutachter}
-\DeclareTranslation{English}{secondcorrector}{Co-reviewer}
+%\DeclareTranslation{English}{secondcorrector}{Co-reviewer}
+\DeclareTranslation{English}{secondcorrector}{Zweitgutachter}
 
 \DeclareTranslation{German}{submissiondate}{Abgabedatum}
-\DeclareTranslation{English}{submissiondate}{Submission date}
+%\DeclareTranslation{English}{submissiondate}{Submission date}
+\DeclareTranslation{English}{submissiondate}{Abgabedatum}
 
 \DeclareTranslation{German}{university}{Technische Universität Dortmund}
 \DeclareTranslation{English}{university}{Technische Universität Dortmund} 
