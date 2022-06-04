@@ -1,3 +1,17 @@
-\section{Evaluation of the simulated data}
+\section{Evaluation of the simulated LHCb data}
+
+Training machine learning classification algorithms requires data in which the true classes are known.
+Therefore, the data used for training in this thesis originates from Monte Carlo simulations of the LHCb detector.
+
+Since the signal $B$ classification is intended to be independent of the signal decay channel, data of two different signal decay channels can be combined in this thesis ($B_d \rightarrow J/\psi + K*$ and $B_s \rightarrow D_s + \pi$) to achieve higher statistics.
+Multiple datasets are available for both signal decays. 
+It is important to choose datasets that are compatible to each other so that the trained models do not learn artificial differences, that are not found in real detector data.
+Therefore, the available datasets are compared by plotting histograms of each feature.
+On the basis of this comparison, multiple sources of differences between the datasets are found.
+The differences are eliminated by choosing only datasets that originate from simulations of the same year (2016) and the same simulation software version.
+But because both signal decay channels were selected on different selection criteria, more differences are found.
+The features with visible differences that cannot be explained by the underlying physics are excluded from the analysis of this thesis.
+
+
 
 
