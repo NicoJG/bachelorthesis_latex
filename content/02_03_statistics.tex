@@ -9,6 +9,7 @@ For example, the main algorithm of this thesis evaluates the measured data of a 
 The classification algorithms used in this thesis are described in the following sections.
 
 \subsection{Boosted Decision Tree (BDT)}
+\label{sec:BDT}
 
 A Boosted Decision Tree (BDT) is an ensemble of multiple different decision trees trained and evaluated on the principles of gradient boosting.
 Decision trees are binary trees with a decision condition at each node and a prediction score for each leaf.
@@ -19,6 +20,7 @@ To find the minimum, the gradient of the objective function with respect to the 
 All BDTs in this thesis are implemented in Python using the library XGBoost \cite{xgboost}.
 
 \subsection{Neural Network (NN)}
+\label{sec:NN}
 
 A Neural Network (NN) consists of multiple layers of (artificial) neurons to calculate an output vector $\hat{y}$ based on an input vector $x$.
 The amount of layers and the amount of neurons per layer can be arbitrarily chosen based on the complexity of the problem.
@@ -66,6 +68,7 @@ Essentially, at each training iteration a smaller NN is trained and the co-depen
 This makes the NN more robust and reduces overtraining.
 
 \subsection{DeepSet}
+\label{sec:DeepSet}
 
 A DeepSet is an extension of NNs to allow inputs of sets rather than vectors.
 DeepSets can therefore be used to solve problems where the data of each sample contains a variable length list and where the solution should be invariant under permutations of this list.
@@ -81,7 +84,7 @@ The feature values of all instances are then summed up and fed into a NN $\rho$ 
 
 The training of a DeepSet is fully analogous to the training of a NN.
 The only difference is that a DeepSet consists of two NNs that are trained together.
-
+All DeepSets used in this thesis are implemented in Python using the library Pytorch \cite{pytorch}.
 
 
 
