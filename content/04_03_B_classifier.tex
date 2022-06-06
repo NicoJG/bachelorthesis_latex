@@ -38,7 +38,7 @@ The remaining 23 features are listed in \autoref{tab:B_features} and the corresp
         $\cos(\Delta \phi)$ & $\text{PROBNN}_\pi$ \\ %"Tr_cos_diff_phi", "Tr_T_PROBNNpi"
         $\Delta \eta$       & IP\_trPUS \\ %"Tr_diff_eta", "Tr_T_IP_trPUS"
         IP\_trMother        & VeloCharge \\ %"Tr_T_IP_trMother",  "Tr_T_VeloCharge"
-        IPCHI2\_trMother    & SumBDT\_ult" \\ %"Tr_T_IPCHI2_trMother", "Tr_T_SumBDT_ult"
+        IPCHI2\_trMother    & SumBDT\_ult \\ %"Tr_T_IPCHI2_trMother", "Tr_T_SumBDT_ult"
         MinIP               & MinBDT\_ult \\ %"Tr_T_MinIP", "Tr_T_MinBDT_ult"
         MinIPChi2           & \\ %"Tr_T_MinIPChi2"
         \bottomrule
@@ -58,6 +58,39 @@ From the $0.4$ million events in the dataset, $60\%$ are used for training and $
 Using early stopping the training is stopped at iteration 600 after 50 iterations without improvement on the validation dataset.
 The loss and the error rate for each iteration of the training of the DeepSet are shown in \autoref{fig:B_history}.
 
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/B_history_loss.pdf}
+        \caption{binary cross entropy loss}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/B_history_error.pdf}
+        \caption{error rate}
+    \end{subfigure}%
+    \caption{Training performance of the DeepSet for $B$ meson classification.}
+    \label{fig:B_history}
+\end{figure}
+
 To show the achieved separation of the $B$ mesons, histograms of $\text{Prob}_{B_s}$ split by the simulation ground truth are shown in \autoref{fig:B_output}.
 The achieved ROC curve is shown in \autoref{fig:B_ROC} with a ROC AUC of $0.739$ on the test data and $0.742$ on the training data.
 To estimate the generalization and overtraining of the model, each performance measure is calculated on both the test data and training data.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/B_output.pdf}
+        \caption{distribution of $\text{Prob}_{B_s}$}
+        \label{fig:B_output}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/B_ROC.pdf}
+        \caption{ROC curve}
+        \label{fig:B_ROC}
+    \end{subfigure}%
+    \caption{\autoref{fig:B_output} shows the distribution of the DeepSet output split by the simulation ground truth. \autoref{fig:B_ROC} shows the ROC curve of the DeepSet output. Both figures show the DeepSet prediction for the test data and the training data.}
+\end{figure}
