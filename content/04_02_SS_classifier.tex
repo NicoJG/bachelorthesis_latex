@@ -3,7 +3,7 @@
 
 To identify tracks that belong to the SS of a signal $B$, a BDT is trained on the simulated LHCb data. 
 The BDT output resembles a probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$.
-The implementation of the BDT is done with the Python library XGBoost \cite{xgboost}.
+The implementation of the BDT is done in Python with the library XGBoost \cite{xgboost}.
 
 The dataset used for training the BDT contains about 70 different features on the tracks of the associated event.
 To reduce this list of features, first the correlation coefficient between all feature pairs is calculated.
@@ -12,7 +12,7 @@ Only one feature of each set of highly correlated features is kept for training 
 Next, a BDT is trained on a dataset containing all features and the gain of each feature is calculated.
 The gain is a measure used in decision trees to estimate the accuracy improvement of the introduction of a cut on one feature.
 Additionally, the permutation importance of the ROC AUC is calculated.
-The permutation importance is the difference in any performance metric after making predictions on a dataset with the entries of a single feature permuted.
+The permutation importance is the difference in any performance metric after making predictions on a dataset with the entries of a single feature permuted at random.
 The features with the lowest gain or permutation importance are discarded until a reasonable amount of features is achieved.
 The remaining 21 features are listed in \autoref{tab:SS_features} and the corresponding feature importances are shown in \autoref{fig:SS_importances}.
 
@@ -39,7 +39,7 @@ The remaining 21 features are listed in \autoref{tab:SS_features} and the corres
         $\cos(\Delta \phi)$ & NbNonIsoTr\_ult \\ %"Tr_cos_diff_phi","Tr_T_NbNonIsoTr_ult"
         AALLSAMEBPV         & SumBDT\_ult \\ %"Tr_T_AALLSAMEBPV","Tr_T_SumBDT_ult"
         BPVIP               & SumMinBDT\_ult \\ %"Tr_T_BPVIP","Tr_T_SumMinBDT_ult"
-        $\text{BPVIP}_{\Chi^2}$    & Sum\_of\_trackp \\ %"Tr_T_BPVIPCHI2","Tr_T_Sum_of_trackp"
+        $\text{BPVIP}_{\chi^2}$    & Sum\_of\_trackp \\ %"Tr_T_BPVIPCHI2","Tr_T_Sum_of_trackp"
         MinIP               & TRGHOSTPROB \\ %"Tr_T_MinIP","Tr_T_TRGHOSTPROB"
         ConIso\_p\_ult      & \\ %"Tr_T_ConIso_p_ult",
         \bottomrule
