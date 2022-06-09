@@ -55,6 +55,7 @@ Each iteration then calculates the NN outputs and estimates the gradient of the 
 Based on the gradient, the weights are adjusted towards the estimated minimum.
 The step size at each iteration is determined by an optimizer algorithm.
 This thesis uses the loss function binary cross entropy in combination with the optimizer Adam.
+% TODO: bce formula and reference for Adam
 
 NNs are prone to describe the training data too well, so that the model does not perform well on unseen data.
 To prevent this overtraining, the regularization techniques used in this thesis are early stopping and dropout.
@@ -70,7 +71,7 @@ This makes the NN more robust and reduces overtraining.
 \subsection{DeepSet}
 \label{sec:DeepSet}
 
-A DeepSet is an extension of NNs to allow inputs of sets rather than vectors.
+A DeepSet is an extension of NNs to allow inputs of sets of vectors.
 DeepSets can therefore be used to solve problems where the data of each sample contains a variable length list and where the solution should be invariant under permutations of this list.
 In this thesis, a DeepSet is used to classify $pp$-collision events that contain different amounts of tracks of which the order in the data should not matter.
 
@@ -78,6 +79,7 @@ The basic idea of DeepSets is that a function is invariant under permutations of
 \begin{equation*}
     f(X) = \rho \left( \sum_{x \in X} \phi (x) \right) \, .
 \end{equation*}
+This is also true, if the sum is replaced with any permutation invariant function.
 In DeepSets $\rho$ and $\phi$ are represented by NNs and can be vector-valued \cite{deepset}.
 In other words, a $\phi$-network first extracts some features about each instance in the set.
 The feature values of all instances are then summed up and fed into a $\rho$-network that calculates the desired output.
