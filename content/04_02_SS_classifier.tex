@@ -27,26 +27,49 @@ The remaining 21 features are listed in \autoref{tab:SS_features} and the corres
     \centering
     \caption{List of all features used to train the BDT for SS track identification.}
     \label{tab:SS_features}
-    \begin{tabular}{c c}
+    \begin{tabular}{l l}
         \toprule
         feature & feature \\
         \midrule
-        $p_\text{T}$        & IP\_trMother \\ %"Tr_T_PT","Tr_T_IP_trMother"
-        $p_\text{proj}$     & IPCHI2\_trMother \\ %"Tr_p_proj","Tr_T_IPCHI2_trMother"
-        $\Delta p_\text{T}$ & IP\_trPUS \\ %"Tr_diff_pt","Tr_T_IP_trPUS"
-        $\Delta z$          & MinBDT\_ult \\ %"Tr_diff_z","Tr_T_MinBDT_ult"
-        $\Delta \eta$       & Mother\_VtxChi2 \\ %"Tr_diff_eta","Tr_T_Mother_VtxChi2"
-        $\cos(\Delta \phi)$ & NbNonIsoTr\_ult \\ %"Tr_cos_diff_phi","Tr_T_NbNonIsoTr_ult"
-        AALLSAMEBPV         & SumBDT\_ult \\ %"Tr_T_AALLSAMEBPV","Tr_T_SumBDT_ult"
-        BPVIP               & SumMinBDT\_ult \\ %"Tr_T_BPVIP","Tr_T_SumMinBDT_ult"
-        $\text{BPVIP}_{\chi^2}$    & Sum\_of\_trackp \\ %"Tr_T_BPVIPCHI2","Tr_T_Sum_of_trackp"
-        MinIP               & TRGHOSTPROB \\ %"Tr_T_MinIP","Tr_T_TRGHOSTPROB"
-        ConIso\_p\_ult      & \\ %"Tr_T_ConIso_p_ult",
+        $p_\text{T}$        & $\text{IP}_\text{trMother}$ \\ 
+        $p_\text{proj}$     & $\chi^2(\text{IP}_\text{trMother})$ \\ 
+        $\Delta p_\text{T}$ & $\text{IP}_\text{trPUS}$ \\ 
+        $\sum p_\text{tr}$  & $\text{IP}_\text{PV}$ \\    
+        $\Delta z$          & $(\text{IP}_\text{PV})_{\chi^2}$ \\ 
+        $\Delta \eta$       & $\text{IP}_\text{min}$ \\ 
+        $\cos(\Delta \phi)$ & AALLSAMEBPV \\ 
+        Mother\_VtxChi2     & ConIso\_p\_ult \\
+        SumBDT\_ult         & NbNonIsoTr\_ult \\ 
+        MinBDT\_ult         & TRGHOSTPROB \\ 
+        SumMinBDT\_ult      &  \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-(Explain all features)....
+%(Explain all features)....
+Of each particle track 
+$p_\text{T}$ is the transversal momentum, 
+$p_\text{proj}$ is the 4-momentum dot product with the signal $B$,
+$\Delta p_\text{T}$ is the transversal momentum difference to the signal $B$,
+$\sum p_\text{tr}$ 
+$\Delta z$ is the difference between the $z$-coordinates of the PV and the first detector hit of the track,        
+$\Delta \eta$ is the pseudorapidity difference to the signal $B$,     
+$\cos(\Delta \phi)$ is the cosine of the $\phi$-coordinate difference to the signal $B$, 
+Mother\_VtxChi2    
+SumBDT\_ult        
+MinBDT\_ult        
+SumMinBDT\_ult
+$\text{IP}_\text{trMother}$ is the impact parameter of the mother track, 
+$\chi^2(\text{IP}_\text{trMother})$ is the $\chi^2$ test statistic of $\text{IP}_\text{trMother}$,
+$\text{IP}_\text{trPUS}$ 
+$\text{IP}_\text{PV}$ is the impact parameter to the PV,    
+$(\text{IP}_\text{PV})_{\chi^2}$ is the $\chi^2$ test statistic of $\text{IP}_\text{PV}$,
+$\text{IP}_\text{min}$  
+AALLSAMEBPV  
+ConIso\_p\_ult 
+NbNonIsoTr\_ult  
+TRGHOSTPROB      
+
 
 Then a BDT is trained on a dataset containing all features of this list.
 From the $18$ million tracks in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
