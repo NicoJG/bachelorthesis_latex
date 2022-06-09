@@ -136,6 +136,8 @@
 \addbibresource{references.bib}  % the bib file to use
 \DefineBibliographyStrings{english}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
 
+% To see textwidth in cm or inches
+\usepackage{layouts}
 
 % Last packages, do not change order or insert new packages after these ones
 \usepackage[pdfusetitle, unicode, linkbordercolor=tugreen, citebordercolor=tugreen]{hyperref}
@@ -173,6 +175,10 @@
 \tableofcontents
 
 \mainmatter
+% display textwidth:
+%textwidth: \the\textwidth
+%textwidth in cm: \printinunitsof{cm}\prntlen{\textwidth}
+%textwidth in inch: \printinunitsof{in}\prntlen{\textwidth}
 % Hier beginnt der Inhalt mit Seite 1 in arabischen Ziffern
 \input{content/01_introduction.tex}
 \input{content/02_theory.tex}
