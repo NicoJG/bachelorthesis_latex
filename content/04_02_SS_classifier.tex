@@ -27,21 +27,21 @@ The remaining 21 features are listed in \autoref{tab:SS_features} and the corres
     \centering
     \caption{List of all features used to train the BDT for SS track identification.}
     \label{tab:SS_features}
-    \begin{tabular}{l l}
+    \begin{tabular}{c c}
         \toprule
         feature & feature \\
         \midrule
-        $p_\text{T}$        & $\text{IP}_\text{trMother}$ \\ 
-        $p_\text{proj}$     & $\chi^2(\text{IP}_\text{trMother})$ \\ 
-        $\Delta p_\text{T}$ & $\text{IP}_\text{trPUS}$ \\ 
-        $\sum p_\text{tr}$  & $\text{IP}_\text{PV}$ \\    
-        $\Delta z$          & $(\text{IP}_\text{PV})_{\chi^2}$ \\ 
-        $\Delta \eta$       & $\text{IP}_\text{min}$ \\ 
-        $\cos(\Delta \phi)$ & AALLSAMEBPV \\ 
-        Mother\_VtxChi2     & ConIso\_p\_ult \\
-        SumBDT\_ult         & NbNonIsoTr\_ult \\ 
-        MinBDT\_ult         & TRGHOSTPROB \\ 
-        SumMinBDT\_ult      &  \\
+        $p_\text{T}$        & $\text{IP}_\text{SV}$ \\ 
+        $p_\text{proj}$     & $\chi^2(\text{IP}_\text{SV})$ \\ 
+        $\Delta p_\text{T}$ & $\sigma(\text{IP}_\text{pileup vtx})$ \\ 
+        $\Delta z$          & $\text{IP}_\text{best PV}$ \\    
+        $\Delta \eta$       & $\chi^2(\text{IP}_\text{best PV})$ \\ 
+        $\cos(\Delta \phi)$ & $\text{IP}_\text{min}$ \\ 
+        $\text{Prob}_\text{ghost}$ & same PV \\
+        $\chi^2(\text{vtx})$     & cone isolation \\
+        SumBDT              & $N_\text{non iso}$ \\ 
+        MinBDT              & $\sum p_\text{in cone}$ \\ 
+        SumMinBDT           &  \\
         \bottomrule
     \end{tabular}
 \end{table}

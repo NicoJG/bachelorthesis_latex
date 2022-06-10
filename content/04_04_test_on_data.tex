@@ -46,8 +46,8 @@ A ROC AUC score of $0.989$ is achieved on test data and the corresponding ROC cu
         IP$(K^0_\text{S})$          & $p_\text{T}(K^0_\text{S})$ \\% "KS0_IP_OWNPV","KS0_PT"
         IP$(\mu^+)$                 & $\eta(B^0)$ \\% "muplus_IP_OWNPV","B_LOKI_ETA"
         IP$(\mu^-)$                 & $\eta(K^0_\text{S})$ \\% "muminus_IP_OWNPV","KS0_LOKI_ETA"
-        FD$(K^0_\text{S})$ to PV    & $p_z(K^0_\text{S})$ \\% "KS0_FD_OWNPV","KS0_PZ"
-        $\text{DFT}_{\chi^2}(B^0)$  & \\% "B_LOKI_DTF_CHI2NDOF",
+        FD$(K^0_\text{S})$    & $p_z(K^0_\text{S})$ \\% "KS0_FD_OWNPV","KS0_PZ"
+        $\chi^2(\text{fit})$  & \\% "B_LOKI_DTF_CHI2NDOF",
         \bottomrule
     \end{tabular}
 \end{table}
@@ -88,7 +88,7 @@ The second component $F_{B_d}$ describes the events containing a $B_d$ meson and
 Both $F_{B_d}$ and $F_{B_s}$ use the same function
 \begin{align*}
     F_B(M_B) = &f_1 \cdot f_2 \cdot F_\text{CB}\left(\frac{M_B-\mu}{\sigma_1}, \beta_1, m_1\right) \\
-                    &+ (1-f_1) \cdot f_2 \cdot F_\text{CB}\left(\frac{M_B-\mu}{\sigma_2}, \beta_2, m_2\right) \\
+                    &+ (1-f_1) \cdot f_2 \cdot F_\text{CB}\left(-\frac{M_B-\mu}{\sigma_2}, \beta_2, m_2\right) \\
                     &+ (1-f_1) \cdot (1-f_2) \cdot F_\text{gauss}\left(M_B,\mu,\sigma_3\right) \, ,
 \end{align*}
 with the same parameters except $\mu_{B_s} = \mu_{B_d} + (M_{B_s}-M_{B_d})$.
@@ -117,9 +117,19 @@ One of those fitted distributions is shown in \autoref{fig:fit_example}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{images/fit_example.pdf}
-    \caption{Example fit of the $B$ mass distribution selected with $\text{Prob}_{B_s} \geq 0.0406$. The data distribution is shown in black, the fit is shown in blue, the background fit component is shown in orange and the $B_d$ fit component is shown in green. Additionally, a pull distribution between the data points and the fit is shown.}
-    \label{fig:fit_example}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/fit_mc.pdf}
+        \caption{Fit of MC $B_d$ peak}
+        \label{fig:fit_mc}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/fit_example.pdf}
+        \caption{Example fit on data}
+        \label{fig:fit_example}
+    \end{subfigure}%
+    \caption{...Example fit of the $B$ mass distribution selected with $\text{Prob}_{B_s} \geq 0.0406$. The data distribution is shown in black, the fit is shown in blue, the background fit component is shown in orange and the $B_d$ fit component is shown in green. Additionally, a pull distribution between the data points and the fit is shown.} %TODO!
 \end{figure}
 
 To estimate how good the trained model of this thesis can distinguish $B_d$ and $B_s$ mesons, the ratio $n_{B_s}/n_{B_d}$ is plotted by the cut value $x$ for selections with $\text{Prob}_{B_s} \geq x$. 
