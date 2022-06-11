@@ -17,7 +17,7 @@ The dataset used here contains LHCb data from the years 2016, 2017 and 2018 that
 
 Since this dataset originates from measurements of the physical world rather than simulations, the true processes in each event are unknown. This means, there are additional events present that do not contain the mentioned decays, called background events.
 Before being able to evaluate the trained model, the amount of these background events has to be reduced.
-The procedure used for background reduction is based on the analysis ... and is explained here only briefly.
+The procedure used for background reduction is based on a work-in-progress analysis on \enquote{Measurement of $\sin(2\beta)$ in $B^0\rightarrow J/\psi + K^0_\text{S}$ decays with run 2 data} and is explained here only briefly.
 
 A few types of background are reduced manually.
 One source of such background events is the misidentification of $\Lambda^0 \rightarrow p^+ + \pi^-$ decays as $K^0_\text{S} \rightarrow \pi^+ + \pi^-$.
@@ -88,7 +88,7 @@ The $B$ mass distribution found in the data can be approximated by a function
 that is split into three components.
 The first component $F_\text{bkg}$ describes the combinatorial background with 
 \begin{align*}
-    F_\text{bkg}(M_B) = f_\text{bkg} \cdot \exp(-\lambda_1 \cdot M_B) + (1-f_\text{bkg}) \cdot \exp(-\lambda_2 \cdot M_B) \, .
+    F_\text{bkg}(M_B) = \exp(-\lambda \cdot M_B) \, .
 \end{align*}
 The second component $F_{B_d}$ describes the events containing a $B_d$ meson and the third component $F_{B_s}$ describes the events containing a $B_s$ meson.
 Both $F_{B_d}$ and $F_{B_s}$ use the same function
@@ -112,7 +112,10 @@ is called a Crystal Ball distribution and
 \end{equation*}
 is called a Gaussian distribution or a normal distribution.
 
-For 100 values of $x$ between 0 and 1, a selection with $\text{Prob}_{B_s} \leq x$ and a selection with $\text{Prob}_{B_s} \geq x$ is made.
+All the following fits are done using the library \enquote{iminuit}\cite{iminuit}.
+First, a fit is done on the simulated data of the $B_d$ peak to fix the parameters $f_1,f_2,\beta_1,\beta_2,m_1$ and $m_2$ for all the following fits. 
+This fit is shown in \autoref{fig:fit_mc}.
+Then, for 100 values of $x$ between 0 and 1, a selection with $\text{Prob}_{B_s} \leq x$ and a selection with $\text{Prob}_{B_s} \geq x$ is made.
 A fit is done on each acquired $B$ mass distribution and the counts
 \begin{align*}
     n_{B_d} &= \int_{-\infty}^{\infty} N_{B_d} \cdot F_{B_d}(M_B) \, \symup{d}M_B \:\:\text{ and} \\
@@ -126,33 +129,37 @@ One of those fitted distributions is shown in \autoref{fig:fit_example}.
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fit_mc.pdf}
-        \caption{Fit of MC $B_d$ peak}
+        \caption{Fit of the $B_d$ peak}
         \label{fig:fit_mc}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fit_example.pdf}
-        \caption{Example fit on data}
+        \caption{Example fit of a data selection}
         \label{fig:fit_example}
     \end{subfigure}%
-    \caption{...Example fit of the $B$ mass distribution selected with $\text{Prob}_{B_s} \geq 0.0406$. The data distribution is shown in black, the fit is shown in blue, the background fit component is shown in orange and the $B_d$ fit component is shown in green. Additionally, a pull distribution between the data points and the fit is shown.} %TODO!
+    \caption{The left figure shows a fit on simulated data of the $B_d$ peak. The right figure shows a fit of the $B$ mass distribution with the selection $\text{Prob}_{B_s} \geq 0.43919$. Both figures also show a pull distribution between the data points and the fit.}
 \end{figure}
 
 To estimate how good the trained model of this thesis can distinguish $B_d$ and $B_s$ mesons, the ratio $n_{B_s}/n_{B_d}$ is plotted by the cut value $x$ for selections with $\text{Prob}_{B_s} \geq x$. 
 This is shown in \autoref{fig:data_ratio}.
-The expected value without any achieved separation is the ratio of the decay branching fractions
+The expected value without any achieved separation is 
 \begin{equation*}
-    \frac{\text{BR}(B_s \rightarrow J/\psi + K^0_\text{S})}{\text{BR}(B_d \rightarrow J/\psi + K^0_\text{S})} =
-    \frac{?}{?} = ? \, \text{\cite{pdg}.}
+    \frac{\text{BR}(B_s \rightarrow J/\psi + K^0_\text{S})}{\text{BR}(B_d \rightarrow J/\psi + K^0_\text{S})} \cdot 
+    f_s/f_d(\qty{13}{\TeV}) = \num{0.0109\pm0.0010} \, .
 \end{equation*}
+Where the branching ratios are $\text{BR}(B_s \rightarrow J/\psi + K^0_\text{S}) = \num{4.37\pm0.16e-4}$ and $\text{BR}(B_d \rightarrow J/\psi + K^0_\text{S}) = \num{1.88\pm0.15e-5}$ \cite{pdg}, and $f_s/f_d(\qty{13}{\TeV}) = \num{0.2539\pm0.0079}$ is the ratio of the $B^0_s$ and $B^0$ fragmentation fractions in $pp$-collisions at $\qty{13}{\TeV}$ collision energy \cite{fsfd}.
+%Where BR stands for branching fraction and $\frac{f_s}{f_d}(\qty{13}{\TeV})$ is the ratio of the $B^0_s$ and $B^0$ fragmentation fractions in $pp$-collisions at $\qty{13}{\TeV}$.
+
 Another approach to show the achieved separation, is to plot a curve similar to a ROC curve. 
-Here, the estimated efficiencies
+For each selection, the estimated efficiencies
 \begin{align*}
     \varepsilon_{B_d} &= \frac{n_{B_d}(x)}{n_{B_d}(\text{no cut})} \: \: \text{ and} \\
     \varepsilon_{B_s} &= \frac{n_{B_s}(x)}{n_{B_s}(\text{no cut})}
 \end{align*}
-are calculated for each selection. Shown in \autoref{fig:data_roc} is the plot of $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$.
-Without any achieved separation, the plot would show a straight line from $(0,0)$ to $(1,1)$.
+are calculated. Shown in \autoref{fig:data_roc} is the plot of $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$.
+%Without any achieved separation, the plot would show a straight line from $(0,0)$ to $(1,1)$.
+Similar to a ROC curve, a diagonal line from $(0,0)$ to $(1,1)$ is the expectation without any achieved separation.
 Compared to the achieved ROC curve on the simulated data shown in \autoref{fig:B_ROC}, a substantially weaker separation is achieved on the LHCb data.
 
 \begin{figure}
