@@ -6,8 +6,8 @@ Therefore, it is tested if a multivariate machine learning algorithm can spot th
 The algorithm of choice for this thesis is a DeepSet that is trained on simulated LHCb data.
 As explained in \autoref{sec:DeepSet}, a DeepSet can handle data of variable length where the order of its elements should not change the result of the classification.
 Therefore, DeepSets are ideal to classify $pp$-collision events that contain different amounts of particle tracks.
-The DeepSets, trained here, ouput an estimated probability $\text{Prob}_{B_s}$ for each event that the signal $B$ is a $B_s$ meson.
-Therefore, $1-\text{Prob}_{B_s}$ is the estimated probability that the signal $B$ is a $B_d$ meson.
+The DeepSets, trained here, ouput an estimated probability $\text{Prob}_{B_s}$ for each event that the signal~$B$ is a $B_s$ meson.
+Therefore, $1-\text{Prob}_{B_s}$ is the estimated probability that the signal~$B$ is a $B_d$ meson.
 
 The procedure of selecting important features is similar to the procedure described in \autoref{sec:SS_classifier}.
 However, a DeepSet was trained on all features and the feature importances used here are the permutation importance of the ROC AUC and the permutation importance of the accuracy.
