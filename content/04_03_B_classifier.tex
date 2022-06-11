@@ -32,7 +32,7 @@ The remaining 23 features are listed in \autoref{tab:B_features} and the corresp
         $p$                 & $\text{Prob}_\text{SS}$ \\ %"Tr_T_P","Tr_ProbSS"
         $p_\text{T}$        & $\text{Prob}_e$ \\ %"Tr_T_PT", "Tr_T_PROBNNe"
         $p_\text{proj}$     & $\text{Prob}_\text{ghost}$ \\ %"Tr_p_proj","Tr_T_PROBNNghost"
-        $\Delta p$          & $\text{Prob}_k$ \\ %"Tr_diff_p", "Tr_T_PROBNNk"
+        $\Delta p$          & $\text{Prob}_K$ \\ %"Tr_diff_p", "Tr_T_PROBNNk"
         $\Delta p_\text{T}$ & $\text{Prob}_\mu$ \\ %"Tr_diff_pt","Tr_T_PROBNNmu"
         $\Delta z$          & $\text{Prob}_p$ \\ %"Tr_diff_z", "Tr_T_PROBNNp"
         $\cos(\Delta \phi)$ & $\text{Prob}_\pi$ \\ %"Tr_cos_diff_phi", "Tr_T_PROBNNpi"
@@ -45,7 +45,37 @@ The remaining 23 features are listed in \autoref{tab:B_features} and the corresp
     \end{tabular}
 \end{table}
 
-(Explain all features)....
+%(Explain all features)....
+Multiple features that are used here are already described in \autoref{sec:SS_classifier}.
+These features are 
+$p$,
+$p_\text{T}$, 
+$p_\text{proj}$, 
+$\Delta p_\text{T}$, 
+$\Delta z$, 
+$\cos(\Delta \phi)$, 
+$\Delta \eta$, 
+$\text{Prob}_\text{ghost}$
+$\text{IP}_\text{SV}$, 
+$\chi^2(\text{IP}_\text{SV})$, 
+$\text{IP}_\text{min}$,        
+SumBDT and
+MinBDT.
+The other features used here are described in the following paragraph.
+
+All the following features describe a single particle or rather its reconstructed track.
+$\Delta p$ is the difference of the absolute momenta of the particle and the signal~$B$.
+$\chi^2(\text{IP}_\text{min})$ is the uncertainty of $\text{IP}_\text{min}$.
+%
+$\text{Prob}_\text{SS}$ is an estimated probability that the track belongs to the SS and is the output of the classifier described in \autoref{sec:SS_classifier}. 
+$\text{Prob}_e$, 
+$\text{Prob}_K$, 
+$\text{Prob}_\mu$, 
+$\text{Prob}_p$ and 
+$\text{Prob}_\pi$ are estimated probabilities about the particle's type.
+%
+$Q_\text{VELO}$ is a measure for the interaction of the particle with the VELO detector based on the amount of deposited charge.
+
 
 The final DeepSet trained here consists of a $\phi$-network that extracts 64 features about each track and a $\rho$-network with a single output.
 The $\phi$-network has an input layer of size 23 followed by 3 layers with of sizes 64, 128 and 64.
