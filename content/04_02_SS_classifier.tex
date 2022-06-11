@@ -2,12 +2,12 @@
 \label{sec:SS_classifier}
 
 To identify tracks that belong to the SS of a signal~$B$, a BDT is trained on the simulated LHCb data. 
-The BDT output resembles a probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$.
-The implementation of the BDT is done in Python with the library XGBoost \cite{xgboost}.
+The BDT output resembles a probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$. %TODO: BDT output not a probability
+The implementation of the BDT is done with the library XGBoost \cite{xgboost}.
 
-The dataset used for training the BDT contains about 70 different features on the tracks of the associated event.
+The dataset used for training the BDT contains about 70 different features of the tracks of the associated event.
 To reduce this list of features, first the correlation coefficient between all feature pairs is calculated.
-Features with a correlation near $100\%$ are considered to contain redundant information.
+Features with a correlation near $100\%$ are considered to contain redundant information. %TODO: correlation plot
 Only one feature of each set of highly correlated features is kept for training the BDT.
 Next, a BDT is trained on a dataset containing all features and the gain of each feature is calculated.
 The gain is a measure used in decision trees to estimate the accuracy improvement of the introduction of a cut on one feature.
@@ -19,7 +19,7 @@ The remaining 21 features are listed in \autoref{tab:SS_features} and the corres
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/SS_feature_importances.pdf}
-    \caption{Calculated feature importances on the trained DeepSet. Shown are the gains and the permutation importances of the ROC AUC.}
+    \caption{Calculated feature importances on the trained DeepSet. Shown are the gains and the permutation importances of the ROC AUC normed on the largest value.}
     \label{fig:SS_importances}
 \end{figure}
 
@@ -83,7 +83,7 @@ Then a BDT is trained on a dataset containing all features of this list.
 From the $18$ million tracks in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
 The trained model contains $2000$ estimators at a maximum decision tree depth of $4$.
 The learning rate is set to $0.1$.
-Due to the imbalance of SS tracks and other tracks in the data, the parameter \enquote{scale\_pos\_weight} is set to $N_\text{other}/N_\text{SS} = 11.94$.
+Due to the imbalance of SS tracks and other tracks in the data ($N_\text{other}/N_\text{SS} = 11.94$), a parameter that controls the balance of positive and negative weights of the BDT is set accordingly. %TODO: mention SS imbalance?
 The learning objective is logistic regression for binary classification.
 
 The negative log-likelihood and the error rate for each iteration of the training of the BDT are shown in \autoref{fig:SS_history}.

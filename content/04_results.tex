@@ -5,13 +5,13 @@
 % This means it is irrelevant which quarks are antiquarks, and it is expected that only information about the same side is relevant here.
 
 The goal of this thesis is to develop an algorithm that can distinguish $B_d$ mesons from $B_s$ mesons produced in $pp$-collisions.
-This algorithm is intended to be independent of the signal decay channel and therefore only uses data on the associated event without data on the signal tracks.
-As mentioned in \autoref{sec:B_mesons}, only the SS is expected to contain relevant information because the OS allows only the identification of $b$ and $\bar{b}$ quarks.
-Thus, before classifying the signal~$B$, every track in the dataset is assigned an estimated probability of being a SS track.
+This algorithm is intended to be independent of the signal decay channel and therefore only uses data of the associated event without the signal tracks.
+As mentioned in \autoref{sec:B_mesons}, only the SS is expected to contain relevant information because the OS allows only the identification of $b$ and $\bar{b}$ quarks. %TODO: OS argument wrong?
+Thus, before classifying the signal~$B$ using a DeepSet, every track in the dataset is assigned an estimated probability of being a SS track by a BDT.
 
 This chapter describes in detail the methods and results of training this $B$ meson classifier.
 The first section explains the reasoning behind choosing a fitting training dataset.
-Then the training of a Boosted Decision Tree (BDT) for SS track classification is presented.
+Then the training of a BDT for SS track classification is presented.
 The next section describes the training of a DeepSet for $B$ meson classification.
 In the last section, the trained model is tested on LHCb data.
 

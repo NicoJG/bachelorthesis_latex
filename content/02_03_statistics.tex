@@ -54,8 +54,8 @@ Before the first iteration, all weights are initialized at random.
 Each iteration then calculates the NN outputs and estimates the gradient of the loss function with respect to the weights.
 Based on the gradient, the weights are adjusted towards the estimated minimum.
 The step size at each iteration is determined by an optimizer algorithm.
-This thesis uses the loss function binary cross entropy in combination with the optimizer Adam.
-% TODO: bce formula and reference for Adam
+This thesis uses the loss function \enquote{binary cross entropy} in combination with the optimizer \enquote{Adam}\cite{adam}.
+% TODO: bce formula? or reference?
 
 NNs are prone to describe the training data too well, so that the model does not perform well on unseen data.
 To prevent this overtraining, the regularization techniques used in this thesis are early stopping and dropout.

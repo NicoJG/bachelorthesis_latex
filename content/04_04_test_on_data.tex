@@ -10,25 +10,27 @@
 %Consequently, the final step of this thesis is testing the model on LHCb run 2 data of the decay $B^0 \rightarrow J/\psi + K_\text{S}$.
 %This decay channel contains both the $B_d$ and $B_s$ mesons and the data 
 
-Although the developed model of this thesis is intended to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions independent of the decay channel, it is trained only on simulated data containing the decay channels $B_d \rightarrow J/\psi + K^*$ and $B_s \rightarrow D_s + \pi$.
+Although the developed model of this thesis is intended to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions independent of the decay channel, it is trained only on simulated data containing the decay channels $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$.
 Consequently, the trained model must be evaluated on LHCb data of some other decay channel.
-Chosen here are the decays $B_d \text{ or } B_s \rightarrow J/\psi + K^0_\text{S}$.
-The dataset used here contains LHCb data from the years 2016, 2017 and 2018 that has been selected for both mentioned decays with the exact same selection criteria.
+Chosen here are the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
+The dataset used here contains LHCb data from the years 2016, 2017 and 2018 that has been selected for both mentioned decays. %TODO: with the exact same selection criteria?
 
-Since this dataset originates from measurements of the physical world rather than simulations, the true processes in each event are unknown. This means, there are additional events present that do not contain the mentioned decays, called background events.
+Since this dataset originates from measurements of the physical world rather than simulations, the true processes in each event are unknown. %TODO: Vukan: "Grundsätzlich kann man Untergründe doch auch simulieren?" 
+This means, there are additional events present that do not contain the mentioned decays, called background events.
 Before being able to evaluate the trained model, the amount of these background events has to be reduced.
-The procedure used for background reduction is based on a work-in-progress analysis on \enquote{Measurement of $\sin(2\beta)$ in $B^0\rightarrow J/\psi + K^0_\text{S}$ decays with run 2 data} and is explained here only briefly.
+The procedure used for background reduction is based on a work-in-progress analysis on the \enquote{Measurement of $\sin(2\beta)$ in $B^0\rightarrow J/\psi \, K^0_\text{S}$ decays with run 2 data} and is explained here only briefly. %TODO: + in decays?
 
 A few types of background are reduced manually.
-One source of such background events is the misidentification of $\Lambda^0 \rightarrow p^+ + \pi^-$ decays as $K^0_\text{S} \rightarrow \pi^+ + \pi^-$.
-To reduce this type of background, events are rejected if the reconstructed invariant mass of the $K^0_\text{S}$ candidate is in the region of the $\Lambda^0$ mass and the variable $\text{PROBBNN}_p$ is low enough.
-Other background events are rejected by requiring that the $K^0_\text{S}$ candidate has a lifetime longer than $\qty{0.5}{\ms}$ and that the variable $\text{DFT}_{\chi^2}(B^0)$ has a value smaller than 5.
+One source of such background events is the misidentification of $\Lambda^0 \rightarrow p^+ \, \pi^-$ decays as $K^0_\text{S} \rightarrow \pi^+ \, \pi^-$.
+To reduce this type of background, events are rejected if the reconstructed invariant mass of the $K^0_\text{S}$~candidate is in the region  of the $\Lambda^0$~mass (\qtyrange{1095}{1140}{\MeV}) and $\text{Prob}_p > \num{0.10}$. %TODO: equation allowed without words?
+Other background events are rejected by requiring that the $K^0_\text{S}$~candidate has a lifetime longer than $\qty{0.5}{\pico\second}$ and that $\chi^2(\text{fit})<\num{5.0}$. %TODO: mention features before explanation? Feature Name instead of symbol?
 
 To reduce all other types of combinatorial background, a BDT is trained.
 Again, the BDT is implemented in Python using the library XGBoost \cite{xgboost}.
 For this, events of the mentioned dataset with a reconstructed signal~$B$ mass larger than $\qty{5450}{\MeV}$ are used as background events, and simulated events of the mentioned decays are used as signal events.
 The BDT has a maximum tree depth of 4, is trained at a learning rate of $0.3$ and consists of 2000 estimators after early stopping of 50 iterations without improvement.
 A ROC AUC score of $0.989$ is achieved on test data and the corresponding ROC curve is shown in \autoref{fig:BKG_BDT_ROC}.
+With this, events are classified as background events if the BDT output is smaller than $\num{0.5}$.
 
 \begin{table}
     \centering
@@ -78,7 +80,7 @@ Finally, $\chi^2(\text{fit})$ is the $\chi^2$ corresponding to the reconstructio
 \autoref{fig:BKG_reduced} shows the distribution of the reconstructed signal~$B$ mass before and after reducing the background with the BDT and the manual cuts.
 After reducing the background, the trained model for the signal~$B$ classification is applied on the data to calculate $\text{Prob}_{B_s}$.
 To estimate the performance of this prediction, an alternative method to estimate the amount of $B_d$ and $B_s$ mesons is needed.
-The chosen procedure is to do a least squares fit on the $B$ mass distribution and estimate the counts of events by integrating the fitted function componentwise.
+The chosen procedure is to do a least squares fit on the $B$ mass distribution and estimate the counts of events by integrating each component of the fitted function.
 
 In the following function definitions every variable except $M_B$ is a parameter that has to be fitted.
 The $B$ mass distribution found in the data can be approximated by a function
@@ -110,7 +112,7 @@ is called a Crystal Ball distribution and
 \begin{equation*}
     F_\text{gauss}\left(x,\mu,\sigma\right) = \frac{1}{\sqrt{2}\pi} \cdot \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)
 \end{equation*}
-is called a Gaussian distribution or a normal distribution.
+is called a normal distribution.
 
 All the following fits are done using the library \enquote{iminuit}\cite{iminuit}.
 First, a fit is done on the simulated data of the $B_d$ peak to fix the parameters $f_1,f_2,\beta_1,\beta_2,m_1$ and $m_2$ for all the following fits. 
