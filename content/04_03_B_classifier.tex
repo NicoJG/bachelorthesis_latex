@@ -53,9 +53,15 @@ The $\rho$-network has an input layer of size 64 followed by 3 layers of sizes 1
 All hidden layers use the activation function ReLU and have a dropout rate of $50\%$.
 The output layer of the $\rho$-network uses the activation function Sigmoid.
 
-This DeepSet is trained using the loss function binary cross entropy and the optimizer Adam.
 From the $0.4$ million events in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
-Using early stopping the training is stopped at iteration 600 after 50 iterations without improvement on the validation dataset.
+Before training or evaluation, each feature in the data is standardized using 
+\begin{equation*}
+    f(x) = \frac{x - \mu_i}{\sigma_i} \, .
+\end{equation*} 
+Where $\mu_i$ is the mean and $\sigma_i$ is the standard deviation of feature $i$ in the training data.
+
+The DeepSet is trained using the loss function binary cross entropy and the optimizer Adam.
+Using early stopping, the training is stopped at iteration 600 after 50 iterations without improvement on the validation dataset.
 The loss and the error rate for each iteration of the training of the DeepSet are shown in \autoref{fig:B_history}.
 
 \begin{figure}
