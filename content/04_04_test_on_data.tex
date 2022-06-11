@@ -32,7 +32,7 @@ A ROC AUC score of $0.989$ is achieved on test data and the corresponding ROC cu
 
 \begin{table}
     \centering
-    \caption{List of all features used to train the BDT for background identification.}
+    \caption{List of all features used to train the BDT for the distinction between signal and background events.}
     \label{tab:BKG_BDT_features}
     \begin{tabular}{c c}
         \toprule
@@ -51,11 +51,11 @@ A ROC AUC score of $0.989$ is achieved on test data and the corresponding ROC cu
 
 The features used by the BDT are listed in \autoref{tab:BKG_BDT_features} and describe the signal $B$ and its decay particles.
 The symbols inside the brackets represent the corresponding particle in the signal decay.
-IP$(x)$ is the impact parameter to the production vertex of $x$.
-$p_\text{T}(x)$ is the transversal momentum of $x$.
-$\eta(x)$ is the pseudorapidity of $x$.
-$p_z(x)$ is the momentum of $x$ along the $z$-axis.
-FD$(x)$ is the flight distance from the production vertex to the decay vertex.
+IP$(x)$ is the impact parameter to the production vertex of particle $x$.
+$p_\text{T}(x)$ is the transversal momentum of particle $x$.
+$\eta(x)$ is the pseudorapidity of particle $x$.
+$p_z(x)$ is the momentum of particle $x$ along the $z$-axis.
+FD$(x)$ is the flight distance from the production vertex to the decay vertex of particle $x$.
 Finally, $\chi^2(\text{fit})$ is the $\chi^2$ corresponding to the reconstruction of the entire signal decay.
 
 \begin{figure}
