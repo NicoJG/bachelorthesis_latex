@@ -47,27 +47,36 @@ The remaining 21 features are listed in \autoref{tab:SS_features} and the corres
 \end{table}
 
 %(Explain all features)....
-Of each particle track %TODO: no good start
-$p_\text{T}$ is the transversal momentum, 
-$p_\text{proj}$ is the 4-momentum dot product with the signal~$B$,
-$\Delta p_\text{T}$ is the transversal momentum difference to the signal~$B$,
-$\Delta z$ is the difference between the $z$-coordinate of the PV and the first detector hit of the track,        
-$\Delta \eta$ is the pseudorapidity difference to the signal~$B$,     
-$\cos(\Delta \phi)$ is the cosine of the $\phi$-coordinate difference to the signal~$B$, 
-$\text{Prob}_\text{ghost}$ is an estimated probability that the track does not belong to a particle, %TODO: but ...
-$\chi^2(\text{vtx})$ is the $\chi^2$ of the combined reconstructed vertex of the signal~$B$ and the track, 
+All the following features describe a single particle or rather its reconstructed track.
+%
+$p$ is the momentum and
+$p_\text{T}$ is the transversal momentum. 
+%
+Between the signal $B$ and the particle,
+$p_\text{proj}$ is the dot product of the 4-momenta,
+$\Delta p_\text{T}$ is the difference of the transversal momenta,    
+$\Delta \eta$ is the difference of the pseudorapidities and   
+$\cos(\Delta \phi)$ is the cosine of the difference of the $\phi$-coordinates. 
+$\Delta z$ is the $z$-coordinate difference of the PV and the first detector hit of the track. 
+%  
+$\text{Prob}_\text{ghost}$ is an estimated probability that the track does not belong to a particle. %TODO: but ...
+$\chi^2(\text{vtx})$ is the $\chi^2$ of the combined reconstructed vertex of the signal~$B$ and the track. 
+\enquote{same PV} refers to whether the particle's vertex is the same as the PV.
+%
+An impact parameter (IP) is the distance of a track to a scattering centre.
+$\text{IP}_\text{SV}$ is the IP to the SV and  
+$\chi^2(\text{IP}_\text{SV})$ is its uncertainty.
+$\sigma(\text{IP}_\text{pileup vtx})$ is the significance of the IP to the closest pileup vertex,
+$\text{IP}_\text{best PV}$ is the IP to the best estimated PV and  
+$\chi^2(\text{IP}_\text{best PV})$ is its uncertainty.
+$\text{IP}_\text{min}$ is the minimum IP with respect to all PV candidates.
+%
+A cone-isolation refers to the existence of other tracks in a cone around the tagging track.
 SumBDT,    
 MinBDT and    
-SumMinBDT describe the track cone-isolation based on multiple BDT classifiers,
-$\text{IP}_\text{SV}$ is the closest distance to the SV, 
-$\chi^2(\text{IP}_\text{SV})$ is the uncertainty of $\text{IP}_\text{SV}$,
-$\sigma(\text{IP}_\text{pileup vtx})$ is the significance of the impact parameter to the closest pileup vertex,
-$\text{IP}_\text{best PV}$ is the impact parameter to the best estimated PV, 
-$\chi^2(\text{IP}_\text{best PV})$ is the uncertainty of $\text{IP}_\text{best PV}$,
-$\text{IP}_\text{min}$ is the minimum impact parameter with respect to all PV candidates,
-\enquote{same PV} is the check whether the particle's PV is the same as the singal $B$ PV,
-$\sum p_\text{in cone}$ is the sum of the absolute momenta of all particle tracks in a cone around the tagging track,
-\enquote{cone isolation} describes the isolation based $p/\sum p_\text{in cone}$, 
+SumMinBDT describe the cone-isolation based on multiple BDT classifiers.
+$\sum p_\text{in cone}$ is the sum of the absolute momenta of all particle tracks in cone-isolation cone.
+The feature \enquote{cone isolation} describes the cone-isolation based $p/\sum p_\text{in cone}$. 
 $N_\text{non iso}$ is the number of tracks not isolated from the tagging track.   
 
 Then a BDT is trained on a dataset containing all features of this list.
