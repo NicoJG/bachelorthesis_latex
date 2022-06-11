@@ -1,7 +1,7 @@
 \section{Same side track identification using a Boosted Decision Tree}
 \label{sec:SS_classifier}
 
-To identify tracks that belong to the SS of a signal $B$, a BDT is trained on the simulated LHCb data. 
+To identify tracks that belong to the SS of a signal~$B$, a BDT is trained on the simulated LHCb data. 
 The BDT output resembles a probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$.
 The implementation of the BDT is done in Python with the library XGBoost \cite{xgboost}.
 
@@ -47,29 +47,28 @@ The remaining 21 features are listed in \autoref{tab:SS_features} and the corres
 \end{table}
 
 %(Explain all features)....
-Of each particle track 
+Of each particle track %TODO: no good start
 $p_\text{T}$ is the transversal momentum, 
-$p_\text{proj}$ is the 4-momentum dot product with the signal $B$,
-$\Delta p_\text{T}$ is the transversal momentum difference to the signal $B$,
-$\sum p_\text{tr}$ 
-$\Delta z$ is the difference between the $z$-coordinates of the PV and the first detector hit of the track,        
-$\Delta \eta$ is the pseudorapidity difference to the signal $B$,     
-$\cos(\Delta \phi)$ is the cosine of the $\phi$-coordinate difference to the signal $B$, 
-Mother\_VtxChi2    
-SumBDT\_ult        
-MinBDT\_ult        
-SumMinBDT\_ult
-$\text{IP}_\text{trMother}$ is the impact parameter of the mother track, 
-$\chi^2(\text{IP}_\text{trMother})$ is the $\chi^2$ test statistic of $\text{IP}_\text{trMother}$,
-$\text{IP}_\text{trPUS}$ 
-$\text{IP}_\text{PV}$ is the impact parameter to the PV,    
-$(\text{IP}_\text{PV})_{\chi^2}$ is the $\chi^2$ test statistic of $\text{IP}_\text{PV}$,
-$\text{IP}_\text{min}$  
-AALLSAMEBPV  
-ConIso\_p\_ult 
-NbNonIsoTr\_ult  
-TRGHOSTPROB      
-
+$p_\text{proj}$ is the 4-momentum dot product with the signal~$B$,
+$\Delta p_\text{T}$ is the transversal momentum difference to the signal~$B$,
+$\Delta z$ is the difference between the $z$-coordinate of the PV and the first detector hit of the track,        
+$\Delta \eta$ is the pseudorapidity difference to the signal~$B$,     
+$\cos(\Delta \phi)$ is the cosine of the $\phi$-coordinate difference to the signal~$B$, 
+$\text{Prob}_\text{ghost}$ is an estimated probability that the track does not belong to a particle, %TODO: but ...
+$\chi^2(\text{vtx})$ is the $\chi^2$ of the combined reconstructed vertex of the signal~$B$ and the track, 
+SumBDT,    
+MinBDT and    
+SumMinBDT describe the track cone-isolation based on multiple BDT classifiers,
+$\text{IP}_\text{SV}$ is the closest distance to the SV, 
+$\chi^2(\text{IP}_\text{SV})$ is the uncertainty of $\text{IP}_\text{SV}$,
+$\sigma(\text{IP}_\text{pileup vtx})$ is the significance of the impact parameter to the closest pileup vertex,
+$\text{IP}_\text{best PV}$ is the impact parameter to the best estimated PV, 
+$\chi^2(\text{IP}_\text{best PV})$ is the uncertainty of $\text{IP}_\text{best PV}$,
+$\text{IP}_\text{min}$ is the minimum impact parameter with respect to all PV candidates,
+\enquote{same PV} is the check whether the particle's PV is the same as the singal $B$ PV,
+$\sum p_\text{in cone}$ is the sum of the absolute momenta of all particle tracks in a cone around the tagging track,
+\enquote{cone isolation} describes the isolation based $p/\sum p_\text{in cone}$, 
+$N_\text{non iso}$ is the number of tracks not isolated from the tagging track.   
 
 Then a BDT is trained on a dataset containing all features of this list.
 From the $18$ million tracks in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
