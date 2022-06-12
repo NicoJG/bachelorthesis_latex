@@ -2,7 +2,7 @@
 \label{sec:SS_classifier}
 
 To identify tracks that belong to the SS of a signal~$B$, a BDT is trained on the simulated LHCb data. 
-The BDT output resembles a probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$. %TODO: BDT output not a probability
+The BDT output resembles an estimated probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$. %TODO: BDT output not a probability
 The implementation of the BDT is done with the library XGBoost \cite{xgboost}.
 
 The dataset used for training the BDT contains about 70 different features of the tracks of the associated event.
@@ -126,5 +126,6 @@ To estimate the generalization and overtraining of the model, each performance m
         \caption{ROC curve}
         \label{fig:SS_ROC}
     \end{subfigure}%
-    \caption{\autoref{fig:SS_output} shows the distribution of the BDT output split by the simulation ground truth. \autoref{fig:SS_ROC} shows the ROC curve of the BDT output. Both figures show the BDT prediction for the test data and the training data.}
+    \caption{The left figure shows the distribution of the BDT output split by the simulation ground truth. The right figure shows the ROC curve of the BDT output. Both figures show the BDT prediction for the test data and the training data.}
+    \label{fig:SS_eval}
 \end{figure}

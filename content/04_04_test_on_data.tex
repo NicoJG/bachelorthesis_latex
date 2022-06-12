@@ -27,8 +27,8 @@ Other background events are rejected by requiring that the $K^0_\text{S}$~candid
 
 To reduce all other types of combinatorial background, a BDT is trained.
 Again, the BDT is implemented in Python using the library XGBoost \cite{xgboost}.
-For this, events of the mentioned dataset with a reconstructed signal~$B$ mass larger than $\qty{5450}{\MeV}$ are used as background events, and simulated events of the mentioned decays are used as signal events.
-The BDT has a maximum tree depth of 4, is trained at a learning rate of $0.3$ and consists of 2000 estimators after early stopping of 50 iterations without improvement.
+For this, events of the mentioned dataset with a reconstructed signal~$B$ mass larger than $\qty{5450}{\MeV}$ are used as background events, and simulated events of the decay $B_d \rightarrow J/\psi \, K^0_\text{S}$ are used as signal events.
+The BDT has a maximum tree depth of 2, is trained at a learning rate of $0.3$ and consists of 2000 estimators.
 A ROC AUC score of $0.989$ is achieved on test data and the corresponding ROC curve is shown in \autoref{fig:BKG_BDT_ROC}.
 With this, events are classified as background events if the BDT output is smaller than $\num{0.5}$.
 
@@ -75,6 +75,7 @@ Finally, $\chi^2(\text{fit})$ is the $\chi^2$ corresponding to the reconstructio
         \label{fig:BKG_reduced}
     \end{subfigure}%
     \caption{The left figure shows the ROC curve achieved by the BDT for background identification. The right figure shows the distribution of the reconstructed signal~$B$ mass before and after reducing the background with the BDT and the manual cuts.}
+    \label{fig:BKG_eval}
 \end{figure}
 
 \autoref{fig:BKG_reduced} shows the distribution of the reconstructed signal~$B$ mass before and after reducing the background with the BDT and the manual cuts.

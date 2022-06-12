@@ -14,7 +14,7 @@ The classification algorithms used in this thesis are described in the following
 A Boosted Decision Tree (BDT) is an ensemble of multiple different decision trees trained and evaluated on the principles of gradient boosting.
 Decision trees are binary trees with a decision condition at each node and a prediction score for each leaf.
 The decisions are made on a single feature at each node.
-The weighted sum of the prediction scores of all trees is then transformed using the logistic function to resemble a probability that the given sample belongs to one of the classes.
+The weighted sum of the prediction scores of all trees is then transformed using the logistic function to resemble an estimated probability that the given sample belongs to one of the classes.
 In gradient boosting the decision trees are trained iteratively, so that at each step the weighted sum of all previous decision trees and the current decision tree minimizes a given objective function.
 To find the minimum, the gradient of the objective function with respect to the model parameters is calculated.
 %All BDTs in this thesis are implemented in Python using the library XGBoost \cite{xgboost}.
@@ -71,7 +71,7 @@ This makes the NN more robust and reduces overtraining.
 \subsection{DeepSet}
 \label{sec:DeepSet}
 
-A DeepSet is an extension of NNs to allow inputs of sets of vectors.
+A DeepSet\cite{deepset} is an extension of NNs to allow inputs of sets of vectors.
 DeepSets can therefore be used to solve problems where the data of each sample contains a variable length list and where the solution should be invariant under permutations of this list.
 In this thesis, a DeepSet is used to classify $pp$-collision events that contain different amounts of tracks of which the order in the data should not matter.
 
