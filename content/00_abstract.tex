@@ -1,11 +1,23 @@
 \thispagestyle{plain}
 
 \section*{Abstract} %TODO
-The abstract is a short summary of the thesis in English, together with the German summary it has to fit on this page.
+The precise measurements needed to further test the Standard Model of particle physics produce great amounts of data with complex patterns.
+Machine learning algorithms are commonly used to support the analysis of this data.
+A classification algorithm is developed in this thesis for the distinction between uncharged $B_d$ and $B_s$ mesons in $pp$-collisions.
+This algorithm uses data measured by the LHCb detector of the associated event to the signal $B$ meson without data of the signal decay. %TODO: of or on?
+The chosen strategy is to first identify \enquote{same side} tracks using a Boosted Decision Tree classifier and then use the output of this classifier in a DeepSet classifier to identify the type of signal $B$ meson.
+The achieved ROC AUC on simulated data is $0.739$.
+Tests of the developed algorithm on \enquote{real} LHCb data yields inconclusive results.
+These tests are performed using fits of $B$ mass distributions after selections based on the DeepSet output.
 
-\section*{Kurzfassung}
+\section*{Kurzfassung (to be done)} %TODO!!
 \begin{foreignlanguage}{german}
-    Hier steht eine Kurzfassung der Arbeit in deutscher Sprache inklusive der Zusammenfassung der
-    Ergebnisse.
-    Zusammen mit der englischen Zusammenfassung muss sie auf diese Seite passen.
+    The precise measurements needed to further test the Standard Model of particle physics produce great amounts of data with complex patterns.
+    Machine learning algorithms are commonly used to support the analysis of this data.
+    An algorithm is developed in this thesis for the distinction between uncharged $B_d$ and $B_s$ mesons in $pp$-collisions measured by the LHCb detector.
+    This algorithm uses data of the associated event without data of the signal decay. %TODO: of or on?
+    The chosen strategy is to first identify \enquote{same side} tracks using a Boosted Decision Tree classifier and then use the output of this classifier in a DeepSet classifier to identify the type of $B$ meson in the signal.
+    The achieved ROC AUC on simulated data is $0.739$.
+    Tests of the developed algorithm on \enquote{real} LHCb data yields inconclusive results.
+    These tests are performed using fits of $B$ mass distributions after selections based on the DeepSet output.
 \end{foreignlanguage}
