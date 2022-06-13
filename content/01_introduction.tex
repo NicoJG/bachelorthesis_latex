@@ -8,13 +8,19 @@ However, there are multiple physics phenomena this theory cannot explain.
 This includes the existence of dark matter and dark energy, the imbalance between matter and antimatter in the universe and even gravity.
 Therefore, further testing is still needed to find physics beyond the Standard Model.
 
-The particle collisions themselves cannot be detected directly.
+The processes inside of particle collisions cannot be detected directly.
 Reconstructing the proton-proton collisions at the LHC is made possible by using particle detectors such as the LHCb detector.
 Here, the products of a collision are analysed to identify the particles as well as the decays of these particles.
 Because of the complexity of this problem and the amount of data that needs to be analysed, in the last two decades more and more machine learning algorithms are used to support such measurements.
 
 The goal of this thesis is to develop and train such an algorithm and evaluate its performance on LHCb data.
-The purpose of this algorithm is to distinguish $B_d$ from $B_s$ mesons in proton-proton collisions based on hadronization and fragmentation tracks. The $B_d$ mesons include $B^0$ and $\bar{B}^0$ mesons and the $B_s$ mesons include $B_s^0$ and $\bar{B}_s^0$ mesons.
+The purpose of this algorithm is to distinguish between uncharged $B_d$ and $B_s$ mesons in proton-proton collisions based on hadronization and fragmentation tracks while excluding tracks of the signal decay. The $B_d$ mesons include $B^0$ and $\bar{B}^0$ mesons and the $B_s$ mesons include $B_s^0$ and $\bar{B}_s^0$ mesons.
+
+Such an algorithm could be used in other studies to reduce some types of background of $B_d$ or $B_s$ mesons.
+This includes mainly \enquote{partial backgrounds} where missing information on the signal decay kinematics leads to an insufficient background reduction.
+Other types of background are also conceivable where simple cuts on the signal decay kinematics do not result in a sufficient background reduction.
+
+
 
 
 

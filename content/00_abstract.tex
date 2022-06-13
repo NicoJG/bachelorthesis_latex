@@ -1,23 +1,27 @@
 \thispagestyle{plain}
 
 \section*{Abstract} %TODO
-The precise measurements needed to further test the Standard Model of particle physics produce great amounts of data with complex patterns.
-Machine learning algorithms are commonly used to support the analysis of this data.
+The precise measurements needed to further test the Standard Model of particle physics produce large amounts of data.
+To analyse this data, machine learning algorithms have gained popularity over the last two decades due to their high efficiency and generalizability.
 A classification algorithm is developed in this thesis for the distinction between uncharged $B_d$ and $B_s$ mesons in $pp$-collisions.
-This algorithm uses data measured by the LHCb detector of the associated event to the signal $B$ meson without data of the signal decay. %TODO: of or on?
+This algorithm uses data of tracks associated with the signal $B$ meson without data of the signal decay. 
+The motivation behind developing this algorithm is a potential use case in other studies where some types of background of $B_d$ or $B_s$ mesons can be tough to identify using the signal decay kinematics.
+The machine learning models used in this thesis are trained on simulated data of the LHCb detector. %TODO: of or on?
 The chosen strategy is to first identify \enquote{same side} tracks using a Boosted Decision Tree classifier and then use the output of this classifier in a DeepSet classifier to identify the type of signal $B$ meson.
-The achieved ROC AUC on simulated data is $0.739$.
-Tests of the developed algorithm on \enquote{real} LHCb data yields inconclusive results.
-These tests are performed using fits of $B$ mass distributions after selections based on the DeepSet output.
+Evaluating this algorithm on simulated data shows a clear achieved separation between both $B$ meson types.
+However, tests on LHCb data yield a substantially smaller separation.
+These tests are performed using fits of the $B$ mass distribution after various selections based on the output of the DeepSet.
 
 \section*{Kurzfassung (to be done)} %TODO!!
 \begin{foreignlanguage}{german}
-    The precise measurements needed to further test the Standard Model of particle physics produce great amounts of data with complex patterns.
-    Machine learning algorithms are commonly used to support the analysis of this data.
-    An algorithm is developed in this thesis for the distinction between uncharged $B_d$ and $B_s$ mesons in $pp$-collisions measured by the LHCb detector.
-    This algorithm uses data of the associated event without data of the signal decay. %TODO: of or on?
-    The chosen strategy is to first identify \enquote{same side} tracks using a Boosted Decision Tree classifier and then use the output of this classifier in a DeepSet classifier to identify the type of $B$ meson in the signal.
-    The achieved ROC AUC on simulated data is $0.739$.
-    Tests of the developed algorithm on \enquote{real} LHCb data yields inconclusive results.
-    These tests are performed using fits of $B$ mass distributions after selections based on the DeepSet output.
+    The precise measurements needed to further test the Standard Model of particle physics produce large amounts of data.
+    To analyse this data, machine learning algorithms have gained popularity over the last two decades due to their high efficiency and generalizability.
+    A classification algorithm is developed in this thesis for the distinction between uncharged $B_d$ and $B_s$ mesons in $pp$-collisions.
+    This algorithm uses data of tracks associated with the signal $B$ meson without data of the signal decay. 
+    The motivation behind developing this algorithm is a potential use case in other studies where some types of background of $B_d$ or $B_s$ mesons can be tough to identify using the signal decay kinematics.
+    The machine learning models used in this thesis are trained on simulated data of the LHCb detector. %TODO: of or on?
+    The chosen strategy is to first identify \enquote{same side} tracks using a Boosted Decision Tree classifier and then use the output of this classifier in a DeepSet classifier to identify the type of signal $B$ meson.
+    Evaluating this algorithm on simulated data shows a clear achieved separation between both $B$ meson types.
+    However, tests on LHCb data yield a substantially smaller separation.
+    These tests are performed using fits of the $B$ mass distribution after various selections based on the output of the DeepSet.
 \end{foreignlanguage}
