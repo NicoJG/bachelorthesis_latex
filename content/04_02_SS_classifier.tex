@@ -2,7 +2,7 @@
 \label{sec:SS_classifier}
 
 To identify tracks that belong to the SS of a signal~$B$, a BDT is trained on the simulated LHCb data. 
-The BDT output resembles an estimated probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$. %TODO: BDT output not a probability
+The BDT output resembles an estimated probability of the track being in the SS and is from now on called $\text{Prob}_\text{SS}$.
 The implementation of the BDT is done with the library XGBoost \cite{xgboost}.
 
 The dataset used for training the BDT contains about 70 different features of the tracks of the associated event.
