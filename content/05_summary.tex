@@ -12,17 +12,17 @@ The OS contains particles related to the quark in the $b\bar{b}$-pair that is no
 The output of this BDT is then used in a DeepSet classifier for the signal $B$.
 
 Before training the final BDT, the available feature set is reduced.
-To that end, a BDT is trained using all available features and features are then selected based on feature importance metrics called the gain and the permutation importance of the ROC AUC. The resulting 21 features, listed in \autoref{tab:SS_features}, are used by the final BDT.
+To that end, a BDT is trained using all available features and features are then selected based on feature importance metrics called the gain and the permutation importance of the ROC AUC. The resulting 21 features, listed in \cref{tab:SS_features}, are used by the final BDT.
 After training the final BDT, the achieved separation between SS tracks and other tracks is evaluated using a ROC curve.
-The ROC curve and the distribution of the BDT output are shown in \autoref{fig:SS_eval}. A ROC AUC of $0.763$ is achieved on test data.
+The ROC curve and the distribution of the BDT output are shown in \cref{fig:SS_eval}. A ROC AUC of $0.763$ is achieved on test data.
 Although the achieved separation is not sufficient to correctly identify most of the SS tracks, this BDT output can potentially help the DeepSet to form a decision.
 
 For the feature selection of the DeepSet, the permutation importances of the accuracy and the ROC AUC are used.
-This leads to the 23 features listed in \autoref{tab:B_features} that are used in the final DeepSet for the signal $B$ classification.
-An indication that the BDT output ($\text{Prob}_\text{SS}$) has an impact on the DeepSet performance can be seen in \autoref{fig:B_importances}.
+This leads to the 23 features listed in \cref{tab:B_features} that are used in the final DeepSet for the signal $B$ classification.
+An indication that the BDT output ($\text{Prob}_\text{SS}$) has an impact on the DeepSet performance can be seen in \cref{fig:B_importances}.
 This however has to be interpreted with care, because feature importances can only be seen as estimates.
 The trained DeepSet achieves a ROC AUC of $0.739$ on test data.
-The ROC curve and the distribution of the DeepSet output are shown in \autoref{fig:B_eval}.
+The ROC curve and the distribution of the DeepSet output are shown in \cref{fig:B_eval}.
 
 It can be seen that a clear separation of the $B$ mesons is achieved on simulated data.
 However, any algorithm that has been developed using simulated data has to be tested on data that originates from actual measurements. 
@@ -32,14 +32,14 @@ Compared to the training data, LHCb data contains background events that do not 
 Since evaluating the $B$ classification requires clearly visible $B_s$ peaks in the $B$ mass distribution, the number of background events has to be reduced beforehand.
 This background reduction is done using a combination of manual cuts and a BDT that is trained on simulated data of the decay $B_d \rightarrow J/\psi \, K^0_\text{S}$.
 This BDT achieves a ROC AUC of $0.989$ on test data.
-The ROC curve achieved by the BDT and the total background reduction is shown in \autoref{fig:BKG_eval}.
+The ROC curve achieved by the BDT and the total background reduction is shown in \cref{fig:BKG_eval}.
 
 The developed algorithm of this thesis is then applied to the background reduced data.
 To evaluate the achieved separation, $B$ mass distributions with various selection criteria based on the DeepSet output ($\text{Prob}_{B_s}$) are used to fit a function.
 The fit components that represent the combinatorial background, the $B_d$ peak and the $B_s$ peak are then integrated numerically.
 This results in estimated counts of events attributed to the $B_d$ and $B_s$ mesons remaining after each selection.
 
-The resulting ratios of the number of $B_s$ meson events over the number of $B_d$ meson events are shown in \autoref{fig:data_ratio}.
+The resulting ratios of the number of $B_s$ meson events over the number of $B_d$ meson events are shown in \cref{fig:data_ratio}.
 Here, selection criteria of the form $\text{Prob}_{B_s} \geq x$ show an upward trend with increasing $x$ values.
 This could be an indication of some level of achieved separation between $B_s$ and $B_d$ mesons.
 Selection criteria of the form $\text{Prob}_{B_s} \leq x$ show an increase of this ratio for lower $x$ values.
@@ -48,7 +48,7 @@ This is not the case for large values of $x$ in $\text{Prob}_{B_s} \geq x$ where
 All calculated ratios are compatible with the expected ratio for no achieved separation, but the upward trend for $\text{Prob}_{B_s} \geq x$ selections suggests at least a small achieved separation.
 
 Another method to test the achieved separation is to plot the efficiencies of both the $B_d$ and $B_s$ mesons similar to a ROC curve.
-This is shown in \autoref{fig:data_roc}.
+This is shown in \cref{fig:data_roc}.
 Here, no clear signs of an achieved separation are visible.
 
 Overall, the classification algorithm for separating Bs and Bd mesons was designed and tested on simulation and LHCb data. 

@@ -29,7 +29,7 @@ To reduce all other types of combinatorial background, a BDT is trained.
 Again, the BDT is implemented in Python using the library XGBoost \cite{xgboost}.
 For this, events of the mentioned dataset with a reconstructed signal~$B$ mass larger than $\qty{5450}{\MeV}$ are used as background events, and simulated events of the decay $B_d \rightarrow J/\psi \, K^0_\text{S}$ are used as signal events.
 The BDT has a maximum tree depth of 2, is trained at a learning rate of $0.3$ and consists of 2000 estimators.
-A ROC AUC score of $0.989$ is achieved on test data and the corresponding ROC curve is shown in \autoref{fig:BKG_BDT_ROC}.
+A ROC AUC score of $0.989$ is achieved on test data and the corresponding ROC curve is shown in \cref{fig:BKG_BDT_ROC}.
 With this, events are classified as background events if the BDT output is smaller than $\num{0.5}$.
 
 \begin{table}
@@ -51,7 +51,7 @@ With this, events are classified as background events if the BDT output is small
     \end{tabular}
 \end{table}
 
-The features used by the BDT are listed in \autoref{tab:BKG_BDT_features} and describe the signal $B$ and its decay particles.
+The features used by the BDT are listed in \cref{tab:BKG_BDT_features} and describe the signal $B$ and its decay particles.
 The symbols inside the brackets represent the corresponding particle in the signal decay.
 IP$(x)$ is the impact parameter to the production vertex of particle $x$.
 $p_\text{T}(x)$ is the transversal momentum of particle $x$.
@@ -78,7 +78,7 @@ Finally, $\chi^2(\text{fit})$ is the $\chi^2$ corresponding to the reconstructio
     \label{fig:BKG_eval}
 \end{figure}
 
-\autoref{fig:BKG_reduced} shows the distribution of the reconstructed signal~$B$ mass before and after reducing the background with the BDT and the manual cuts.
+\Cref{fig:BKG_reduced} shows the distribution of the reconstructed signal~$B$ mass before and after reducing the background with the BDT and the manual cuts.
 After reducing the background, the trained model for the signal~$B$ classification is applied on the data to calculate $\text{Prob}_{B_s}$.
 To estimate the performance of this prediction, an alternative method to estimate the amount of $B_d$ and $B_s$ mesons is needed.
 The chosen procedure is to do a least squares fit on the $B$ mass distribution and estimate the counts of events by integrating each component of the fitted function.
@@ -117,7 +117,7 @@ is called a normal distribution.
 
 All the following fits are done using the library \enquote{iminuit}\cite{iminuit}.
 First, a fit is done on the simulated data of the $B_d$ peak to fix the parameters $f_1,f_2,\beta_1,\beta_2,m_1$ and $m_2$ for all the following fits. 
-This fit is shown in \autoref{fig:fit_mc}.
+This fit is shown in \cref{fig:fit_mc}.
 Then, for 100 values of $x$ between 0 and 1, a selection with $\text{Prob}_{B_s} \leq x$ and a selection with $\text{Prob}_{B_s} \geq x$ is made.
 A fit is done on each acquired $B$ mass distribution and the counts
 \begin{align*}
@@ -125,7 +125,7 @@ A fit is done on each acquired $B$ mass distribution and the counts
     n_{B_s} &= \int_{-\infty}^{\infty} N_{B_s} \cdot F_{B_s}(M_B) \, \symup{d}M_B
 \end{align*}
 are calculated numerically.
-One of those fitted distributions is shown in \autoref{fig:fit_example}.
+One of those fitted distributions is shown in \cref{fig:fit_example}.
 
 \begin{figure}
     \centering
@@ -145,7 +145,7 @@ One of those fitted distributions is shown in \autoref{fig:fit_example}.
 \end{figure}
 
 To estimate how good the trained model of this thesis can distinguish $B_d$ and $B_s$ mesons, the ratio $n_{B_s}/n_{B_d}$ is plotted by the cut value $x$ for selections with $\text{Prob}_{B_s} \geq x$. 
-This is shown in \autoref{fig:data_ratio}.
+This is shown in \cref{fig:data_ratio}.
 The expected value without any achieved separation is 
 \begin{equation*}
     \frac{\text{BR}(B_s \rightarrow J/\psi + K^0_\text{S})}{\text{BR}(B_d \rightarrow J/\psi + K^0_\text{S})} \cdot 
@@ -160,10 +160,10 @@ For each selection, the estimated efficiencies
     \varepsilon_{B_d} &= \frac{n_{B_d}(x)}{n_{B_d}(\text{no cut})} \: \: \text{ and} \\
     \varepsilon_{B_s} &= \frac{n_{B_s}(x)}{n_{B_s}(\text{no cut})}
 \end{align*}
-are calculated. Shown in \autoref{fig:data_roc} is the plot of $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$.
+are calculated. Shown in \cref{fig:data_roc} is the plot of $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$.
 %Without any achieved separation, the plot would show a straight line from $(0,0)$ to $(1,1)$.
 Similar to a ROC curve, a diagonal line from $(0,0)$ to $(1,1)$ is the expectation without any achieved separation.
-Compared to the achieved ROC curve on the simulated data shown in \autoref{fig:B_ROC}, a substantially weaker separation is achieved on the LHCb data.
+Compared to the achieved ROC curve on the simulated data shown in \cref{fig:B_ROC}, a substantially weaker separation is achieved on the LHCb data.
 
 \begin{figure}
     \centering

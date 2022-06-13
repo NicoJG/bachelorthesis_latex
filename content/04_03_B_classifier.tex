@@ -4,15 +4,15 @@ The distinction between $B_d$ and $B_s$ mesons based on the associated event is 
 Since both mesons have different masses, it is expected that there is some difference in the kinematics of the associated event.
 Therefore, it is tested if a multivariate machine learning algorithm can spot these differences.
 The algorithm of choice for this thesis is a DeepSet that is trained on simulated LHCb data.
-As explained in \autoref{sec:DeepSet}, a DeepSet can handle data of variable length where the order of its elements should not change the result of the classification.
+As explained in \cref{sec:DeepSet}, a DeepSet can handle data of variable length where the order of its elements should not change the result of the classification.
 Therefore, DeepSets are ideal to classify $pp$-collision events that contain different amounts of particle tracks.
 The DeepSets trained here, output an estimated probability $\text{Prob}_{B_s}$ for each event that the signal~$B$ is a $B_s$ meson.
 Therefore, $1-\text{Prob}_{B_s}$ is the estimated probability that the signal~$B$ is a $B_d$ meson.
 
-The procedure of selecting important features is similar to the procedure described in \autoref{sec:SS_classifier}.
+The procedure of selecting important features is similar to the procedure described in \cref{sec:SS_classifier}.
 However, a DeepSet was trained on all features and the feature importances used here are the permutation importance of the ROC AUC and the permutation importance of the accuracy.
 Again, features with the lowest feature importance scores are discarded until a reasonable amount of features is achieved.
-The remaining 23 features are listed in \autoref{tab:B_features} and the corresponding feature importances are shown in \autoref{fig:B_importances}.
+The remaining 23 features are listed in \cref{tab:B_features} and the corresponding feature importances are shown in \cref{fig:B_importances}.
 
 \begin{figure}
     \centering
@@ -46,7 +46,7 @@ The remaining 23 features are listed in \autoref{tab:B_features} and the corresp
 \end{table}
 
 %(Explain all features)....
-Multiple features that are used here are already described in \autoref{sec:SS_classifier}.
+Multiple features that are used here are already described in \cref{sec:SS_classifier}.
 These features are 
 $p$,
 $p_\text{T}$, 
@@ -67,7 +67,7 @@ All the following features describe a single particle or rather its reconstructe
 $\Delta p$ is the difference of the absolute momenta of the particle and the signal~$B$.
 $\chi^2(\text{IP}_\text{min})$ is the uncertainty of $\text{IP}_\text{min}$.
 %
-$\text{Prob}_\text{SS}$ is an estimated probability that the track belongs to the SS and is the output of the classifier described in \autoref{sec:SS_classifier}. 
+$\text{Prob}_\text{SS}$ is an estimated probability that the track belongs to the SS and is the output of the classifier described in \cref{sec:SS_classifier}. 
 $\text{Prob}_e$, 
 $\text{Prob}_K$, 
 $\text{Prob}_\mu$, 
@@ -92,7 +92,7 @@ Where $\mu_i$ is the mean and $\sigma_i$ is the standard deviation of feature $i
 
 The DeepSet is trained using the loss function \enquote{binary cross entropy} and the optimizer \enquote{Adam}.
 Using early stopping, the training is stopped at iteration 600 after 50 iterations without improvement on the validation dataset.
-The loss and the error rate for each iteration of the training of the DeepSet are shown in \autoref{fig:B_history}.
+The loss and the error rate for each iteration of the training of the DeepSet are shown in \cref{fig:B_history}.
 
 \begin{figure}
     \centering
@@ -110,8 +110,8 @@ The loss and the error rate for each iteration of the training of the DeepSet ar
     \label{fig:B_history}
 \end{figure}
 
-To show the achieved separation of the $B$ mesons, histograms of $\text{Prob}_{B_s}$ split by the simulation ground truth are shown in \autoref{fig:B_output}.
-The achieved ROC curve is shown in \autoref{fig:B_ROC} with a ROC AUC of $0.739$ on the test data and $0.742$ on the training data.
+To show the achieved separation of the $B$ mesons, histograms of $\text{Prob}_{B_s}$ split by the simulation ground truth are shown in \cref{fig:B_output}.
+The achieved ROC curve is shown in \cref{fig:B_ROC} with a ROC AUC of $0.739$ on the test data and $0.742$ on the training data.
 To estimate the generalization and overtraining of the model, each performance measure is calculated on both the test data and training data.
 
 \begin{figure}
