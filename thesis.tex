@@ -140,7 +140,8 @@
 \usepackage{layouts}
 
 % Last packages, do not change order or insert new packages after these ones
-\usepackage[pdfusetitle, unicode, linkbordercolor=tugreen, citebordercolor=tugreen]{hyperref} %TODO: highligh links/references?  %TODO: correct upper and lower cases for references
+\usepackage[pdfusetitle, unicode, linkbordercolor=tugreen, citebordercolor=tugreen]{hyperref}  %TODO: correct upper and lower cases for references
+\usepackage{cleveref}
 \usepackage{bookmark}
 \usepackage[shortcuts]{extdash}
 
@@ -186,13 +187,14 @@
 \input{content/04_results.tex}
 \input{content/05_summary.tex}
 
-\appendix
+%\appendix
 % Hier beginnt der Anhang, nummeriert in lateinischen Buchstaben
-\input{content/a_appendix.tex}
+%\input{content/a_appendix.tex}
 
 \backmatter
 \printbibliography %TODO: check references
 
+\input{content/danksagung.tex}
 \cleardoublepage
 % From https://www.tu-dortmund.de/studierende/im-studium/pruefungsangelegenheiten/allgemeine-vordrucke/
 \includepdf{content/Eidesstattliche_Versicherung.pdf} %TODO

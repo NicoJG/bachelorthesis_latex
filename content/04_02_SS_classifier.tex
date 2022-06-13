@@ -7,7 +7,7 @@ The implementation of the BDT is done with the library XGBoost \cite{xgboost}.
 
 The dataset used for training the BDT contains about 70 different features of the tracks of the associated event.
 To reduce this list of features, first the correlation coefficient between all feature pairs is calculated.
-Features with a correlation near $100\%$ are considered to contain redundant information. %TODO: correlation plot
+Features with a correlation near $100\%$ are considered to contain redundant information.
 Only one feature of each set of highly correlated features is kept for training the BDT.
 Next, a BDT is trained on a dataset containing all features and the gain of each feature is calculated.
 The gain is a measure used in decision trees to estimate the accuracy improvement of the introduction of a cut on one feature.
@@ -59,7 +59,7 @@ $\Delta \eta$ is the difference of the pseudorapidities and
 $\cos(\Delta \phi)$ is the cosine of the difference of the $\phi$-coordinates. 
 $\Delta z$ is the $z$-coordinate difference of the PV and the first detector hit of the track. 
 %  
-$\text{Prob}_\text{ghost}$ is an estimated probability that the track does not belong to a particle. %TODO: but ...
+$\text{Prob}_\text{ghost}$ is an estimated probability that the track is falsely reconstructed and does not belong to an actual particle. 
 $\chi^2(\text{vtx})$ is the $\chi^2$ of the combined reconstructed vertex of the signal~$B$ and the track. 
 \enquote{same PV} refers to whether the particle's vertex is the same as the PV.
 %
@@ -83,7 +83,7 @@ Then a BDT is trained on a dataset containing all features of this list.
 From the $18$ million tracks in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
 The trained model contains $2000$ estimators at a maximum decision tree depth of $4$.
 The learning rate is set to $0.1$.
-Due to the imbalance of SS tracks and other tracks in the data ($N_\text{other}/N_\text{SS} = 11.94$), a parameter that controls the balance of positive and negative weights of the BDT is set accordingly. %TODO: mention SS imbalance?
+Due to the imbalance of SS tracks and other tracks in the data ($N_\text{other}/N_\text{SS} = 11.94$), a parameter that controls the balance of positive and negative weights of the BDT is set accordingly. 
 The learning objective is logistic regression for binary classification.
 
 The negative log-likelihood and the error rate for each iteration of the training of the BDT are shown in \autoref{fig:SS_history}.

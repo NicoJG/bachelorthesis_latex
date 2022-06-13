@@ -13,17 +13,17 @@
 Although the developed model of this thesis is intended to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions independent of the decay channel, it is trained only on simulated data containing the decay channels $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$.
 Consequently, the trained model must be evaluated on LHCb data of some other decay channel.
 Chosen here are the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
-The dataset used here contains LHCb data from the years 2016, 2017 and 2018 that has been selected for both mentioned decays. %TODO: with the exact same selection criteria?
+The dataset used here contains LHCb data from the years 2016, 2017 and 2018 that has been selected for both mentioned decays using similar selection criteria. 
 
-Since this dataset originates from measurements of the physical world rather than simulations, the true processes in each event are unknown. %TODO: Vukan: "Grundsätzlich kann man Untergründe doch auch simulieren?" 
-This means, there are additional events present that do not contain the mentioned decays, called background events.
-Before being able to evaluate the trained model, the amount of these background events has to be reduced.
-The procedure used for background reduction is based on a work-in-progress analysis on the \enquote{Measurement of $\sin(2\beta)$ in $B^0\rightarrow J/\psi \, K^0_\text{S}$ decays with run 2 data} and is explained here only briefly.
+Since this dataset originates from a real measurement rather than a simulation, the data contains a significant amount of background events.
+In order to be able to fit the $B_s$ resonance, the amount of background events is reduced.
+The procedure used for background reduction is based on the work-in-progress measurement of $\sin(2\beta)$ in $B^0\rightarrow J/\psi \, K^0_\text{S}$ decays with run 2 data, and is explained here only very briefly.
 
 A few types of background are reduced manually.
 One source of such background events is the misidentification of $\Lambda^0 \rightarrow p^+ \, \pi^-$ decays as $K^0_\text{S} \rightarrow \pi^+ \, \pi^-$.
-To reduce this type of background, events are rejected if the reconstructed invariant mass of the $K^0_\text{S}$~candidate is in the region  of the $\Lambda^0$~mass (\qtyrange{1095}{1140}{\MeV}) and $\text{Prob}_p > \num{0.10}$. %TODO: equation allowed without words?
-Other background events are rejected by requiring that the $K^0_\text{S}$~candidate has a lifetime longer than $\qty{0.5}{\pico\second}$ and that $\chi^2(\text{fit})<\num{5.0}$. %TODO: mention features before explanation? Feature Name instead of symbol?
+To reduce this type of background, events are rejected if the reconstructed invariant mass of the $K^0_\text{S}$~candidate is in the region  of the $\Lambda^0$~mass (\qtyrange{1095}{1140}{\MeV}) and $\text{Prob}_p > \num{0.10}$ is required. 
+Misidentified backgrounds from $B \rightarrow J/\psi \, K^*$ decays are rejected by requiring that the kaon candidate has a lifetime longer than $\qty{0.5}{\pico\second}$.
+Finally, a cut $\chi^2(\text{fit})<\num{5.0}$ is applied. %TODO: mention features before explanation %TODO: after the BDT
 
 To reduce all other types of combinatorial background, a BDT is trained.
 Again, the BDT is implemented in Python using the library XGBoost \cite{xgboost}.
