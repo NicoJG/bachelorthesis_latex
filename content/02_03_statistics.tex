@@ -1,91 +1,79 @@
 \section{Classification algorithms} %TODO: Vukans corrections!
 
-In general, classification algorithms are a type of supervised machine learning algorithms.
-In machine learning, the parameters $\theta$ of a function $f$, also called a model, are optimized, so that predictions $\hat{y}=f(x|\theta)$ can be made that solves a given problem based on some input $x$.
-Supervised machine learning is the optimization, also called training, of such models based on a dataset that contains the desired target $y$ for a given input. 
-In classification algorithms, $y$ is a categorical variable and $\hat{y}$ can contain either discrete values or estimated probabilities. 
-Therefore, classification algorithms try to assign a class to something (sample) based on measured quantities (features) that represent it. %TODO: "something" different word
-For example, the main algorithm of this thesis evaluates the measured data of a $pp$-collision to estimate the class of the $B$ meson produced in this event.
-The classification algorithms used in this thesis are described in the following sections.
+The objective of any \emph{classification algorithm} is to assign a class to each given data point so that some property is shared among all data points in a class. %TODO: in/of a class
+For example, the main algorithm of this thesis evaluates the measured data of a $pp$-collision to estimate the type of the signal $B$ meson.
+All classification algorithms used in this thesis are \emph{supervised machine learning algorithms}.
+Such algorithms optimize the parameters $\theta$ of a given model $f$ so that the class predictions $\hat{y}=f(x|\theta)$ best fit to a given target $y$.
+The process of optimizing these parameters is called \emph{training} and often involves minimizing a given \emph{loss function} $L(\hat{y}|y)$ that describes how the prediction $\hat{y}$ compares with the target $y$. 
+The following sections describe the classification algorithms that are used in this thesis.
 
-\subsection{Boosted Decision Tree (BDT)}
+\subsection{Boosted Decision Trees}
 \label{sec:BDT}
 
-A Boosted Decision Tree (BDT) is an ensemble of multiple different decision trees trained and evaluated on the principles of gradient boosting.
-Decision trees are binary trees with a decision condition at each node and a prediction score for each leaf.
-The decisions are made on a single feature at each node.
-The weighted sum of the prediction scores of all trees is then transformed using the logistic function to resemble an estimated probability that the given sample belongs to one of the classes.
-In gradient boosting the decision trees are trained iteratively, so that at each step the weighted sum of all previous decision trees and the current decision tree minimizes a given objective function.
-To find the minimum, the gradient of the objective function with respect to the model parameters is calculated.
-%All BDTs in this thesis are implemented in Python using the library XGBoost \cite{xgboost}.
+A \emph{Boosted Decision Tree} (BDT) is an ensemble of multiple different \emph{decision trees} trained and evaluated on the principles of \emph{gradient boosting}.
+Decision trees are \emph{binary trees} with a decision condition at each node and a prediction score for each leaf.
+The class prediction made on a given data point is based on a series of binary decisions on single features starting at the root and ending in a leaf of the decision tree.
+The weighted sum of the prediction scores of all trees in a BDT is then transformed using the \emph{logistic function} to resemble an estimated probability that the given sample belongs to one of the classes.
+In gradient boosting the decision trees are trained iteratively, so that at each step the weighted sum of all previous decision trees and the current decision tree minimizes a given loss function. 
+The gradient of the loss function with respect to the model parameters is used to find this minimum.
 
-\subsection{Neural Network (NN)}
+\subsection{Neural Networks}
 \label{sec:NN}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/NN_schematic.png}
-    \caption{Example of a fully connected, feedforward neural network \cite{NN_schematic}.}
-    \label{fig:NN_schematic}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.5\textwidth]{images/NN_schematic.png}
+%    \caption{Example of a fully connected, feedforward neural network \cite{NN_schematic}.}
+%    \label{fig:NN_schematic}
+%\end{figure}
 
-A Neural Network (NN) consists of multiple layers of (artificial) neurons to calculate an output vector $\hat{y}$ based on an input vector $x$.
-The amount of layers and the amount of neurons per layer can be arbitrarily chosen based on the complexity of the problem.
-\Cref{fig:NN_schematic} shows an example NN with 4 layers and is the basis of the following explanation.
-Here, neurons are visualized as circles and represent a scalar number called activation $a$. 
-The inputs of a neuron are marked by arrows from left to right and each arrow also represents a weight $w$.
-The activation of each neuron is calculated by feeding the weighted sum 
+A \emph{Neural Network} (NN) is a non-linear transformation of an input vector $\vec{x}$ into an output vector $\hat{\vec{y}}$.
+This transformation is divided into multiple steps called layers.
+The $n$th layer represents a vector $\vec{a}^{(n)}$, also called the \emph{activation}, that is calculated based on the values of the previous layer using the formula
 \begin{equation*}
-    z = \sum_{i \in \{\text{input neurons}\}} w_i \cdot a_i + b \, 
+    \vec{a}^{(n)} = f^{(n)}\left( W^{(n)} \cdot \vec{a}^{(n-1)} + \vec{b}^{n} \right).
 \end{equation*}
-into a function $f(z)$ called the activation function.
-$b$ is called the bias-weight of a neuron.
-The activation functions used in this thesis are 
+The \emph{weights}-matrix $W^{(n)}$ and the \emph{bias}-vector $\vec{b}^{(n)}$ are parameters of the model that have to be adjusted in the training process.
+The \emph{activation function} $f$ can be any differentiable function that should be non-linear.
+Used in this thesis are the activation functions
 \begin{align*}
     f_\text{ReLU}(z) &= \max(0, z) \:\:\text{  and} \\
     f_\text{Sigmoid}(z) &= \frac{1}{1+e^{-z}} \, .
 \end{align*}
-The activations of the first layer are the values of $x$, and the activations of the last layer are used as the values of $\hat{y}$.
-The layers in between the first and the last layer are called hidden layers.
+The first layer of a NN is the input layer with the activation $a^{(0)}=\vec{x}$ and the last layer is the output layer with the activation used as $\hat{\vec{y}}$.
+All other layers are called \emph{hidden layers}.
 
-To produce the desired outputs, the weights of a NN have to be adjusted in an iterative training process.
-During the training process it is tried to find the minimum of a loss function that describes how well the NN solves the given problem based on the given target $y$.
-Before the first iteration, all weights are initialized at random.
-Each iteration then calculates the NN outputs and estimates the gradient of the loss function with respect to the weights.
-Based on the gradient, the weights are adjusted towards the estimated minimum.
-The step size at each iteration is determined by an optimizer algorithm.
+The iterative training of a NN uses a technique called \emph{backpropagation}.
+As a first step, all weights of the NN are set to random values.
+In each iteration of the training, the output of the NN is evaluated to estimate the gradient of the loss function with respect to all weights using the chain rule.
+Based on this gradient, the weights are adjusted in the direction of the minimum of the loss function with a step size that is set by an \emph{optimizer}.
 This thesis uses the loss function \enquote{binary cross entropy} in combination with the optimizer \enquote{Adam}\cite{adam}.
 
-NNs are prone to describe the training data too well, so that the model does not perform well on unseen data.
-To prevent this overtraining, the regularization techniques used in this thesis are early stopping and dropout.
+To reduce the \emph{overtraining} of the NN and increase its generalizability, this thesis uses regularization techniques called \emph{early stopping} and \emph{dropout}.
+In early stopping, the performance of the model is evaluated on a validation dataset after each iteration, and the training is stopped when this performance does not increase over $N$ iterations.
+This way, further adjusting of the NN to the training data is prevented, and only the best model with respect to the validation data is used.
+In dropout, at each training iteration a smaller subset of the NN is trained by temporarily setting random rows in $W$ and $\vec{b}$ to 0.
+The number of rows that are being disabled has to be set for each layer before training the NN.
+Dropout leads to a more robust NN by reducing the co-dependence of pairs of activation elements.
 
-Early stopping calculates the loss on a validation dataset that is not used to adjust the weights.
-If the loss does not improve for $N$ iterations the training is stopped and the weights of the best iteration based on this validation loss are used in the fitted NN.
-This way, further adjusting of the NN to the training data is prevented and only the best results on the validation data are used.
-
-In dropout, at each training iteration a random subset of neurons are disabled and only the remaining NN is evaluated and optimized.
-Essentially, at each training iteration a smaller NN is trained and the co-dependence of neurons is reduced.
-This makes the NN more robust and reduces overtraining.
-
-\subsection{DeepSet}
+\subsection{DeepSets}
 \label{sec:DeepSet}
 
-A DeepSet\cite{deepset} is an extension of NNs to allow inputs of sets of vectors.
+A \emph{DeepSet}\cite{deepset} is an extension of NNs to allow inputs of sets of vectors.
 DeepSets can therefore be used to solve problems where the data of each sample contains a variable length list and where the solution should be invariant under permutations of this list.
 In this thesis, a DeepSet is used to classify $pp$-collision events that contain different amounts of tracks of which the order in the data should not matter.
 
-The basic idea of DeepSets is that a function is invariant under permutations of the instances $x$ in a set $X$ if it can be written in the form %TODO: Satzanfang
+The underlying concept of a DeepSet is the function % is that a function is invariant under permutations of the instances $x$ in a set $X$ if it can be written in the form %TODO: Satzanfang
 \begin{equation*}
-    f(X) = \rho \left( \sum_{x \in X} \phi (x) \right) \, .
+    f(X) = \rho \left( \sum_{x \in X} \phi (x) \right)
 \end{equation*}
-This is also true, if the sum is replaced with any permutation invariant function.
-In DeepSets $\rho$ and $\phi$ are represented by NNs and can be vector-valued \cite{deepset}.
-In other words, a $\phi$-network first extracts some features about each instance in the set.
-The feature values of all instances are then summed up and fed into a $\rho$-network that calculates the desired output.
-
-The training of a DeepSet is fully analogous to the training of a NN.
-The only difference is that a DeepSet consists of two NNs that are trained together.
-%All DeepSets used in this thesis are implemented in Python using the library Pytorch \cite{pytorch}.
+which is invariant under permutations of the instances $x$ in a set $X$.
+$\rho$ and $\phi$ represent NNs and can be vector-valued.
+In principle, the sum could be replaced with any permutation invariant function, but in this thesis only sums are used.
+In other words, a DeepSet contains a $\phi$-network and a $\rho$-network.
+The $\phi$-network first extracts some features about each instance in the set.
+The extracted feature values of all instances are then summed up and propagated into a $\rho$-network that calculates the final output.
+Like NNs, DeepSets are also trained through backpropagation and the process is fully analogous to the training of a NN.
 
 
 

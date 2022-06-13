@@ -111,7 +111,7 @@ $M_{B_d}=\qty{5279.65}{\MeV}$ is the mass of $B_d$ mesons and $M_{B_s}=\qty{5366
 \end{equation*}
 is called a Crystal Ball distribution and
 \begin{equation*}
-    F_\text{gauss}\left(x,\mu,\sigma\right) = \frac{1}{\sqrt{2}\pi} \cdot \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)
+    F_\text{gauss}\left(x,\mu,\sigma\right) = \frac{1}{\sqrt{2}\pi\sigma} \cdot \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)
 \end{equation*}
 is called a normal distribution.
 
@@ -121,8 +121,8 @@ This fit is shown in \cref{fig:fit_mc}.
 Then, for 100 values of $x$ between 0 and 1, a selection with $\text{Prob}_{B_s} \leq x$ and a selection with $\text{Prob}_{B_s} \geq x$ is made.
 A fit is done on each acquired $B$ mass distribution and the counts
 \begin{align*}
-    n_{B_d} &= \int_{-\infty}^{\infty} N_{B_d} \cdot F_{B_d}(M_B) \, \symup{d}M_B \:\:\text{ and} \\
-    n_{B_s} &= \int_{-\infty}^{\infty} N_{B_s} \cdot F_{B_s}(M_B) \, \symup{d}M_B
+    n_{B_d} &= \int_{\qty{5170}{\MeV}}^{\qty{5450}{\MeV}} N_{B_d} \cdot F_{B_d}(M_B) \, \symup{d}M_B \:\:\text{ and} \\
+    n_{B_s} &= \int_{\qty{5170}{\MeV}}^{\qty{5450}{\MeV}} N_{B_s} \cdot F_{B_s}(M_B) \, \symup{d}M_B
 \end{align*}
 are calculated numerically.
 One of those fitted distributions is shown in \cref{fig:fit_example}.
