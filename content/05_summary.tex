@@ -1,30 +1,22 @@
 \chapter{Conclusion}
 
-In this thesis, a classification algorithm to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions at LHCb is developed and trained on simulation and evaluated on LHCb data.
+In this thesis, a classification algorithm to distinguish neutral $B_d$ from neutral $B_s$ mesons in $pp$-collisions at LHCb is developed and trained on simulation and evaluated on LHCb data.
 This algorithm is intended to be independent of the signal $B$ decay channel and uses only data of the tracks associated with the signal $B$ meson without tracks of the signal decay.
 For the training of supervised machine learning algorithms, simulated samples of the decays $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$ are used.
 
 A Boosted Decision Tree (BDT) classifier is trained to identify \enquote{same side} (SS) fragmentation tracks.
-%The developed algorithm first uses a Boosted Decision Tree (BDT) classifier to identify \enquote{same side} (SS) fragmentation tracks.
 The SS fragmentation contains particles that are related to the $d\bar{d}$- or $s\bar{s}$-pair that is part of the production of the signal $B$. 
 In contrast to other tracks in the data SS tracks therefore contain relevant information for the distinction between $B_d$ and $B_s$ mesons.
 The output of this BDT is then used as an additional input for a subsequent DeepSet model for the signal $B$ classification.
 
 A BDT is trained using all available features and features are then selected based on feature importance metrics called the gain and the permutation importance of the ROC AUC. 
 The final BDT uses 21 features, and a ROC AUC of $0.763$ is achieved on test samples.
-%After training the final BDT with a reduced feature set, the achieved separation between SS tracks and other tracks is evaluated using a ROC curve.
-%A ROC AUC of $0.763$ is achieved on test data.
 Although the achieved separation is not sufficient to correctly identify most of the SS tracks, this BDT output should help the DeepSet to identify relevant information.
 
 For the feature selection of the DeepSet, the permutation importances of the accuracy and the ROC AUC are used to select a set of 23 training features with which the final DeepSet classifier is trained.
 An indication that the BDT output ($\text{Prob}_\text{SS}$) has an impact on the DeepSet performance is observed.
 This however has to be interpreted with care, because feature importances can only be seen as estimates.
 The trained DeepSet achieves a ROC AUC of $0.739$ on test data indicating a clear separation.
-
-%TODO verschieben
-%It can be seen that a clear separation of the $B$ mesons is achieved on simulation.
-%However, any algorithm that has been developed with simulated samples has to be tested on data that originates from actual measurements. 
-%Therefore, the developed algorithm of this thesis is tested on LHCb data of the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
 
 Compared to the training data, LHCb data contains background events that do not actually involve $B_d$ or $B_s$ mesons.
 Since evaluating the $B$ classification requires clearly visible $B_s$ peaks in the $B$ mass distribution, the number of background events has to be reduced beforehand.

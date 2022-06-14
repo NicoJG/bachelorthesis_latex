@@ -19,7 +19,7 @@ The remaining 21 features are listed in \cref{tab:SS_features} together with the
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/SS_feature_importances.pdf}
-    \caption{Calculated feature importances on the trained DeepSet. Shown are the gains and the permutation importances of the ROC AUC normed on the largest value.}
+    \caption{Calculated feature importances on the trained BDT for SS track identification. Shown are the gains and the permutation importances of the ROC AUC normed on the largest value.}
     \label{fig:SS_importances}
 \end{figure}
 
@@ -94,14 +94,14 @@ For this, all tracks with $\text{Prob}_\text{SS}>0.5$ count as predicted SS trac
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/SS_history_logloss.pdf}
-        \caption{negative log-likelihood}
+        \caption{Negative log-likelihood during training}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/SS_history_error.pdf}
-        \caption{error rate}
+        \caption{Error rate during training}
     \end{subfigure}%
-    \caption{Training performance of the SS BDT.}
+    \caption{Performance of the BDT for SS track identification after each training iteration.}
     \label{fig:SS_history}
 \end{figure}
 
@@ -116,13 +116,13 @@ A ROC AUC of $1.0$ means perfect separation and a ROC AUC of $0.5$ means no sepa
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/SS_output.pdf}
-        \caption{distribution of $\text{Prob}_\text{SS}$}
+        \caption{Distribution of $\text{Prob}_\text{SS}$}
         \label{fig:SS_output}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/SS_ROC.pdf}
-        \caption{ROC curve}
+        \caption{ROC curve of the BDT predictions}
         \label{fig:SS_ROC}
     \end{subfigure}%
     \caption{The left figure shows the distribution of the BDT output split by the true labels of the simulation. The right figure shows the ROC curve of the BDT output. Both figures show the BDT prediction for the test data and the training data.}

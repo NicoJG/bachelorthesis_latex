@@ -55,7 +55,7 @@ Finally, $\chi^2(\text{fit})$ is the $\chi^2$ corresponding to the reconstructio
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/BKG_BDT_ROC.pdf}
-        \caption{ROC curve of the BDT}
+        \caption{ROC curve of the BDT predictions}
         \label{fig:BKG_BDT_ROC}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
@@ -122,16 +122,16 @@ One of those fitted distributions is shown in \cref{fig:fit_example}.
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fit_mc.pdf}
-        \caption{Fit of the simulated $B_d$ invariant mass}
+        \caption{Fit of the simulated $B_d$ mass distribution}
         \label{fig:fit_mc}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fit_example.pdf}
-        \caption{Example fit of a data selection}
+        \caption{Example fit of the $B$ mass distribution after a cut on LHCb data}
         \label{fig:fit_example}
     \end{subfigure}%
-    \caption{The left figure shows a fit on a simulated $B_d$ sample. The right figure shows a fit of the $B$ mass distribution with the selection $\text{Prob}_{B_s} \geq 0.43919$. Both figures also show a pull distribution between the data points and the fit.}
+    \caption{The left figure shows a fit on a simulated $B_d$ sample. The right figure shows a fit of the $B$ mass distribution on LHCb data with the selection $\text{Prob}_{B_s} \geq 0.43919$. Both figures also show a pull distribution between the data points and the fit.}
 \end{figure}
 
 To estimate how well the trained model of this thesis can distinguish $B_d$ and $B_s$ mesons, the ratio $n_{B_s}/n_{B_d}$ is plotted by the cut value $x$ for selections with $\text{Prob}_{B_s} \geq x$. 
@@ -157,16 +157,16 @@ Compared to the achieved ROC curve on a simulation shown in \cref{fig:B_ROC}, a 
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/data_ratio.pdf}
-        \caption{Ratio $n_{B_s}/n_{B_d}$ by cut value}
+        \caption{Ratio $n_{B_s}/n_{B_d}$ by cut value on $\text{Prob}_{B_s}$}
         \label{fig:data_ratio}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/data_roc.pdf}
-        \caption{similar to a ROC curve}
+        \caption{Efficiencies of the $\text{Prob}_{B_s}$ selections similar to a ROC curve}
         \label{fig:data_roc}
     \end{subfigure}%
-    \caption{The left figure shows the estimated ratio $n_{B_s}/n_{B_d}$. Here, it is important to note that selections with $\text{Prob}_{B_s} \leq x$ on small $x$ have a very small $B_s$ peak, which makes the interpretation of these ratios almost impossible. The right figure shows the estimated efficiencies $\varepsilon_{B_d}$ agains $\varepsilon_{B_s}$. In both figures, selections with $\text{Prob}_{B_s} \geq x$ are shown in blue and selections with $\text{Prob}_{B_s} \leq x$ are shown in orange.}
+    \caption{The left figure shows the estimated ratio $n_{B_s}/n_{B_d}$ after applying $\text{Prob}_{B_s}$ cuts on LHCb data. Here, it is important to note that selections with $\text{Prob}_{B_s} \leq x$ on small $x$ have a very small $B_s$ peak, which makes the interpretation of these ratios almost impossible. The right figure shows the estimated efficiencies $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$ after applying $\text{Prob}_{B_s}$ cuts on LHCb data. In both figures, selections with $\text{Prob}_{B_s} \geq x$ are shown in blue and selections with $\text{Prob}_{B_s} \leq x$ are shown in orange.}
 \end{figure}
 
 

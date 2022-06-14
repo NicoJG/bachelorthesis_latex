@@ -101,14 +101,14 @@ The loss and the error rate for each iteration of the training of the DeepSet ar
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/B_history_loss.pdf}
-        \caption{binary cross entropy loss}
+        \caption{Binary cross entropy loss during training}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/B_history_error.pdf}
-        \caption{error rate}
+        \caption{Error rate during training}
     \end{subfigure}%
-    \caption{Training performance of the DeepSet for $B$ meson classification.}
+    \caption{Performance of the DeepSet for $B$ meson classification after each training iteration.}
     \label{fig:B_history}
 \end{figure}
 
@@ -123,13 +123,13 @@ In the following section, the developed classifier is tested on LHCb data of the
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/B_output.pdf}
-        \caption{distribution of $\text{Prob}_{B_s}$}
+        \caption{Distribution of $\text{Prob}_{B_s}$}
         \label{fig:B_output}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/B_ROC.pdf}
-        \caption{ROC curve}
+        \caption{ROC curve of the DeepSet predictions}
         \label{fig:B_ROC}
     \end{subfigure}%
     \caption{The left figure shows the distribution of the DeepSet output split by the true labels of the simulation. The right figure shows the ROC curve of the DeepSet output. Both figures show the DeepSet prediction for the test data and the training data.}
