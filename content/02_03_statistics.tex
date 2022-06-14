@@ -1,4 +1,4 @@
-\section{Classification algorithms} %TODO: Vukans corrections!
+\section{Classification algorithms}
 
 The objective of any \emph{classification algorithm} is to assign a class to each given data point so that some property is shared among all data points in a class. %TODO: in/of a class
 For example, the main algorithm of this thesis evaluates the measured data of a $pp$-collision to estimate the type of the signal $B$ meson.
@@ -63,7 +63,7 @@ A \emph{DeepSet}\cite{deepset} is an extension of NNs to allow inputs of sets of
 DeepSets can therefore be used to solve problems where the data of each sample contains a variable length list and where the solution should be invariant under permutations of this list.
 In this thesis, a DeepSet is used to classify $pp$-collision events that contain different amounts of tracks of which the order in the data should not matter.
 
-The underlying concept of a DeepSet is the function % is that a function is invariant under permutations of the instances $x$ in a set $X$ if it can be written in the form %TODO: Satzanfang
+The underlying concept of a DeepSet is the function 
 \begin{equation*}
     f(X) = \rho \left( \sum_{x \in X} \phi (x) \right)
 \end{equation*}
