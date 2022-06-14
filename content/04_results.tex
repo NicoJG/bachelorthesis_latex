@@ -1,14 +1,15 @@
-\chapter{Methods and results} %TODO: rename to something like "Creating the Bd and Bs separation algorithm"?
+\chapter{Development of the $B$ meson classifier}
 
 The goal of this thesis is to develop an algorithm that can distinguish $B_d$ mesons from $B_s$ mesons produced in $pp$-collisions.
-This algorithm is intended to be independent of the signal decay channel and therefore only uses data of the associated event without the signal tracks.
+This algorithm is intended to be independent of the signal decay channel. 
+Therefore, it only uses data of the associated event excluding tracks from the signal decay.
 As mentioned in \cref{sec:B_mesons}, only the SS is expected to contain relevant information.
-Thus, before classifying the signal~$B$ using a DeepSet, every track in the dataset is assigned an estimated probability of being a SS track by a BDT.
+Thus, every track in the dataset is assigned an estimated probability of being a SS track by a BDT before classifying the signal~$B$ using a DeepSet.
 
 This chapter describes in detail the methods and results of training this $B$ meson classifier.
-The first section explains the reasoning behind choosing a fitting training dataset.
+The first section explains the choice of the training dataset.
 Then the training of a BDT for SS track classification is presented.
-The next section describes the training of a DeepSet for $B$ meson classification.
+The following section describes the training of a DeepSet for $B$ meson classification.
 In the last section, the trained model is tested on LHCb data.
 
 \input{content/04_01_data.tex}

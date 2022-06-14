@@ -1,56 +1,53 @@
 \chapter{Conclusion}
 
-In this thesis, a classification algorithm to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions is developed, trained and evaluated.
-This algorithm is intended to be independent of the signal $B$ decay channel and uses only data of the tracks associated with the signal $B$ meson without data of the signal decay.
-For the training of supervised machine learning algorithms, simulated samples of the decays $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$ are used in this thesis. This data is based on simulations of the LHCb detector in the year 2016.
+In this thesis, a classification algorithm to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions at LHCb is developed and trained on simulation and evaluated on LHCb data.
+This algorithm is intended to be independent of the signal $B$ decay channel and uses only data of the tracks associated with the signal $B$ meson without tracks of the signal decay.
+For the training of supervised machine learning algorithms, simulated samples of the decays $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$ are used.
 
-The developed algorithm first uses a Boosted Decision Tree (BDT) classifier to identify \enquote{same side} (SS) fragmentation tracks.
+A Boosted Decision Tree (BDT) classifier is trained to identify \enquote{same side} (SS) fragmentation tracks.
+%The developed algorithm first uses a Boosted Decision Tree (BDT) classifier to identify \enquote{same side} (SS) fragmentation tracks.
 The SS fragmentation contains particles that are related to the $d\bar{d}$- or $s\bar{s}$-pair that is part of the production of the signal $B$. 
-In contrast to other tracks in the data these SS tracks therefore contain relevant information for the distinction between $B_d$ and $B_s$ mesons.
-The output of this BDT is then used in a DeepSet classifier for the signal $B$.
+In contrast to other tracks in the data SS tracks therefore contain relevant information for the distinction between $B_d$ and $B_s$ mesons.
+The output of this BDT is then used as an additional input for a subsequent DeepSet model for the signal $B$ classification.
 
 A BDT is trained using all available features and features are then selected based on feature importance metrics called the gain and the permutation importance of the ROC AUC. 
 The final BDT uses 21 features, and a ROC AUC of $0.763$ is achieved on test samples.
 %After training the final BDT with a reduced feature set, the achieved separation between SS tracks and other tracks is evaluated using a ROC curve.
 %A ROC AUC of $0.763$ is achieved on test data.
-Although the achieved separation is not sufficient to correctly identify most of the SS tracks, this BDT output can potentially help the DeepSet to form a decision.
+Although the achieved separation is not sufficient to correctly identify most of the SS tracks, this BDT output should help the DeepSet to identify relevant information.
 
-For the feature selection of the DeepSet, the permutation importances of the accuracy and the ROC AUC are used.
-This leads to the 23 features listed in \cref{tab:B_features} that are used in the final DeepSet for the signal $B$ classification.
-An indication that the BDT output ($\text{Prob}_\text{SS}$) has an impact on the DeepSet performance can be seen in \cref{fig:B_importances}.
+For the feature selection of the DeepSet, the permutation importances of the accuracy and the ROC AUC are used to select a set of 23 training features with which the final DeepSet classifier is trained.
+An indication that the BDT output ($\text{Prob}_\text{SS}$) has an impact on the DeepSet performance is observed.
 This however has to be interpreted with care, because feature importances can only be seen as estimates.
-The trained DeepSet achieves a ROC AUC of $0.739$ on test data.
-The ROC curve and the distribution of the DeepSet output are shown in \cref{fig:B_eval}.
+The trained DeepSet achieves a ROC AUC of $0.739$ on test data indicating a clear separation.
 
-It can be seen that a clear separation of the $B$ mesons is achieved on simulation.
-However, any algorithm that has been developed with simulated samples has to be tested on data that originates from actual measurements. 
-Therefore, the developed algorithm of this thesis is tested on LHCb data of the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
+%TODO verschieben
+%It can be seen that a clear separation of the $B$ mesons is achieved on simulation.
+%However, any algorithm that has been developed with simulated samples has to be tested on data that originates from actual measurements. 
+%Therefore, the developed algorithm of this thesis is tested on LHCb data of the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
 
 Compared to the training data, LHCb data contains background events that do not actually involve $B_d$ or $B_s$ mesons.
 Since evaluating the $B$ classification requires clearly visible $B_s$ peaks in the $B$ mass distribution, the number of background events has to be reduced beforehand.
 This background reduction is done using a combination of manual cuts and a BDT that is trained on simulated samples of the decay $B_d \rightarrow J/\psi \, K^0_\text{S}$.
-This BDT achieves a ROC AUC of $0.989$ on test data.
-The ROC curve achieved by the BDT and the total background reduction is shown in \cref{fig:BKG_eval}.
 
 The developed algorithm of this thesis is then applied to the background reduced data.
-To evaluate the achieved separation, $B$ mass distributions with various selection criteria based on the DeepSet output ($\text{Prob}_{B_s}$) are used to fit a function.
+To evaluate the achieved separation, a model is fitted to the $B$ mass distributions after various cuts on the DeepSet output ($\text{Prob}_{B_s}$) are applied.
 The fit components that represent the combinatorial background, the $B_d$ peak and the $B_s$ peak are then integrated numerically.
 This results in estimated counts of events attributed to the $B_d$ and $B_s$ mesons remaining after each selection.
 
-The resulting ratios of the number of $B_s$ meson events over the number of $B_d$ meson events are shown in \cref{fig:data_ratio}.
+The resulting ratios of the number of $B_s$ decays over the number of $B_d$ decays are calculated.
 Here, selection criteria of the form $\text{Prob}_{B_s} \geq x$ show an upward trend with increasing $x$ values.
 This could be an indication of some level of achieved separation between $B_s$ and $B_d$ mesons.
 Selection criteria of the form $\text{Prob}_{B_s} \leq x$ show an increase of this ratio for lower $x$ values.
-However, for small values of $x$ in $\text{Prob}_{B_s} \leq x$ there are too many combinatorial background events and an estimation of the $B_s$ peak is almost impossible. 
+However, for small values of $x$ in $\text{Prob}_{B_s} \leq x$ there are too few events left and an estimation of the $B_s$ peak becomes increasingly difficult. 
 This is not the case for large values of $x$ in $\text{Prob}_{B_s} \geq x$ where a clear $B_s$ peak is visible.
-All calculated ratios are compatible with the expected ratio for no achieved separation, but the upward trend for $\text{Prob}_{B_s} \geq x$ selections suggests at least a small achieved separation.
-
-Another method to test the achieved separation is to plot the efficiencies of both the $B_d$ and $B_s$ mesons similar to a ROC curve.
-This is shown in \cref{fig:data_roc}.
+All calculated ratios are compatible with the expected ratio for no achieved separation, but the upward trend for $\text{Prob}_{B_s} \geq x$ selections suggests at least some level of achieved separation.
+Another method to test the achieved separation is to plot the efficiencies of both the $B_d$ and $B_s$ mesons in the form of a ROC curve.
 Here, no clear signs of an achieved separation are visible.
 
-Overall, the classification algorithm for separating $B_s$ and $B_d$ mesons was designed and tested on simulation and LHCb data. 
+In summary, the classification algorithm for separating $B_s$ and $B_d$ mesons is designed and tested on simulation and LHCb data. 
 Unfortunately, the successful separation of $B_s$ and $B_d$ mesons on simulated samples could not be reproduced on LHCb data.
 However, the achieved separation on simulation is an indication that the strategy to use a DeepSet to distinguish $B_d$ from $B_s$ mesons based on data of the associated event could succeed. 
-This raises the question whether the classifier exploited selection differences in the training datasets that went unnoticed, or if a simulated feature was mismodeled. 
-In a future analysis it will therefore be important to show that observed kinematic differences in the training simulation are only due to differences in the $B_d$ and $B_s$ masses and that their distributions closely match the data. Since it cannot be decided with absolute certainty that kinematic differences in the training simulation are only due to $\Bd$ vs $\Bs$ mass differences and not due to indirect selection constraints, an attempt could be made at equalizing the kinematics in the training data through reweighting or similar methods.
+The observed performance loss raises the question whether the classifier exploited selection differences in the training datasets that went unnoticed, or if a simulated feature is mismodeled. 
+In a future analysis it will therefore be important to show that observed kinematic differences in the training simulation are only due to differences in the $B_d$ and $B_s$ masses and that their distributions closely match the data. Since it cannot be decided with absolute certainty that kinematic differences in the training simulation are only due to $B_d$\,-$B_s$ mass differences and not due to indirect selection constraints, an attempt could be made at equalizing the kinematics in the training data through reweighting or similar methods. 
+If successful, this study can be extended to include charged $B$ modes.

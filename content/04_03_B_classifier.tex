@@ -1,7 +1,7 @@
 \section[Classification of \texorpdfstring{$B_d$ and $B_s$}{Bd and Bs} mesons]{Classification of \texorpdfstring{$\symbf{B_d}$ and $\symbf{B_s}$}{Bd and Bs} mesons}
 
 The distinction between $B_d$ and $B_s$ mesons based on the associated event is a non-trivial problem.
-Since both mesons have different masses, it is expected that there is some difference in the kinematics of the associated event.
+Since both mesons have different masses and quark contents, there are difference in the kinematics and types of particles in the associated event.
 Therefore, in this thesis it is tested whether a multivariate machine learning algorithm can spot these differences.
 The algorithm of choice for this thesis is a DeepSet that is trained on simulated LHCb data.
 As explained in \cref{sec:DeepSet}, a DeepSet can handle data of variable length where the order of its elements should not change the result of the classification.
@@ -78,17 +78,18 @@ $\text{Prob}_\pi$ are estimated probabilities about the particle's type.
 $Q_\text{VELO}$ is a measure for the interaction of the particle with the VELO detector based on the induced current due to material interactions and bremsstrahlung photons.
 
 
-The final DeepSet trained here consists of a $\phi$-network that extracts 64 features about each track and a $\rho$-network with a single output.
+The final DeepSet consists of a $\phi$-network that extracts latent space vectors of length 64 for each track and a $\rho$-network which transforms the sum of these vectors to a scalar output.
 The $\phi$-network has an input layer of size 23 followed by 3 layers with of sizes 64, 128 and 64.
 The $\rho$-network has an input layer of size 64 followed by 3 layers of sizes 128, 64 and 1.
 All hidden layers use the ReLU activation function and have a dropout rate of $50\%$.
 The output layer of the $\rho$-network uses the sigmoid activation function.
 
 From the $0.4$ million events in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
-Before training or evaluation, each feature in the data is standardized using 
+Before training or evaluation, each feature in the data is rescaled using 
 \begin{equation}
-    f(x) = \frac{x - \mu_i}{\sigma_i} \, .
+    f(x) = \frac{x - \mu_i}{\sigma_i} 
 \end{equation} 
+to ensure a common order of magnitude for all input features.
 Where $\mu_i$ is the mean and $\sigma_i$ is the standard deviation of feature $i$ in the training data.
 
 The DeepSet is trained using the loss function \enquote{binary cross entropy} and the optimizer \enquote{Adam}.
@@ -113,6 +114,9 @@ The loss and the error rate for each iteration of the training of the DeepSet ar
 
 To show the achieved separation of the $B$ mesons, histograms of $\text{Prob}_{B_s}$ split by the true labels of the simulation are shown in \cref{fig:B_output}.
 The achieved ROC curve is shown in \cref{fig:B_ROC} with a ROC AUC of $0.739$ on the test data and $0.742$ on the training data.
+Therefore, a clear separation of the $B$ mesons is achieved on simulation.
+However, any algorithm that has been developed with simulated samples has to be tested on data that originates from actual measurements. 
+In the following section, the developed classifier is tested on LHCb data of the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
 
 \begin{figure}
     \centering
@@ -131,3 +135,4 @@ The achieved ROC curve is shown in \cref{fig:B_ROC} with a ROC AUC of $0.739$ on
     \caption{The left figure shows the distribution of the DeepSet output split by the true labels of the simulation. The right figure shows the ROC curve of the DeepSet output. Both figures show the DeepSet prediction for the test data and the training data.}
     \label{fig:B_eval}
 \end{figure}
+

@@ -14,7 +14,7 @@ The gain is a measure used in decision trees to estimate the accuracy improvemen
 Additionally, the permutation importance of the ROC AUC is calculated.
 The permutation importance is the difference in any performance metric after making predictions on a dataset with the entries of a single feature permuted at random.
 The features with the lowest gain or permutation importance are discarded until a reasonable amount of features is achieved.
-The remaining 21 features are listed in \cref{tab:SS_features} and the corresponding feature importances are shown in \cref{fig:SS_importances}.
+The remaining 21 features are listed in \cref{tab:SS_features} together with the corresponding feature importances shown in \cref{fig:SS_importances}.
 
 \begin{figure}
     \centering
@@ -49,8 +49,7 @@ The remaining 21 features are listed in \cref{tab:SS_features} and the correspon
 %(Explain all features)....
 All the following features describe a single particle or rather its reconstructed track.
 %
-$p$ is the momentum and
-$p_\text{T}$ is the transversal momentum. 
+The transversal momentum is denoted by $p_\text{T}$. 
 %
 Some features are also defined for relation between the signal $B$ and the reconstructed track. 
 $p_\text{proj}$ is the dot product of the 4-momenta,
@@ -71,7 +70,7 @@ $\text{IP}_\text{best PV}$ is the IP to the best estimated PV and
 $\chi^2(\text{IP}_\text{best PV})$ is its uncertainty.
 $\text{IP}_\text{min}$ is the minimum IP with respect to all PV candidates.
 %
-Cone-isolation refers to an isolation metric of a track which is evaluated based on how many neighbouring tracks are inside a defined cone in the $\eta$-$\phi$-plane around the track in question. %TODO: "how is the cone isolation variable defined. Is the variable a length or angle (size of cone?). Is it kind of a probability of tracks or a counter of tracks for a fixed cone size (if yes, what is the size of the cone)? Please explain this."
+Cone-isolation refers to an isolation metric of a track which is evaluated based on how many neighbouring tracks are inside a defined cone in the $\eta$-$\phi$-plane around the track in question.
 SumBDT,    
 MinBDT and    
 SumMinBDT describe the cone-isolation based on multiple BDT classifiers which work on the mentioned principle.
@@ -83,11 +82,11 @@ Then a BDT is trained on a dataset containing all features of this list.
 From the $18$ million tracks in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
 The trained model contains $2000$ estimators at a maximum decision tree depth of $4$.
 The learning rate is set to $0.1$.
-Due to the imbalance of SS tracks and other tracks in the data ($N_\text{other}/N_\text{SS} = 11.94$), a parameter that controls the balance of positive and negative weights of the BDT is set accordingly. 
+Due to the imbalance of SS tracks and other tracks in the data ($N_\text{SS}/N_\text{other} \approx 0.084$), a parameter that controls the balance of positive and negative weights of the BDT is set accordingly. 
 The learning objective is logistic regression for binary classification.
 
 The negative log-likelihood and the error rate for each iteration of the training of the BDT are shown in \cref{fig:SS_history}.
-The error rate is the proportion of predictions matching the true labels of the simulation. %TODO: ground truth is wrong?
+The error rate is the proportion of predictions matching the true labels of the simulation.
 For this, all tracks with $\text{Prob}_\text{SS}>0.5$ count as predicted SS tracks. 
 
 \begin{figure}
