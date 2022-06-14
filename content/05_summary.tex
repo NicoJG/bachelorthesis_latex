@@ -2,19 +2,17 @@
 
 In this thesis, a classification algorithm to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions is developed, trained and evaluated.
 This algorithm is intended to be independent of the signal $B$ decay channel and uses only data of the tracks associated with the signal $B$ meson without data of the signal decay.
-For the training of supervised machine learning algorithms, simulated data of the decays $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$ is used in this thesis. This data is based on simulations of the LHCb detector in the year 2016.
+For the training of supervised machine learning algorithms, simulated samples of the decays $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$ are used in this thesis. This data is based on simulations of the LHCb detector in the year 2016.
 
 The developed algorithm first uses a Boosted Decision Tree (BDT) classifier to identify \enquote{same side} (SS) fragmentation tracks.
 The SS fragmentation contains particles that are related to the $d\bar{d}$- or $s\bar{s}$-pair that is part of the production of the signal $B$. 
 In contrast to other tracks in the data these SS tracks therefore contain relevant information for the distinction between $B_d$ and $B_s$ mesons.
-Contained in the data are also tracks of the \enquote{opposite side} (OS) and tracks of particles unrelated to the signal $B$.
-The OS contains particles related to the quark in the $b\bar{b}$-pair that is not in the signal $B$.
 The output of this BDT is then used in a DeepSet classifier for the signal $B$.
 
-Before training the final BDT, the available feature set is reduced.
-To that end, a BDT is trained using all available features and features are then selected based on feature importance metrics called the gain and the permutation importance of the ROC AUC. The resulting 21 features, listed in \cref{tab:SS_features}, are used by the final BDT.
-After training the final BDT, the achieved separation between SS tracks and other tracks is evaluated using a ROC curve.
-The ROC curve and the distribution of the BDT output are shown in \cref{fig:SS_eval}. A ROC AUC of $0.763$ is achieved on test data.
+A BDT is trained using all available features and features are then selected based on feature importance metrics called the gain and the permutation importance of the ROC AUC. 
+The final BDT uses 21 features, and a ROC AUC of $0.763$ is achieved on test samples.
+%After training the final BDT with a reduced feature set, the achieved separation between SS tracks and other tracks is evaluated using a ROC curve.
+%A ROC AUC of $0.763$ is achieved on test data.
 Although the achieved separation is not sufficient to correctly identify most of the SS tracks, this BDT output can potentially help the DeepSet to form a decision.
 
 For the feature selection of the DeepSet, the permutation importances of the accuracy and the ROC AUC are used.
@@ -24,13 +22,13 @@ This however has to be interpreted with care, because feature importances can on
 The trained DeepSet achieves a ROC AUC of $0.739$ on test data.
 The ROC curve and the distribution of the DeepSet output are shown in \cref{fig:B_eval}.
 
-It can be seen that a clear separation of the $B$ mesons is achieved on simulated data.
-However, any algorithm that has been developed using simulated data has to be tested on data that originates from actual measurements. 
+It can be seen that a clear separation of the $B$ mesons is achieved on simulation.
+However, any algorithm that has been developed with simulated samples has to be tested on data that originates from actual measurements. 
 Therefore, the developed algorithm of this thesis is tested on LHCb data of the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
 
 Compared to the training data, LHCb data contains background events that do not actually involve $B_d$ or $B_s$ mesons.
 Since evaluating the $B$ classification requires clearly visible $B_s$ peaks in the $B$ mass distribution, the number of background events has to be reduced beforehand.
-This background reduction is done using a combination of manual cuts and a BDT that is trained on simulated data of the decay $B_d \rightarrow J/\psi \, K^0_\text{S}$.
+This background reduction is done using a combination of manual cuts and a BDT that is trained on simulated samples of the decay $B_d \rightarrow J/\psi \, K^0_\text{S}$.
 This BDT achieves a ROC AUC of $0.989$ on test data.
 The ROC curve achieved by the BDT and the total background reduction is shown in \cref{fig:BKG_eval}.
 
@@ -52,11 +50,7 @@ This is shown in \cref{fig:data_roc}.
 Here, no clear signs of an achieved separation are visible.
 
 Overall, the classification algorithm for separating $B_s$ and $B_d$ mesons was designed and tested on simulation and LHCb data. 
-Unfortunately, the successful separation of $B_s$ and $B_d$ mesons on simulated data could not be reproduced on LHCb data.
-However, the achieved separation on simulated data is an indication that the strategy to use a DeepSet to distinguish $B_d$ from $B_s$ mesons based on data of the associated event could succeed. 
+Unfortunately, the successful separation of $B_s$ and $B_d$ mesons on simulated samples could not be reproduced on LHCb data.
+However, the achieved separation on simulation is an indication that the strategy to use a DeepSet to distinguish $B_d$ from $B_s$ mesons based on data of the associated event could succeed. 
 This raises the question whether the classifier exploited selection differences in the training datasets that went unnoticed, or if a simulated feature was mismodeled. 
-In a future analysis it will therefore be important to show that observed kinematic differences in the training simulation are only due to differences in the $B_d$ and $B_s$ masses and that their distributions closely match the data. Since it cannot be decided with absolute certainty that kinematic differences in the training simulation are only due to $\Bd$ vs $\Bs$ mass differences and not due to indirect selection constraints an attempt could be made at equalizing the kinematics in the training data through reweighting or similar methods.
-
-
-%TODO: suggestions and weaknesses
-
+In a future analysis it will therefore be important to show that observed kinematic differences in the training simulation are only due to differences in the $B_d$ and $B_s$ masses and that their distributions closely match the data. Since it cannot be decided with absolute certainty that kinematic differences in the training simulation are only due to $\Bd$ vs $\Bs$ mass differences and not due to indirect selection constraints, an attempt could be made at equalizing the kinematics in the training data through reweighting or similar methods.

@@ -1,16 +1,6 @@
 \section{Testing the algorithm on LHCb data}
 
-%Training machine learning algorithms on simulated data assumes that the simulation contains the same patterns as found in real physics.%
-%Training machine learning algorithms on simulated data assumes that the simulation is a good approximation of real world physics.
-%Although the performance of trained models can be evaluated on data that was not used for training, 
-
-%A necessary step in developing any algorithm is to check whether this algorithm works in scenarios that it is intended for.
-%The trained model in this thesis is intended to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions independent of the decay channel.
-%Additionally, the model is intended to classify processes of the physical world rather than the simulations it is trained on.
-%Consequently, the final step of this thesis is testing the model on LHCb run 2 data of the decay $B^0 \rightarrow J/\psi + K_\text{S}$.
-%This decay channel contains both the $B_d$ and $B_s$ mesons and the data 
-
-Although the developed model of this thesis is intended to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions independent of the decay channel, it is trained only on simulated data containing the decay channels $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$.
+Although the developed model of this thesis is intended to distinguish $B_d$ from $B_s$ mesons in $pp$-collisions independent of the decay channel, it is trained only on simulated samples containing the decay channels $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$.
 Consequently, the trained model must be evaluated on LHCb data of some other decay channel.
 Chosen here are the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
 The dataset used here contains LHCb data from the years 2016, 2017 and 2018 that has been selected for both mentioned decays using similar selection criteria. 
@@ -23,7 +13,7 @@ A few types of background are reduced manually.
 One source of such background events is the misidentification of $\Lambda^0 \rightarrow p^+ \, \pi^-$ decays as $K^0_\text{S} \rightarrow \pi^+ \, \pi^-$.
 To reduce this type of background, events are rejected if the reconstructed invariant mass of the $K^0_\text{S}$~candidate is in the region  of the $\Lambda^0$~mass (\qtyrange{1095}{1140}{\MeV}) and $\text{Prob}_p > \num{0.10}$ is required. 
 Misidentified backgrounds from $B \rightarrow J/\psi \, K^*$ decays are rejected by requiring that the kaon candidate has a lifetime longer than $\qty{0.5}{\pico\second}$.
-Finally, a cut $\chi^2(\text{fit})<\num{5.0}$ is applied. %TODO: mention features before explanation %TODO: after the BDT
+Finally, a cut on the general reconstruction uncertainty of the event is applied ($\chi^2(\text{fit})<\num{5.0}$).
 
 To reduce all other types of combinatorial background, a BDT is trained.
 Again, the BDT is implemented in Python using the library XGBoost \cite{xgboost}.
@@ -95,10 +85,10 @@ The first component $F_\text{bkg}$ describes the combinatorial background with
 \end{align}
 The second component $F_{B_d}$ describes the events containing a $B_d$ meson and the third component $F_{B_s}$ describes the events containing a $B_s$ meson.
 Both $F_{B_d}$ and $F_{B_s}$ use the same function
-\begin{align} %TODO: only one equation number
-    F_B(M_B) = &f_1 \cdot f_2 \cdot F_\text{CB}\left(\frac{M_B-\mu}{\sigma_1}, \beta_1, m_1\right) \\
-                    &+ (1-f_1) \cdot f_2 \cdot F_\text{CB}\left(-\frac{M_B-\mu}{\sigma_2}, \beta_2, m_2\right) \\
-                    &+ (1-f_1) \cdot (1-f_2) \cdot F_\text{gauss}\left(M_B,\mu,\sigma_3\right) \, ,
+\begin{align}
+    F_B(M_B) = &f_1 \cdot f_2 \cdot F_\text{CB}\left(\frac{M_B-\mu}{\sigma_1}, \beta_1, m_1\right) \nonumber\\
+                &+ (1-f_1) \cdot f_2 \cdot F_\text{CB}\left(-\frac{M_B-\mu}{\sigma_2}, \beta_2, m_2\right) \nonumber\\
+                &+ (1-f_1) \cdot (1-f_2) \cdot F_\text{gauss}\left(M_B,\mu,\sigma_3\right) \, , \label{eqn:FB}
 \end{align}
 with the same parameters except $\mu_{B_s} = \mu_{B_d} + (M_{B_s}-M_{B_d})$.
 $M_{B_d}=\qty{5279.65}{\MeV}$ is the mass of $B_d$ mesons and $M_{B_s}=\qty{5366.88}{\MeV}$ is the mass of $B_s$ mesons \cite{pdg}.
@@ -116,7 +106,7 @@ is called a Crystal Ball distribution and
 is called a normal distribution.
 
 All the following fits are done using the library \enquote{iminuit}\cite{iminuit}.
-First, a fit is done on the simulated data of the $B_d$ peak to fix the parameters $f_1,f_2,\beta_1,\beta_2,m_1$ and $m_2$ for all the following fits. 
+First, a fit is done on a simulated sample of the $B_d$ mode to fix the parameters $f_1,f_2,\beta_1,\beta_2,m_1$ and $m_2$ for all the following fits. 
 This fit is shown in \cref{fig:fit_mc}.
 Then, for 100 values of $x$ between 0 and 1, a selection with $\text{Prob}_{B_s} \leq x$ and a selection with $\text{Prob}_{B_s} \geq x$ is made.
 A fit is done on each acquired $B$ mass distribution and the counts
@@ -132,7 +122,7 @@ One of those fitted distributions is shown in \cref{fig:fit_example}.
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fit_mc.pdf}
-        \caption{Fit of the $B_d$ peak}
+        \caption{Fit of the simulated $B_d$ invariant mass}
         \label{fig:fit_mc}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
@@ -141,10 +131,10 @@ One of those fitted distributions is shown in \cref{fig:fit_example}.
         \caption{Example fit of a data selection}
         \label{fig:fit_example}
     \end{subfigure}%
-    \caption{The left figure shows a fit on simulated data of the $B_d$ peak. The right figure shows a fit of the $B$ mass distribution with the selection $\text{Prob}_{B_s} \geq 0.43919$. Both figures also show a pull distribution between the data points and the fit.}
+    \caption{The left figure shows a fit on a simulated $B_d$ sample. The right figure shows a fit of the $B$ mass distribution with the selection $\text{Prob}_{B_s} \geq 0.43919$. Both figures also show a pull distribution between the data points and the fit.}
 \end{figure}
 
-To estimate how good the trained model of this thesis can distinguish $B_d$ and $B_s$ mesons, the ratio $n_{B_s}/n_{B_d}$ is plotted by the cut value $x$ for selections with $\text{Prob}_{B_s} \geq x$. 
+To estimate how well the trained model of this thesis can distinguish $B_d$ and $B_s$ mesons, the ratio $n_{B_s}/n_{B_d}$ is plotted by the cut value $x$ for selections with $\text{Prob}_{B_s} \geq x$. 
 This is shown in \cref{fig:data_ratio}.
 The expected value without any achieved separation is 
 \begin{equation}
@@ -160,7 +150,7 @@ For each selection, the estimated efficiencies
 \end{equation}
 are calculated. Shown in \cref{fig:data_roc} is the plot of $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$.
 Similar to a ROC curve, a diagonal line from $(0,0)$ to $(1,1)$ is the expectation without any achieved separation.
-Compared to the achieved ROC curve on the simulated data shown in \cref{fig:B_ROC}, a substantially weaker separation is achieved on the LHCb data.
+Compared to the achieved ROC curve on a simulation shown in \cref{fig:B_ROC}, a substantially smaller separation is achieved on LHCb data of the decays $B_d \text{ or } B_s \rightarrow J/\psi \, K^0_\text{S}$.
 
 \begin{figure}
     \centering

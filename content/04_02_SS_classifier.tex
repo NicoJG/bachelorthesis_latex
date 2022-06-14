@@ -52,7 +52,7 @@ All the following features describe a single particle or rather its reconstructe
 $p$ is the momentum and
 $p_\text{T}$ is the transversal momentum. 
 %
-Between the signal $B$ and the particle,
+Some features are also defined for relation between the signal $B$ and the reconstructed track. 
 $p_\text{proj}$ is the dot product of the 4-momenta,
 $\Delta p_\text{T}$ is the difference of the transversal momenta,    
 $\Delta \eta$ is the difference of the pseudorapidities and   
@@ -71,13 +71,13 @@ $\text{IP}_\text{best PV}$ is the IP to the best estimated PV and
 $\chi^2(\text{IP}_\text{best PV})$ is its uncertainty.
 $\text{IP}_\text{min}$ is the minimum IP with respect to all PV candidates.
 %
-A cone-isolation refers to the existence of other tracks in a cone around the tagging track.
+Cone-isolation refers to an isolation metric of a track which is evaluated based on how many neighbouring tracks are inside a defined cone in the $\eta$-$\phi$-plane around the track in question. %TODO: "how is the cone isolation variable defined. Is the variable a length or angle (size of cone?). Is it kind of a probability of tracks or a counter of tracks for a fixed cone size (if yes, what is the size of the cone)? Please explain this."
 SumBDT,    
 MinBDT and    
-SumMinBDT describe the cone-isolation based on multiple BDT classifiers.
-$\sum p_\text{in cone}$ is the sum of the absolute momenta of all particle tracks in cone-isolation cone.
-The feature \enquote{cone isolation} describes the cone-isolation based $p/\sum p_\text{in cone}$. 
-$N_\text{non iso}$ is the number of tracks not isolated from the tagging track.   
+SumMinBDT describe the cone-isolation based on multiple BDT classifiers which work on the mentioned principle.
+$\sum p_\text{in cone}$ is the sum of the absolute momenta of all particle tracks in the defined cone.
+The feature \enquote{cone isolation} describes the momentum based cone-isolation $p/\sum p_\text{in cone}$. 
+$N_\text{non iso}$ is the number of tracks not isolated from the track.   
 
 Then a BDT is trained on a dataset containing all features of this list.
 From the $18$ million tracks in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
@@ -87,7 +87,7 @@ Due to the imbalance of SS tracks and other tracks in the data ($N_\text{other}/
 The learning objective is logistic regression for binary classification.
 
 The negative log-likelihood and the error rate for each iteration of the training of the BDT are shown in \cref{fig:SS_history}.
-The error rate is the proportion of predictions matching the ground truth of the simulation.
+The error rate is the proportion of predictions matching the true labels of the simulation. %TODO: ground truth is wrong?
 For this, all tracks with $\text{Prob}_\text{SS}>0.5$ count as predicted SS tracks. 
 
 \begin{figure}
@@ -106,11 +106,11 @@ For this, all tracks with $\text{Prob}_\text{SS}>0.5$ count as predicted SS trac
     \label{fig:SS_history}
 \end{figure}
 
-To show the achieved separation of the SS tracks, histograms of $\text{Prob}_\text{SS}$ split by the simulation ground truth are shown in \cref{fig:SS_output}.
+To show the achieved separation of the SS tracks, histograms of $\text{Prob}_\text{SS}$ split by the true labels of the simulation are shown in \cref{fig:SS_output}.
 A measure of separation is the ROC (reciever operating characteristic) curve shown in \cref{fig:SS_ROC}.
+To estimate the generalization and overtraining of the model, each performance measure is calculated on both the test data and training data.
 The achieved ROC AUC (area under the ROC curve) is $0.763$ on the test data and $0.767$ on the training data.
 A ROC AUC of $1.0$ means perfect separation and a ROC AUC of $0.5$ means no separation.
-To estimate the generalization and overtraining of the model, each performance measure is calculated on both the test data and training data.
 
 \begin{figure}
     \centering
@@ -126,6 +126,6 @@ To estimate the generalization and overtraining of the model, each performance m
         \caption{ROC curve}
         \label{fig:SS_ROC}
     \end{subfigure}%
-    \caption{The left figure shows the distribution of the BDT output split by the simulation ground truth. The right figure shows the ROC curve of the BDT output. Both figures show the BDT prediction for the test data and the training data.}
+    \caption{The left figure shows the distribution of the BDT output split by the true labels of the simulation. The right figure shows the ROC curve of the BDT output. Both figures show the BDT prediction for the test data and the training data.}
     \label{fig:SS_eval}
 \end{figure}

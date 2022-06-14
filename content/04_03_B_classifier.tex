@@ -2,7 +2,7 @@
 
 The distinction between $B_d$ and $B_s$ mesons based on the associated event is a non-trivial problem.
 Since both mesons have different masses, it is expected that there is some difference in the kinematics of the associated event.
-Therefore, it is tested if a multivariate machine learning algorithm can spot these differences.
+Therefore, in this thesis it is tested whether a multivariate machine learning algorithm can spot these differences.
 The algorithm of choice for this thesis is a DeepSet that is trained on simulated LHCb data.
 As explained in \cref{sec:DeepSet}, a DeepSet can handle data of variable length where the order of its elements should not change the result of the classification.
 Therefore, DeepSets are ideal to classify $pp$-collision events that contain different amounts of particle tracks.
@@ -111,9 +111,8 @@ The loss and the error rate for each iteration of the training of the DeepSet ar
     \label{fig:B_history}
 \end{figure}
 
-To show the achieved separation of the $B$ mesons, histograms of $\text{Prob}_{B_s}$ split by the simulation ground truth are shown in \cref{fig:B_output}.
+To show the achieved separation of the $B$ mesons, histograms of $\text{Prob}_{B_s}$ split by the true labels of the simulation are shown in \cref{fig:B_output}.
 The achieved ROC curve is shown in \cref{fig:B_ROC} with a ROC AUC of $0.739$ on the test data and $0.742$ on the training data.
-To estimate the generalization and overtraining of the model, each performance measure is calculated on both the test data and training data.
 
 \begin{figure}
     \centering
@@ -129,6 +128,6 @@ To estimate the generalization and overtraining of the model, each performance m
         \caption{ROC curve}
         \label{fig:B_ROC}
     \end{subfigure}%
-    \caption{The left figure shows the distribution of the DeepSet output split by the simulation ground truth. The right figure shows the ROC curve of the DeepSet output. Both figures show the DeepSet prediction for the test data and the training data.}
+    \caption{The left figure shows the distribution of the DeepSet output split by the true labels of the simulation. The right figure shows the ROC curve of the DeepSet output. Both figures show the DeepSet prediction for the test data and the training data.}
     \label{fig:B_eval}
 \end{figure}
