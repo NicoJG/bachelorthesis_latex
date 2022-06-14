@@ -30,16 +30,16 @@ The gradient of the loss function with respect to the model parameters is used t
 A \emph{Neural Network} (NN) is a non-linear transformation of an input vector $\vec{x}$ into an output vector $\hat{\vec{y}}$.
 This transformation is divided into multiple steps called layers.
 The $n$th layer represents a vector $\vec{a}^{(n)}$, also called the \emph{activation}, that is calculated based on the values of the previous layer using the formula
-\begin{equation*}
+\begin{equation}
     \vec{a}^{(n)} = f^{(n)}\left( W^{(n)} \cdot \vec{a}^{(n-1)} + \vec{b}^{n} \right).
-\end{equation*}
+\end{equation}
 The \emph{weights}-matrix $W^{(n)}$ and the \emph{bias}-vector $\vec{b}^{(n)}$ are parameters of the model that have to be adjusted in the training process.
 The \emph{activation function} $f$ can be any differentiable function that should be non-linear.
 Used in this thesis are the activation functions
-\begin{align*}
+\begin{align}
     f_\text{ReLU}(z) &= \max(0, z) \:\:\text{  and} \\
     f_\text{Sigmoid}(z) &= \frac{1}{1+e^{-z}} \, .
-\end{align*}
+\end{align}
 The first layer of a NN is the input layer with the activation $a^{(0)}=\vec{x}$ and the last layer is the output layer with the activation used as $\hat{\vec{y}}$.
 All other layers are called \emph{hidden layers}.
 
@@ -64,9 +64,9 @@ DeepSets can therefore be used to solve problems where the data of each sample c
 In this thesis, a DeepSet is used to classify $pp$-collision events that contain different amounts of tracks of which the order in the data should not matter.
 
 The underlying concept of a DeepSet is the function 
-\begin{equation*}
+\begin{equation}
     f(X) = \rho \left( \sum_{x \in X} \phi (x) \right)
-\end{equation*}
+\end{equation}
 which is invariant under permutations of the instances $x$ in a set $X$.
 $\rho$ and $\phi$ represent NNs and can be vector-valued.
 In principle, the sum could be replaced with any permutation invariant function, but in this thesis only sums are used.

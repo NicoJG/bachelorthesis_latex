@@ -85,34 +85,34 @@ The chosen procedure is to do a least squares fit on the $B$ mass distribution a
 
 In the following function definitions every variable except $M_B$ is a parameter that has to be fitted.
 The $B$ mass distribution found in the data can be approximated by a function
-\begin{equation*}
+\begin{equation}
     F(M_B) = N_\text{bkg} \cdot F_\text{bkg}(M_B) + N_{B_d} \cdot F_{B_d}(M_B) + N_{B_s} \cdot F_{B_s}(M_B)
-\end{equation*}
+\end{equation}
 that is split into three components.
 The first component $F_\text{bkg}$ describes the combinatorial background with 
-\begin{align*}
+\begin{align}
     F_\text{bkg}(M_B) = \exp(-\lambda \cdot M_B) \, .
-\end{align*}
+\end{align}
 The second component $F_{B_d}$ describes the events containing a $B_d$ meson and the third component $F_{B_s}$ describes the events containing a $B_s$ meson.
 Both $F_{B_d}$ and $F_{B_s}$ use the same function
-\begin{align*}
+\begin{align} %TODO: only one equation number
     F_B(M_B) = &f_1 \cdot f_2 \cdot F_\text{CB}\left(\frac{M_B-\mu}{\sigma_1}, \beta_1, m_1\right) \\
                     &+ (1-f_1) \cdot f_2 \cdot F_\text{CB}\left(-\frac{M_B-\mu}{\sigma_2}, \beta_2, m_2\right) \\
                     &+ (1-f_1) \cdot (1-f_2) \cdot F_\text{gauss}\left(M_B,\mu,\sigma_3\right) \, ,
-\end{align*}
+\end{align}
 with the same parameters except $\mu_{B_s} = \mu_{B_d} + (M_{B_s}-M_{B_d})$.
 $M_{B_d}=\qty{5279.65}{\MeV}$ is the mass of $B_d$ mesons and $M_{B_s}=\qty{5366.88}{\MeV}$ is the mass of $B_s$ mesons \cite{pdg}.
-\begin{equation*}
+\begin{equation}
     F_\text{CB}(x,\beta,m) = 
      \begin{cases}
          N \cdot \exp(-\frac{x^2}{2}) & \text{for } x > -\beta \\
          N \cdot \left(\frac{m}{|\beta|}\right)^m \cdot \exp\left(-\frac{\beta^2}{2}\right) \cdot \left(\frac{m}{|b|}-|b| - x\right)^{-m} & \text{for } x \leq -\beta
      \end{cases}
-\end{equation*}
+\end{equation}
 is called a Crystal Ball distribution and
-\begin{equation*}
+\begin{equation}
     F_\text{gauss}\left(x,\mu,\sigma\right) = \frac{1}{\sqrt{2}\pi\sigma} \cdot \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)
-\end{equation*}
+\end{equation}
 is called a normal distribution.
 
 All the following fits are done using the library \enquote{iminuit}\cite{iminuit}.
@@ -120,10 +120,10 @@ First, a fit is done on the simulated data of the $B_d$ peak to fix the paramete
 This fit is shown in \cref{fig:fit_mc}.
 Then, for 100 values of $x$ between 0 and 1, a selection with $\text{Prob}_{B_s} \leq x$ and a selection with $\text{Prob}_{B_s} \geq x$ is made.
 A fit is done on each acquired $B$ mass distribution and the counts
-\begin{align*}
+\begin{align}
     n_{B_d} &= \int_{\qty{5170}{\MeV}}^{\qty{5450}{\MeV}} N_{B_d} \cdot F_{B_d}(M_B) \, \symup{d}M_B \:\:\text{ and} \\
     n_{B_s} &= \int_{\qty{5170}{\MeV}}^{\qty{5450}{\MeV}} N_{B_s} \cdot F_{B_s}(M_B) \, \symup{d}M_B
-\end{align*}
+\end{align}
 are calculated numerically.
 One of those fitted distributions is shown in \cref{fig:fit_example}.
 
@@ -147,21 +147,18 @@ One of those fitted distributions is shown in \cref{fig:fit_example}.
 To estimate how good the trained model of this thesis can distinguish $B_d$ and $B_s$ mesons, the ratio $n_{B_s}/n_{B_d}$ is plotted by the cut value $x$ for selections with $\text{Prob}_{B_s} \geq x$. 
 This is shown in \cref{fig:data_ratio}.
 The expected value without any achieved separation is 
-\begin{equation*}
-    \frac{\text{BR}(B_s \rightarrow J/\psi + K^0_\text{S})}{\text{BR}(B_d \rightarrow J/\psi + K^0_\text{S})} \cdot 
+\begin{equation}
+    \frac{\text{BR}(B_s \rightarrow J/\psi \, K^0_\text{S})}{\text{BR}(B_d \rightarrow J/\psi \, K^0_\text{S})} \cdot 
     f_s/f_d(\qty{13}{\TeV}) = \num{0.0109\pm0.0010} \, .
-\end{equation*}
-Where the branching ratios are $\text{BR}(B_s \rightarrow J/\psi + K^0_\text{S}) = \num{4.37\pm0.16e-4}$ and $\text{BR}(B_d \rightarrow J/\psi + K^0_\text{S}) = \num{1.88\pm0.15e-5}$ \cite{pdg}, and $f_s/f_d(\qty{13}{\TeV}) = \num{0.2539\pm0.0079}$ is the ratio of the $B^0_s$ and $B^0$ fragmentation fractions in $pp$-collisions at $\qty{13}{\TeV}$ collision energy \cite{fsfd}.
-%Where BR stands for branching fraction and $\frac{f_s}{f_d}(\qty{13}{\TeV})$ is the ratio of the $B^0_s$ and $B^0$ fragmentation fractions in $pp$-collisions at $\qty{13}{\TeV}$.
+\end{equation}
+Where the branching ratios are $\text{BR}(B_s \rightarrow J/\psi \, K^0_\text{S}) = \num{4.37\pm0.16e-4}$ and $\text{BR}(B_d \rightarrow J/\psi \, K^0_\text{S}) = \num{1.88\pm0.15e-5}$ \cite{pdg}, and $f_s/f_d(\qty{13}{\TeV}) = \num{0.2539\pm0.0079}$ is the ratio of the $B^0_s$ and $B^0$ fragmentation fractions in $pp$-collisions at $\qty{13}{\TeV}$ collision energy \cite{fsfd}.
 
 Another approach to show the achieved separation, is to plot a curve similar to a ROC curve. 
 For each selection, the estimated efficiencies
-\begin{align*}
-    \varepsilon_{B_d} &= \frac{n_{B_d}(x)}{n_{B_d}(\text{no cut})} \: \: \text{ and} \\
-    \varepsilon_{B_s} &= \frac{n_{B_s}(x)}{n_{B_s}(\text{no cut})}
-\end{align*}
+\begin{equation}
+    \varepsilon_{B_d} = \frac{n_{B_d}(x)}{n_{B_d}(\text{no cut})} \quad\text{ and }\quad \varepsilon_{B_s} = \frac{n_{B_s}(x)}{n_{B_s}(\text{no cut})}
+\end{equation}
 are calculated. Shown in \cref{fig:data_roc} is the plot of $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$.
-%Without any achieved separation, the plot would show a straight line from $(0,0)$ to $(1,1)$.
 Similar to a ROC curve, a diagonal line from $(0,0)$ to $(1,1)$ is the expectation without any achieved separation.
 Compared to the achieved ROC curve on the simulated data shown in \cref{fig:B_ROC}, a substantially weaker separation is achieved on the LHCb data.
 

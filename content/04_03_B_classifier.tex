@@ -8,7 +8,7 @@ As explained in \cref{sec:DeepSet}, a DeepSet can handle data of variable length
 Therefore, DeepSets are ideal to classify $pp$-collision events that contain different amounts of particle tracks.
 The DeepSet trained here, outputs an estimated probability $\text{Prob}_{B_s}$ for each event that the signal~$B$ is a $B_s$ meson.
 Therefore, $1-\text{Prob}_{B_s}$ is the estimated probability that the signal~$B$ is a $B_d$ meson.
-The implementation of the DeepSet is done with the library PyTorch \cite{pytorch}.
+The implementation of the DeepSet is done with the library \textsc{PyTorch} \cite{pytorch}.
 
 The procedure of selecting important features is similar to the procedure described in \cref{sec:SS_classifier}.
 However, a DeepSet was trained on all features and the feature importances used here are the permutation importance of the ROC AUC and the permutation importance of the accuracy.
@@ -86,9 +86,9 @@ The output layer of the $\rho$-network uses the sigmoid activation function.
 
 From the $0.4$ million events in the dataset, $60\%$ are used for training and $40\%$ are used for validation of the trained model.
 Before training or evaluation, each feature in the data is standardized using 
-\begin{equation*}
+\begin{equation}
     f(x) = \frac{x - \mu_i}{\sigma_i} \, .
-\end{equation*} 
+\end{equation} 
 Where $\mu_i$ is the mean and $\sigma_i$ is the standard deviation of feature $i$ in the training data.
 
 The DeepSet is trained using the loss function \enquote{binary cross entropy} and the optimizer \enquote{Adam}.

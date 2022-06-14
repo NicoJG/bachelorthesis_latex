@@ -51,9 +51,12 @@ Another method to test the achieved separation is to plot the efficiencies of bo
 This is shown in \cref{fig:data_roc}.
 Here, no clear signs of an achieved separation are visible.
 
-Overall, the classification algorithm for separating Bs and Bd mesons was designed and tested on simulation and LHCb data. 
+Overall, the classification algorithm for separating $B_s$ and $B_d$ mesons was designed and tested on simulation and LHCb data. 
 Unfortunately, the successful separation of $B_s$ and $B_d$ mesons on simulated data could not be reproduced on LHCb data.
-Due to time constraints, further investigation into the reasons of this drastic performance loss is outside the scope of this thesis.
-However, the achieved separation on simulated data is an indication that the strategy to use a DeepSet to distinguish $B_d$ from $B_s$ mesons based on data of the associated event could succeed.
+However, the achieved separation on simulated data is an indication that the strategy to use a DeepSet to distinguish $B_d$ from $B_s$ mesons based on data of the associated event could succeed. 
+This raises the question whether the classifier exploited selection differences in the training datasets that went unnoticed, or if a simulated feature was mismodeled. 
+In a future analysis it will therefore be important to show that observed kinematic differences in the training simulation are only due to differences in the $B_d$ and $B_s$ masses and that their distributions closely match the data. Since it cannot be decided with absolute certainty that kinematic differences in the training simulation are only due to $\Bd$ vs $\Bs$ mass differences and not due to indirect selection constraints an attempt could be made at equalizing the kinematics in the training data through reweighting or similar methods.
+
 
 %TODO: suggestions and weaknesses
+
