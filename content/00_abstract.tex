@@ -4,14 +4,24 @@
 The precise measurements needed to further test the Standard Model of particle physics produce large amounts of data.
 To analyse this data, machine learning algorithms have gained popularity over the last two decades due to their high efficiency and generalizability.
 In particular, machine learning algorithms can help separate signal from background in studies where some types of background of neutral $B_d$ or $B_s$ mesons can be tough to identify using the signal decay kinematics alone.
-A classification algorithm is developed in this thesis for the distinction between neutral $B_d$ and $B_s$ mesons in $pp$-collisions.
+A classification algorithm is developed in this thesis for the distinction between neutral $B_d$ and $B_s$ mesons in $pp$-collisions. %TODO: pp or proton-proton?
 This algorithm uses data of tracks associated with the signal $B$ meson without data of the signal decay. 
-The machine learning models used in this thesis are trained on simulated data. 
+The machine learning models used in this thesis are trained on simulated data. %TODO: of the LHCb detector? vgl. deutsche Version
 The chosen strategy is to first identify signal side fragmentation tracks using a Boosted Decision Tree classifier and then use the output of this classifier in a DeepSet classifier to identify the type of signal $B$ meson.
 Evaluating this algorithm on simulated data shows a clear achieved separation between both $B$ meson types.
 However, tests on LHCb data yield a substantially smaller separation.
 
 \section*{Kurzfassung (to be done)} %TODO!!
 \begin{foreignlanguage}{german}
-    Die präzisen Messungen, die nötig sind um das Standard Modell der Teilchenph
+    Die präzisen Messungen, die nötig sind um das Standard Modell der Teilchenphysik weiter zu überprüfen, führen zu großen Datenmengen.
+    Maschinelles Lernen hat über die letzten zwei Jahrzehnte immer mehr Beliebtheit in der Analyse solcher Daten erlangt.
+    Im Speziellen können Algorithmen des maschinellen Lernens verwendet werden um spezielle Untergründe von neutralen $B_d$ oder $B_s$ Mesonen zu reduzieren.
+    Das kann in manchen Studien hilfreich sein, wo die Trennung zwischen signal und Untergrund schwer mit den Kinematiken des Signalzerfalls zu erreichen ist.
+    Ein solcher Algorithmus wird in dieser Arbeit entwickelt um neutrale $B_d$ von neutralen $B_s$ Mesonen zu unterscheiden welche in $pp$-Kollisionen produziert werden.
+    Die Grundlage für diese Unterscheidung bilden Daten von Teilchenspuren, die in Verbindung mit dem Signal $B$ Meson produziert werden, aber nicht aus dem Signalzerfall stammen.
+    Die Daten zum Training der Algorithmen in dieser Arbeit sind Simulationsdaten des LHCb Detektors.
+    Die gewählte Strategie ist es, als erstes Spuren der Signalseiten-Fragmentierung mithilfe eines Boosted Decision Tree Klassifizierers zu identifizieren 
+    um dann die Ausgabe in einem DeepSet Klassifizierer zu benutzen der die Art des Signal $B$ Mesons identifiziert.
+    Die Evaluierung dieses Algorithmus(ses?) auf simulierten Daten zeigt eine klare erreichte Trennung zwischen den beide $B$ Meson Arten. %TODO: Algorithmusses?
+    Allerdings fällt die erreichte Trennung auf LHCb Daten deutlich geringer aus.
 \end{foreignlanguage}
