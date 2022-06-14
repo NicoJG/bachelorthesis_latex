@@ -4,7 +4,7 @@ In this thesis, a classification algorithm to distinguish neutral $B_d$ from neu
 This algorithm is intended to be independent of the signal $B$ decay channel and uses only data of the tracks associated with the signal $B$ meson without tracks of the signal decay.
 For the training of supervised machine learning algorithms, simulated samples of the decays $B_d \rightarrow J/\psi \, K^*$ and $B_s \rightarrow D^+_s \, \pi^-$ are used.
 
-A Boosted Decision Tree (BDT) classifier is trained to identify \enquote{same side} (SS) fragmentation tracks.
+A Boosted Decision Tree (BDT) classifier is trained to identify \emph{same side} (SS) fragmentation tracks.
 The SS fragmentation contains particles that are related to the $d\bar{d}$- or $s\bar{s}$-pair that is part of the production of the signal $B$. 
 In contrast to other tracks in the data SS tracks therefore contain relevant information for the distinction between $B_d$ and $B_s$ mesons.
 The output of this BDT is then used as an additional input for a subsequent DeepSet model for the signal $B$ classification.

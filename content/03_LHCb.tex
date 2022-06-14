@@ -28,40 +28,40 @@ The following paragraphs briefly describe the components of the LHCb detector ba
     \label{fig:lhcb_detector}
 \end{figure}
 
-A particle produced at the PV first traverses the Vertex Locator (VELO). 
+A particle produced at the PV first traverses the \emph{Vertex Locator} (VELO). 
 There, the tracks of charged particles are measured using silicon semiconductor sensors at a resolution of about $\qty{4}{\micro\meter}$. 
 This information is primarily used to reconstruct the position of the primary and secondary vertices of the decay particles.
 
-Beyond the VELO, the Tracking System then further measures the track points of the same particles. 
-This is done in the Tracker Turicensis (TT) before the magnet and in the Trackers T1, T2 and T3 behind the magnet.
+Beyond the VELO, the \emph{Tracking System} then further measures the track points of the same particles. 
+This is done in the \emph{Tracker Turicensis} (TT) before the magnet and in the Trackers T1, T2 and T3 behind the magnet.
 The dipole magnet bends the particle tracks through the Lorentz force so that the particle's momentum can be inferred.
 While the TT and the inner parts of the T1-T3 also use silicon semiconductor sensors, the outer parts of the T1-T3 use straw-tube modules which are gaseous ionization detectors. 
 
-The Ring Imaging Cherenkov detectors (RICH1, RICH2) are used to measure the particle velocities.
+The \emph{Ring Imaging Cherenkov detectors} (RICH1, RICH2) are used to measure the particle velocities.
 When charged particles traverse optically dense materials, the emission of Cherenkov radiation can be induced.
 This radiation is then detected by photomultipliers. 
 The opening angle of the emitted light cone is dependent on the velocity of the particle. 
 The use of multiple radiators allows measurement of particles with momenta between $\qty{1}{\GeV}$ and $\qty{100}{\GeV}$.
 Comparing the momentum measured in the Tracking System with the velocity measured in the RICH detectors yields information particle's mass. 
 
-The calorimeters (ECAL and HCAL) absorb and measure the energy of most particles.
+The \emph{calorimeters} (ECAL and HCAL) absorb and measure the energy of most particles.
 In dense materials, particles can induce particle showers with the size directly related to the energy deposited.
 Each calorimeter is structured in alternating layers of absorbers and scintillators. 
-The electronic calorimeter~(ECAL) absorbs electrons, positrons and photons using lead, and the hadronic calorimeter~(HCAL) absorbs any hadrons using iron.
+The \emph{electronic calorimeter}~(ECAL) absorbs electrons, positrons and photons using lead, and the \emph{hadronic calorimeter}~(HCAL) absorbs any hadrons using iron.
 %The pad/preshower detector~(SPD/PS) reject $\pi$~background detected in the ECAL. 
 The calorimeters are the only detectors at LHCb which can detect chargeless particles.
 
-The muon chambers (M1-M5) track charged particles which pass through the calorimeters without absorption.
+The \emph{muon chambers} (M1-M5) track charged particles which pass through the calorimeters without absorption.
 The majority of charged particles at this point in the detector are muons.
 The iron layers between the muon chambers are used to absorb any non-muon particles.
-M1-M5 are multi-wire proportional chambers to detect the track points of the muons.
+M1-M5 are \emph{multi-wire proportional chambers} to detect the track points of the muons.
 
 The combined measured data of the RICH, the calorimeters and the muon chambers is used for particle identification.
 Together with the Tracking System, this allows the reconstruction of the production and decay processes related to the $pp$-collision.
 
 Due to the high precision of the LHCb detector, only a small portion of the $pp$-collisions visible in the LHCb detector can be permanently recorded for further analysis.
 Therefore, a Trigger System is implemented to reduce the event detection rate from about $\qty{10}{\MHz}$ to about $\qty{2}{\kHz}$.
-This system consists of the hardware trigger \enquote{Level-0}~(L0) and the software trigger \enquote{High Level Trigger}~(HLT).
+This system consists of the hardware trigger \emph{Level-0}~(L0) and the software trigger \emph{High Level Trigger}~(HLT).
 The L0 collects information from the pile-up system of the VELO, the calorimeters and the muon chambers.
 If the event does not contain particles with high transversal energy or momentum, it is rejected.
 The L0 allows the readout of the whole detector at a rate of about $\qty{1}{\MHz}$.

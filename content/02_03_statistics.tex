@@ -1,6 +1,6 @@
 \section{Classification algorithms}
 
-The objective of any \emph{classification algorithm} is to assign a class to each given data point so that some property is shared among all data points in a class.
+The objective of any classification algorithm is to assign a class to each given data point so that some property is shared among all data points in a class.
 For example, the main algorithm of this thesis evaluates the measured data of a $pp$-collision to estimate the type of the signal $B$ meson.
 All classification algorithms used in this thesis are \emph{supervised machine learning algorithms}.
 Such algorithms optimize the parameters $\theta$ of a given model $f$ so that the class predictions $\hat{y}=f(x|\theta)$ best fit to a given target $y$.
@@ -47,7 +47,7 @@ The iterative training of a NN uses a technique called \emph{backpropagation}.
 As a first step, all weights of the NN are set to random values.
 In each iteration of the training, the output of the NN is evaluated to estimate the gradient of the loss function with respect to all weights using the chain rule.
 Based on this gradient, the weights are adjusted in the direction of the minimum of the loss function with a step size that is set by an \emph{optimizer}.
-This thesis uses the loss function \enquote{binary cross entropy} in combination with the optimizer \enquote{Adam}\cite{adam}.
+This thesis uses the loss function \emph{binary cross entropy} in combination with the optimizer \emph{Adam}\cite{adam}.
 
 To reduce the \emph{overtraining} of the NN and increase its generalizability, this thesis uses regularization techniques called \emph{early stopping} and \emph{dropout}.
 In early stopping, the performance of the model is evaluated on a validation dataset after each iteration, and the training is stopped when this performance does not increase over $N$ iterations.
