@@ -1,4 +1,4 @@
-all: build/thesis.pdf
+all: build/presentation.pdf
 
 
 TeXOptions = -lualatex \
@@ -7,7 +7,10 @@ TeXOptions = -lualatex \
 			 -output-directory=build
                                                                                 
 build/thesis.pdf: FORCE | build
-	latexmk $(TeXOptions) thesis.tex
+	latexmk $(TeXOptions) thesis.tex     
+
+build/presentation.pdf: FORCE | build
+	latexmk $(TeXOptions) presentation.tex
 	
 FORCE:
 
