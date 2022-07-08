@@ -25,7 +25,7 @@
 \addto\extrasenglish{\sisetup{locale = UK}}
 
 \usepackage{graphicx}
-\usepackage{enumitem}
+%\usepackage{enumitem}
 
 \usepackage{hyperref}
 \usepackage{bookmark}
@@ -57,29 +57,29 @@
 
 \maketitle
 
-\begin{frame}{Hinweise}
-  Zu diesem Theme
-  \begin{itemize}
-    \item Zur Installation des Themes müssen mindestens die Datei \texttt{beamerthemetudo.sty} und der Ordner \texttt{logos} in einen Ordner verschoben werden, in dem \LaTeX nach Paketen sucht.
-      Dies können sein
-      \begin{itemize}
-        \item \texttt{TEXMFHOME/tex/latex/tudobeamertheme}. Den Wert von \texttt{TEXMFHOME} bekommen Sie über \texttt{kpsewhich --var-value TEXMFHOME}, üblicherweise ist dies \texttt{\$HOME/texmf}.
-        \item Der gleiche Ordner in dem Sie Ihr Dokument kompilieren.
-        \item Ein beliebiger Ordner, der in der Variablen \texttt{TEXINPUTS} enthalten ist.
-      \end{itemize}
-  \end{itemize}
-  
-  Oneliner zur Installation:\\
-  \texttt{\footnotesize\$ cd `kpsewhich --var-value TEXMFHOME` \&\& git clone https://github.com/maxnoe/tudobeamertheme}
+\begin{frame}{Overview}
+  \textbf{Goal of my thesis:} Use machine learning algorithms to distinguish between $B^0_d$ and $B^0_s$~mesons based on the kinematics of the associated event in proton-proton collisions at the LHCb detector. 
 
   \medskip
-  Allgemein zu Beamer und Latex:
+  \textbf{Structure of this talk:}
   \begin{itemize}
-    \item Umfangreicher \LaTeX-Kurs von PeP et Al. \\
-      \url{http://toolbox.pep-dortmund.org/notes}
-    \item Latex-Beamer Dokumetation:\\
-    \url{http://www.ctan.org/pkg/beamer}
+    \item Motivation
+    \item Theoretical and experimental background
+      \begin{itemize}
+        \item The Standard Model
+        \item $B$ meson production in proton-proton collisions
+        \item The LHCb detector
+        \item Classification algorithms
+      \end{itemize}
+    \item Development of the $B$ meson classifier
+      \begin{itemize}
+        \item Identification of same side tracks using a BDT
+        \item Classification of the $B$ meson using a DeepSet
+        \item Testing on LHCb data
+      \end{itemize}
+    \item Conclusion and Outlook
   \end{itemize}
+
 \end{frame}
 
 \begin{frame}{Einführung}
