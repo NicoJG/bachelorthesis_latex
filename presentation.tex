@@ -1,7 +1,7 @@
 % This example is meant to be compiled with lualatex or xelatex
 % The theme itself also supports pdflatex
 \PassOptionsToPackage{unicode}{hyperref}
-\documentclass[aspectratio=1610, 9pt]{beamer}
+\documentclass[aspectratio=1610, 10pt]{beamer}
 
 % Load packages you need here
 \usepackage[ngerman, english]{babel}
@@ -46,7 +46,7 @@
   warnings-off={mathtools-colon,mathtools-overbracket}, % suppress some unnecessary warnings
 }
 
-\title{Development of a multivariate algorithm for the classification of B~mesons\\at the LHCb experiment}
+\title{Development of a multivariate algorithm for the classification of B~mesons at the LHCb experiment}
 \author[N.~Guth]{Nico Guth}
 \institute[AG Albrecht]{Arbeitsgruppe Albrecht \\ Fakultät Physik}
 \date{Bachelor talk, 20.07.2022}
@@ -58,7 +58,9 @@
 \maketitle
 
 \begin{frame}{Overview}
-  \textbf{Goal of my thesis:} Use machine learning algorithms to distinguish between $B^0_d$ and $B^0_s$~mesons based on the kinematics of the associated event in proton-proton collisions at the LHCb detector. 
+  \begin{block}{Goal of my thesis:}
+    Develop an algorithm that distinguishes between $B^0_d$ and $B^0_s$~mesons based on tracks associated with the signal $B$~meson without tracks of the signal decay. (in $pp$-collisions at the LHCb detector) 
+  \end{block}
 
   \medskip
   \textbf{Structure of this talk:}
@@ -66,8 +68,7 @@
     \item Motivation
     \item Theoretical and experimental background
       \begin{itemize}
-        \item The Standard Model
-        \item $B$ meson production in proton-proton collisions
+        \item $B$ meson production in $pp$-collisions
         \item The LHCb detector
         \item Classification algorithms
       \end{itemize}
@@ -82,8 +83,17 @@
 
 \end{frame}
 
-\begin{frame}{Einführung}
-  \tableofcontents
+\begin{frame}{Motivation}
+  \begin{itemize}
+    \item At LHCb: Analysis of $pp$-collisions involving $b$ or $c$ quarks, e.g. $B^0_d \: (bd)$ or $B^0_s \: (bs)$
+    \item Independence of signal decay channel
+    \item Support background reduction of the other $B$ meson type
+    \begin{itemize}
+      \item \textit{Partial backgrounds} with missing information in the signal decay
+      \item Backgrounds with similar signal kinematics
+      \item E.g. $B^0_s \rightarrow D^+_s K^-$ with $B^0_d$ backgrounds in the signal region
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \section{Fonts}
