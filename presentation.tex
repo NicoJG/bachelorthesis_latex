@@ -85,34 +85,54 @@
 
 \begin{frame}{Motivation}
   \begin{itemize}
-    \item At LHCb: Analysis of $pp$-collisions involving $b$ or $c$ quarks, e.g. $B^0_d \: (bd)$ or $B^0_s \: (bs)$
-    \item Independence of signal decay channel
-    \item Support background reduction of the other $B$ meson type
+    \item at LHCb: Analysis of $pp$-collisions involving $b$ or $c$ quarks, e.g. $B^0_d \: (bd)$ or $B^0_s \: (bs)$
+    \item independence of signal decay channel
+    \item support background reduction of the other $B$ meson type
     \begin{itemize}
-      \item \textit{Partial backgrounds} with missing information in the signal decay
-      \item Backgrounds with similar signal kinematics
-      \item E.g. $B^0_s \rightarrow D^+_s K^-$ with $B^0_d$ backgrounds in the signal region
+      \item \textit{partial backgrounds} with missing information in the signal decay
+      \item backgrounds with similar signal kinematics
+      \item e.g. $B^0_s \rightarrow D^+_s K^-$ with $B^0_d$ backgrounds in the signal region
     \end{itemize}
   \end{itemize}
 \end{frame}
 
-\section{Fonts}
-\begin{frame}
-  Der Font der im Corporate Design der TU Dortmund vorgesehen ist,
-  ist \enquote{Akkurat Office}.
+\section*{Theoretical and experimental background}
 
-  Falls dieser nicht verfügbar ist, wird als Alternative \enquote{Fira Sans}
-  verwendet.
+\begin{frame}{$B$ meson production in $pp$-collisions}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[width=\textwidth]{images/FlavourTaggingScheme.pdf}
 
-  Für Mathematik wird bei Verwendung von \texttt{xelatex} oder \texttt{lualatex} der Font \enquote{Fira Math} verwendet.
+      \small \url{https://twiki.cern.ch/twiki/bin/view/LHCb/FlavourTaggingConferencePlots}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item $pp$-collisions produce many particles
+        \item gluon-fusion may lead to a $b\bar{b}$-pair
+        \item hadronisation $\rightarrow$ $B$ meson and fragmentation particles
+        \item Lorentz boosted signal $B$ $\rightarrow$ distinguish secondary from primary vertex
+        \item for $B^0_d$ vs $B^0_s$ only same side (SS) relevant
+        \item here: exclude the signal decay
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Mathe}
-  \begin{align*}
-    \nabla \cdot \symbf{B} &= 0 &
-    \nabla \cdot \symbf{E} &= \frac{ρ}{ε_0} \\
-    \nabla \times \symbf{E} &= -\partial_t \symbf{B} &
-    \nabla \times \symbf{B} &= μ_0 \symbf{j} + μ_0 ε_0 \partial_t \symbf{E} &
-  \end{align*}
+\begin{frame}{The LHCb detector}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[width=\textwidth]{images/lhcb_detector.png}
+
+      \small \url{https://doi.org/10.1088/1748-0221/3/08/S08005}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item at the LHC
+        \item single arm forward-spectrometer ($\qty{10}{\milli \rad}$ to $\qty{300}{\milli \rad}$)
+        \item particle tracking: VELO, TT, T1, T2, T3
+        \item particle Identification: RICH1, RICH2, calorimeters, muon chambers
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 \end{document}
