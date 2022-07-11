@@ -140,8 +140,18 @@
     \begin{column}{0.4\textwidth}
       \begin{itemize}
         \item single arm forward-spectrometer at the LHC %($\qty{10}{\milli \rad}$ to $\qty{300}{\milli \rad}$)
-        \item particle tracking: VELO, tracking stations
-        \item particle identification: magnet, RICH, calorimeters, muon chambers
+        \item particle tracking: 
+        \begin{itemize}
+          \item Vertex Locator (VELO)
+          \item tracking stations (TT, T1-T3)
+        \end{itemize}
+        \item particle identification: 
+        \begin{itemize}
+          \item magnet
+          \item Ring Imaging Cherenkov detector (RICH1, RICH2)
+          \item calorimeters (ECAL, HCAL)
+          \item muon chambers (M1-M5)
+        \end{itemize}
       \end{itemize}
     \end{column}
   \end{columns}
@@ -254,4 +264,124 @@
     \end{column}
   \end{columns}
 \end{frame}
+
+\section*{B meson classification using a DeepSet}
+
+\begin{frame}{Neural Network (NN)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.85\textwidth]{images/NN_schematic.png}
+
+      \tiny \url{https://www.knime.com/blog/a-friendly-introduction-to-deep-neural-networks}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item non-linear transformation $\vec{x} \rightarrow \hat{\vec{y}}$
+        \item multiple steps called layers of activation \\$\rightarrow$ $\vec{a}^{(n)} = f^{(n)}\left( W^{(n)} \cdot \vec{a}^{(n-1)} + \vec{b}^{n} \right)$
+        \item with $\vec{a}^{(0)} = \vec{x}$ and $\hat{\vec{y}} = \vec{a}^{(\text{last})}$
+        \item activation functions used here:
+        \begin{itemize}
+          \item $f_\text{ReLU}(z) = \max (0, z)$
+          \item $f_\text{Sigmoid}(z) = \frac{1}{1+e^{-z}}$
+        \end{itemize}
+        \item iterative training through backpropagation (gradient descent)
+        \item regularization used here:
+        \begin{itemize}
+          \item early stopping
+          \item Dropout
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{DeepSet}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{images/DeepSet_schematic.png}
+
+      \tiny \url{https://arxiv.org/abs/1703.06114}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item extension of NNs to allow inputs of sets of vectors
+        \item $f(X) = \rho \left( \sum_{x \in X} \phi(x) \right)$
+        \item here: one $X$ for every event, one $x$ for every track
+        \item training is fully analogous to NNs
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{B meson classification: Feature Selection}
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \centering
+      \begin{tabular}{c c}
+        \toprule
+        track- & track- \\
+        feature & feature \\
+        \midrule
+        $p$                 & $\text{Prob}_\text{SS}$ \\ %"Tr_T_P","Tr_ProbSS"
+        $p_\text{T}$        & $\text{Prob}_e$ \\ %"Tr_T_PT", "Tr_T_PROBNNe"
+        $p_\text{proj}$     & $\text{Prob}_\text{ghost}$ \\ %"Tr_p_proj","Tr_T_PROBNNghost"
+        $\Delta p$          & $\text{Prob}_K$ \\ %"Tr_diff_p", "Tr_T_PROBNNk"
+        $\Delta p_\text{T}$ & $\text{Prob}_\mu$ \\ %"Tr_diff_pt","Tr_T_PROBNNmu"
+        $\Delta z$          & $\text{Prob}_p$ \\ %"Tr_diff_z", "Tr_T_PROBNNp"
+        $\cos(\Delta \phi)$ & $\text{Prob}_\pi$ \\ %"Tr_cos_diff_phi", "Tr_T_PROBNNpi"
+        $\Delta \eta$       & $\sigma(\text{IP}_\text{pileup vtx})$ \\ %"Tr_diff_eta", "Tr_T_IP_trPUS"
+        $\text{IP}_\text{SV}$        & $Q_\text{VELO}$ \\ %"Tr_T_IP_trMother",  "Tr_T_VeloCharge"
+        $\chi^2(\text{IP}_\text{SV})$    & SumBDT \\ %"Tr_T_IPCHI2_trMother", "Tr_T_SumBDT_ult"
+        $\text{IP}_\text{min}$               & MinBDT \\ %"Tr_T_MinIP", "Tr_T_MinBDT_ult"
+        $\chi^2(\text{IP}_\text{min})$           & \\ %"Tr_T_MinIPChi2"
+        \bottomrule
+    \end{tabular}
+    \end{column}
+    \begin{column}{0.65\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/B_feature_importances.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{B meson classification: DeepSet training}
+  
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{images/B_history_error.pdf}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item 60\% training data, 40\% test data (standard scaled)
+        \item $\phi$-network layer sizes: 23, 64, 128, 64
+        \item $\rho$-network layer sizes: 64, 128, 64, 1
+        \item $f_\text{ReLU}$ for hidden layers, $f_\text{Sigmoid}$ for output layer 
+        \item Dropout of 50\% and early stopping after 50 iterations 
+        \item binary cross entropy loss with optimizer Adam
+        \item output: $\text{Prob}_{B_s} \in [0,1]$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+\begin{frame}{B meson classification: Results}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Distribution of $\text{Prob}_{B_s}$}
+      \includegraphics[width=0.85\textwidth]{images/B_output.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{ROC curve of the DeepSet predictions}
+      \includegraphics[width=0.85\textwidth]{images/B_ROC.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \end{document}
