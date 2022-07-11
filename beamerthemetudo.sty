@@ -93,7 +93,7 @@
 \newlength{\footerleftwidth}
 \setlength{\footerleftwidth}{0.2\paperwidth}
 \newlength{\footercenterwidth}
-\setlength{\footercenterwidth}{0.6\paperwidth}
+\setlength{\footercenterwidth}{0.6\paperwidth-\beamer@rightmargin} %fixed no right margin in footer
 \newlength{\footerrightwidth}
 \setlength{\footerrightwidth}{0.2\paperwidth}
 
@@ -132,7 +132,7 @@
       wd=\footerrightwidth,
       ht=4ex,
       dp=10pt,
-      rightskip=\beamer@rightmargin,
+      %rightskip=\beamer@rightmargin,
     ]{frame}%
       \raggedleft%
       \usebeamerfont{framenumber}\insertframenumber%
