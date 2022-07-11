@@ -57,6 +57,8 @@
 
 \maketitle
 
+\section*{Introduction}
+
 \begin{frame}{Overview}
   \begin{block}{Goal of my thesis:}
     Develop an algorithm that distinguishes between $B^0_d$ and $B^0_s$~mesons based on tracks associated with the signal $B$~meson without tracks of the signal decay. (in $pp$-collisions at the LHCb detector) 
@@ -68,9 +70,9 @@
     \item Motivation
     \item Theoretical and experimental background
       \begin{itemize}
+        \item The Standard Model
         \item $B$ meson production in $pp$-collisions
         \item The LHCb detector
-        \item Classification algorithms
       \end{itemize}
     \item Development of the $B$ meson classifier
       \begin{itemize}
@@ -98,12 +100,20 @@
 
 \section*{Theoretical and experimental background}
 
+\begin{frame}{The Standard Model of particle physics}
+  \centering
+  \includegraphics[height=0.9\textheight]{images/standard_model.pdf}
+
+  \tiny \url{https://en.wikipedia.org/wiki/Standard_Model}
+\end{frame}
+
 \begin{frame}{$B$ meson production in $pp$-collisions}
   \begin{columns}
     \begin{column}{0.6\textwidth}
+      \centering
       \includegraphics[width=\textwidth]{images/FlavourTaggingScheme.pdf}
 
-      \small \url{https://twiki.cern.ch/twiki/bin/view/LHCb/FlavourTaggingConferencePlots}
+      \tiny \url{https://twiki.cern.ch/twiki/bin/view/LHCb/FlavourTaggingConferencePlots}
     \end{column}
     \begin{column}{0.4\textwidth}
       \begin{itemize}
@@ -121,18 +131,25 @@
 \begin{frame}{The LHCb detector}
   \begin{columns}
     \begin{column}{0.6\textwidth}
+      \centering
       \includegraphics[width=\textwidth]{images/lhcb_detector.png}
 
-      \small \url{https://doi.org/10.1088/1748-0221/3/08/S08005}
+      \tiny \url{https://doi.org/10.1088/1748-0221/3/08/S08005}
     \end{column}
     \begin{column}{0.4\textwidth}
       \begin{itemize}
-        \item at the LHC
-        \item single arm forward-spectrometer ($\qty{10}{\milli \rad}$ to $\qty{300}{\milli \rad}$)
-        \item particle tracking: VELO, TT, T1, T2, T3
-        \item particle Identification: RICH1, RICH2, calorimeters, muon chambers
+        \item single arm forward-spectrometer at the LHC %($\qty{10}{\milli \rad}$ to $\qty{300}{\milli \rad}$)
+        \item particle tracking: VELO, tracking stations
+        \item particle identification: magnet, RICH, calorimeters, muon chambers
       \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
+
+\section*{Development of the $B$ meson classifier}
+
+\begin{frame}{Development of the $B$ meson classifier}
+
+\end{frame}
+
 \end{document}
