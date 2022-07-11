@@ -26,6 +26,7 @@
 
 \usepackage{graphicx}
 %\usepackage{enumitem}
+\usepackage{booktabs}
 
 \usepackage{hyperref}
 \usepackage{bookmark}
@@ -134,7 +135,7 @@
       \centering
       \includegraphics[width=\textwidth]{images/lhcb_detector.png}
 
-      \tiny \url{https://doi.org/10.1088/1748-0221/3/08/S08005}
+      \tiny \url{https://iopscience.iop.org/article/10.1088/1748-0221/3/08/S08005}
     \end{column}
     \begin{column}{0.4\textwidth}
       \begin{itemize}
@@ -146,10 +147,111 @@
   \end{columns}
 \end{frame}
 
-\section*{Development of the $B$ meson classifier}
+\section*{Development of the B meson classifier}
 
 \begin{frame}{Development of the $B$ meson classifier}
+  \centering
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item training with LHCb simulation data
+        \item combining $B^0_d \rightarrow J/\psi K^*$ and $B^0_s \rightarrow D_s^+ \pi^-$
+        \item found differences by year and simulation version \\$\rightarrow$ choose 2016 and same simulation version
+        \item dataset contains 18 million tracks and 0.4 million events
+        \item highly correlated features are reduced 
+      \end{itemize}
 
+      \textbf{Strategy:}
+      \begin{itemize}
+        \item same side track identification using a BDT
+        \item $B$ meson classification using a DeepSet
+        \item test on real LHCb data
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
+\section*{SS track identification using a BDT}
+
+\begin{frame}{Boosted Decision Tree (BDT)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Simple Decision Tree:}
+      \includegraphics[width=\textwidth]{images/decision_tree.png}
+
+      \tiny \url{https://arxiv.org/abs/physics/0703039}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Boosted Decision Tree:}
+      \begin{itemize}
+        \item ensemble of multiple small Decision Trees
+        \item weighted sum transformed with logistic function \\$\rightarrow$ estimated class probabilities
+        \item iterative training through gradient boosting \\$\rightarrow$ minimum of the loss function
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{SS track identification: Feature Selection}
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \centering
+      \begin{tabular}{c c}
+        \toprule
+        track- & track- \\
+        feature & feature \\
+        \midrule
+        $p_\text{T}$        & $\text{IP}_\text{SV}$ \\ 
+        $p_\text{proj}$     & $\chi^2(\text{IP}_\text{SV})$ \\ 
+        $\Delta p_\text{T}$ & $\sigma(\text{IP}_\text{pileup vtx})$ \\ 
+        $\Delta z$          & $\text{IP}_\text{best PV}$ \\    
+        $\Delta \eta$       & $\chi^2(\text{IP}_\text{best PV})$ \\ 
+        $\cos(\Delta \phi)$ & $\text{IP}_\text{min}$ \\ 
+        $\text{Prob}_\text{ghost}$ & same PV \\
+        $\chi^2(\text{vtx})$     & cone isolation \\
+        SumBDT              & $N_\text{non iso}$ \\ 
+        MinBDT              & $\sum p_\text{in cone}$ \\ 
+        SumMinBDT           &  \\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.65\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/SS_feature_importances.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{SS track identification: BDT training}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \centering
+      \includegraphics[width=0.95\textwidth]{images/SS_history_error.pdf}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item 60\% training data, 40\% test data
+        \item 2000 decision trees with maximum tree depth of 4
+        \item loss: logistic regression for binary classification
+        \item output: $\text{Prob}_\text{SS} \in [0,1]$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{SS track identification: Results}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Distribution of $\text{Prob}_\text{SS}$}
+      \includegraphics[width=0.85\textwidth]{images/SS_output.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{ROC curve of the BDT predictions}
+      \includegraphics[width=0.85\textwidth]{images/SS_ROC.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
 \end{document}
