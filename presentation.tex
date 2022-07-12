@@ -496,6 +496,8 @@
   \end{itemize}
 \end{frame}
 
+\appendix
+
 \begin{frame}[plain]
   \centering
   \begin{beamercolorbox}[center, wd=\textwidth]{title}
@@ -524,6 +526,65 @@
     \usebeamerfont{title}Backup
     \textcolor{tugreen}{\rule{\textwidth}{1pt}}%
   \end{beamercolorbox}%
+\end{frame}
+
+\begin{frame}{Correlation Matrix}
+  \centering
+  \includegraphics[height=\textheight]{images/backup/correlation_matrix.pdf}
+\end{frame}
+
+\begin{frame}{Background BDT}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \begin{tabular}{c c}
+        \toprule
+        signal- & signal- \\
+        feature & feature \\
+        \midrule
+        IP$(B^0)$                   & $p_\text{T}(\pi^+)$ \\% "B_IP_OWNPV","piplus_PT"
+        IP$(J/\psi)$                & $p_\text{T}(\pi^-)$ \\% "Jpsi_IP_OWNPV","piminus_PT"
+        IP$(K^0_\text{S})$          & $p_\text{T}(K^0_\text{S})$ \\% "KS0_IP_OWNPV","KS0_PT"
+        IP$(\mu^+)$                 & $\eta(B^0)$ \\% "muplus_IP_OWNPV","B_LOKI_ETA"
+        IP$(\mu^-)$                 & $\eta(K^0_\text{S})$ \\% "muminus_IP_OWNPV","KS0_LOKI_ETA"
+        FD$(K^0_\text{S})$    & $p_z(K^0_\text{S})$ \\% "KS0_FD_OWNPV","KS0_PZ"
+        $\chi^2(\text{fit})$  & \\% "B_LOKI_DTF_CHI2NDOF",
+        \bottomrule
+    \end{tabular}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/backup/bkg_output.pdf}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/backup/bkg_roc.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Fit functions}
+  \begin{equation*}
+    F(M_B) = N_\text{bkg} \cdot F_\text{bkg}(M_B) + N_{B_d} \cdot F_{B_d}(M_B) + N_{B_s} \cdot F_{B_s}(M_B)
+  \end{equation*}
+  \begin{align*}
+    F_\text{bkg}(M_B) = \exp(-\lambda \cdot M_B) \, .
+  \end{align*}
+  \begin{align*}
+    F_B(M_B) = &f_1 \cdot f_2 \cdot F_\text{CB}\left(\frac{M_B-\mu}{\sigma_1}, \beta_1, m_1\right) \nonumber\\
+                &+ (1-f_1) \cdot f_2 \cdot F_\text{CB}\left(-\frac{M_B-\mu}{\sigma_2}, \beta_2, m_2\right) \nonumber\\
+                &+ (1-f_1) \cdot (1-f_2) \cdot F_\text{gauss}\left(M_B,\mu,\sigma_3\right) \, , \label{eqn:FB}
+  \end{align*}
+  \begin{equation*}
+    F_\text{CB}(x,\beta,m) = 
+    \begin{cases}
+        N \cdot \exp(-\frac{x^2}{2}) & \text{for } x > -\beta \\
+        N \cdot \left(\frac{m}{|\beta|}\right)^m \cdot \exp\left(-\frac{\beta^2}{2}\right) \cdot \left(\frac{m}{|b|}-|b| - x\right)^{-m} & \text{for } x \leq -\beta
+    \end{cases}
+  \end{equation*}
+  \begin{equation*}
+    F_\text{gauss}\left(x,\mu,\sigma\right) = \frac{1}{\sqrt{2}\pi\sigma} \cdot \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)
+  \end{equation*}
 \end{frame}
 
 \end{document}
