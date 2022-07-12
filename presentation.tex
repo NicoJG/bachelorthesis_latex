@@ -47,6 +47,8 @@
   warnings-off={mathtools-colon,mathtools-overbracket}, % suppress some unnecessary warnings
 }
 
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
 \title{Development of a multivariate algorithm for the classification of B~mesons at the LHCb experiment}
 \author[N.~Guth]{Nico Guth}
 \institute[AG Albrecht]{Arbeitsgruppe Albrecht \\ Fakultät Physik}
@@ -96,6 +98,7 @@
       \item backgrounds with similar signal kinematics
       \item e.g. $B^0_s \rightarrow D^+_s K^-$ with $B^0_d$ backgrounds in the signal region
     \end{itemize}
+    \item mass difference between $B^0_d$ and $B^0_s$ $\rightarrow$ differences in the kinematics of the associated event
   \end{itemize}
 \end{frame}
 
@@ -367,8 +370,6 @@
   \end{columns}
 \end{frame}
 
-
-
 \begin{frame}{B meson classification: Results}
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -382,6 +383,117 @@
       \includegraphics[width=0.85\textwidth]{images/B_ROC.pdf}
     \end{column}
   \end{columns}
+\end{frame}
+
+\section*{Testing on LHCb data}
+
+\begin{frame}{Testing on LHCb data: Overview}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item run 2 LHCb data selected for $B^0_d \, \text{or} \, B^0_s \rightarrow J/\psi K^0_S$
+        \item background reduction:
+        \begin{itemize}
+          \item trained BDT with 13 features on $B^0_d \rightarrow J/\psi K^0_S$ simulation + combinatorial background from the data
+          \item achieved ROC AUC of 0.989
+          \item misidentification of $K^0_S$ as $\Lambda^0$ or $K^*$
+        \end{itemize}
+        \item testing strategy:
+        \begin{itemize}
+          \item apply the developed algorithm on every event
+          \item 50 cuts of $\text{Prob}_{B_s} \leq x$ and $\text{Prob}_{B_s} \geq x$
+          \item fit the resulting mass distributions
+          \item estimate $B^0_d$ and $B^0_s$ counts by integration
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Signal B mass after background reduction:\\(peaks at $M_{B_d} = \qty{5280}{\MeV}$ and $M_{B_s} = \qty{5367}{\MeV}$)}
+      \includegraphics[width=0.9\textwidth]{images/BKG_reduced.pdf}
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+\begin{frame}{Testing on LHCb data: Fits of the signal B mass}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Fit of the $B_d$ mode on the simulated sample:}
+      \includegraphics[width=0.9\textwidth]{images/fit_mc.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Example fit of the data:}
+      \includegraphics[width=0.9\textwidth]{images/fit_example.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Testing on LHCb data: Results (ratio)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{images/data_ratio.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item numerical integration yields counts $n_{B_d}$ and $n_{B_s}$
+        \item without separation: constant ratio $n_{B_s}/n_{B_d}$
+        \item expected value: \\
+        \begin{equation*}
+          \frac{\text{BR}(B_s \rightarrow J/\psi \, K^0_\text{S})}{\text{BR}(B_d \rightarrow J/\psi \, K^0_\text{S})} \cdot f_s/f_d(\qty{13}{\TeV}) = \num{0.0109\pm0.0010}
+        \end{equation*}
+        \item $\text{Prob}_{B_s} \leq x$ starts with low statistics in the $B_s$ mode and is then almost constant
+        \item $\text{Prob}_{B_s} \geq x$ starts constant and then shows an increase 
+        \item indication of some separation
+        \item all ratios compatible with the expected value
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Testing on LHCb data: Results (efficiencies, similar to a ROC curve)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{images/data_roc.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item calculated efficiencies $\varepsilon_B = n_B(x)/n_B(\text{no cut})$
+        \item plot $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$
+        \item should be similar to a ROC curve
+        \item no clear separation visible
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section*{Conclusion and outlook}
+
+\begin{frame}{Conclusion and outlook}
+  \textbf{Results:}
+  \begin{itemize}
+    \item BDT can identify SS tracks (ROC AUC: 0.76) and helps the DeepSet (feature importances)
+    \item DeepSet achieves clear separation of $B^0_d$ and $B^0_s$ events on the simulated test sample (ROC AUC: 0.74)
+    \item separation on LHCb data cannot be quantified
+    \begin{itemize}
+      \item some level of separation seen in $n_{B_s}/n_{B_d}$
+      \item no sign of separation in ROC curve
+    \end{itemize}
+    \item reasons for performance loss unknown (selection differences? mismodeled simulation?)
+  \end{itemize}
+  
+  \medskip
+  \textbf{Outlook and suggestions:}
+  \begin{itemize}
+    \item indications that a similar approach could succeed
+    \item compare simulation kinematics with real world kinematics
+    \item ensure that kinematic differences originate from the mass difference
+    \item potentially equalize the kinematics by reweighting the training data
+    \item if successful, extension to include charged $B$ mesons possible
+  \end{itemize}
 \end{frame}
 
 \end{document}
