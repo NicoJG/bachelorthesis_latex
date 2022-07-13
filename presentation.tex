@@ -67,30 +67,36 @@
     Develop an algorithm that distinguishes between $B^0_d$ and $B^0_s$~mesons based on tracks associated with the signal $B$~meson without tracks of the signal decay. (in $pp$-collisions at the LHCb detector) 
   \end{block}
 
+  \pause
   \medskip
-  \textbf{Structure of this talk:}
-  \begin{itemize}
-    \item Motivation
-    \item Theoretical and experimental background
-      \begin{itemize}
-        \item The Standard Model
-        \item $B$ meson production in $pp$-collisions
-        \item The LHCb detector
-      \end{itemize}
-    \item Development of the $B$ meson classifier
-      \begin{itemize}
-        \item Identification of same side tracks using a BDT
-        \item Classification of the $B$ meson using a DeepSet
-        \item Testing on LHCb data
-      \end{itemize}
-    \item Conclusion and Outlook
-  \end{itemize}
-
+  \centering
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \textbf{Structure of this talk:}
+        \begin{itemize}
+          \item Motivation
+          \item Theoretical and experimental background
+            \begin{itemize}
+              \item The Standard Model
+              \item $B$ meson production in $pp$-collisions
+              \item The LHCb detector
+            \end{itemize}
+          \item Development of a $B$ meson classifier
+            \begin{itemize}
+              \item Identification of same side tracks using a BDT
+              \item Classification of the $B$ meson using a DeepSet
+              \item Testing on LHCb data
+            \end{itemize}
+          \item Conclusion and Outlook
+        \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Motivation}
   \begin{itemize}
     \item at LHCb: Analysis of $pp$-collisions involving $b$ or $c$ quarks, e.g. $B^0_d \: (bd)$ or $B^0_s \: (bs)$
+    \item mass difference between $B^0_d$ and $B^0_s$ $\rightarrow$ differences in the kinematics of the associated event
     \item independence of signal decay channel
     \item support background reduction of the other $B$ meson type
     \begin{itemize}
@@ -98,7 +104,6 @@
       \item backgrounds with similar signal kinematics
       \item e.g. $B^0_s \rightarrow D^+_s K^-$ with $B^0_d$ backgrounds in the signal region
     \end{itemize}
-    \item mass difference between $B^0_d$ and $B^0_s$ $\rightarrow$ differences in the kinematics of the associated event
   \end{itemize}
 \end{frame}
 
@@ -142,7 +147,7 @@
     \end{column}
     \begin{column}{0.4\textwidth}
       \begin{itemize}
-        \item single arm forward-spectrometer at the LHC %($\qty{10}{\milli \rad}$ to $\qty{300}{\milli \rad}$)
+        \item single arm forward-spectrometer at the LHC ($\qty{10}{\milli \radian}$ to $\qty{300}{\milli \radian}$)
         \item particle tracking: 
         \begin{itemize}
           \item Vertex Locator (VELO)
@@ -160,25 +165,27 @@
   \end{columns}
 \end{frame}
 
-\section*{Development of the B meson classifier}
+\section*{Development of a B meson classifier}
 
-\begin{frame}{Development of the $B$ meson classifier}
+\begin{frame}{Development of a $B$ meson classifier}
   \centering
   \begin{columns}
     \begin{column}{0.6\textwidth}
+      \textbf{Strategy:}
+      \begin{itemize}
+        \item same side track identification using a BDT
+        \item $B$ meson classification using a DeepSet
+        \item test on real LHCb data
+      \end{itemize}
+
+      \pause
+      \textbf{Training dataset:}
       \begin{itemize}
         \item training with LHCb simulation data
         \item combining $B^0_d \rightarrow J/\psi K^*$ and $B^0_s \rightarrow D_s^+ \pi^-$
         \item found differences by year and simulation version \\$\rightarrow$ choose 2016 and same simulation version
         \item dataset contains 18 million tracks and 0.4 million events
         \item highly correlated features are reduced 
-      \end{itemize}
-
-      \textbf{Strategy:}
-      \begin{itemize}
-        \item same side track identification using a BDT
-        \item $B$ meson classification using a DeepSet
-        \item test on real LHCb data
       \end{itemize}
     \end{column}
   \end{columns}
@@ -195,6 +202,7 @@
 
       \tiny \url{https://arxiv.org/abs/physics/0703039}
     \end{column}
+    \pause
     \begin{column}{0.5\textwidth}
       \textbf{Boosted Decision Tree:}
       \begin{itemize}
@@ -260,6 +268,7 @@
       \textbf{Distribution of $\text{Prob}_\text{SS}$}
       \includegraphics[width=0.85\textwidth]{images/SS_output.pdf}
     \end{column}
+    \pause
     \begin{column}{0.5\textwidth}
       \centering
       \textbf{ROC curve of the BDT predictions}
@@ -280,9 +289,9 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-        \item non-linear transformation $\vec{x} \rightarrow \hat{\vec{y}}$
+        \item non-linear transformation $\vec{x} \rightarrow \vec{y}$
         \item multiple steps called layers of activation \\$\rightarrow$ $\vec{a}^{(n)} = f^{(n)}\left( W^{(n)} \cdot \vec{a}^{(n-1)} + \vec{b}^{n} \right)$
-        \item with $\vec{a}^{(0)} = \vec{x}$ and $\hat{\vec{y}} = \vec{a}^{(\text{last})}$
+        \item with $\vec{a}^{(0)} = \vec{x}$ and $\vec{y} = \vec{a}^{(\text{last})}$
         \item activation functions used here:
         \begin{itemize}
           \item $f_\text{ReLU}(z) = \max (0, z)$
@@ -377,6 +386,7 @@
       \textbf{Distribution of $\text{Prob}_{B_s}$}
       \includegraphics[width=0.85\textwidth]{images/B_output.pdf}
     \end{column}
+    \pause
     \begin{column}{0.5\textwidth}
       \centering
       \textbf{ROC curve of the DeepSet predictions}
@@ -485,6 +495,7 @@
     \item reasons for performance loss unknown (selection differences? mismodeled simulation?)
   \end{itemize}
   
+  \pause
   \medskip
   \textbf{Outlook and suggestions:}
   \begin{itemize}
