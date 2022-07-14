@@ -75,18 +75,14 @@
       \textbf{Structure of this talk:}
         \begin{itemize}
           \item Motivation
-          \item Theoretical and experimental background
-            \begin{itemize}
-              \item The Standard Model
-              \item $B$ meson production in $pp$-collisions
-              \item The LHCb detector
-            \end{itemize}
+          \item $B$ meson production in $pp$-collisions
+          \item The LHCb detector
           \item Development of a $B$ meson classifier
-            \begin{itemize}
-              \item Identification of same side tracks using a BDT
-              \item Classification of the $B$ meson using a DeepSet
-              \item Testing on LHCb data
-            \end{itemize}
+          \begin{itemize}
+            \item Identification of same side tracks using a BDT
+            \item Classification of the $B$ meson using a DeepSet
+            \item Testing on real LHCb data
+          \end{itemize}
           \item Conclusion and Outlook
         \end{itemize}
     \end{column}
@@ -109,12 +105,12 @@
 
 \section*{Theoretical and experimental background}
 
-\begin{frame}{The Standard Model of particle physics}
-  \centering
-  \includegraphics[height=0.9\textheight]{images/standard_model.pdf}
-
-  \tiny \url{https://en.wikipedia.org/wiki/Standard_Model}
-\end{frame}
+%\begin{frame}{The Standard Model of particle physics}
+%  \centering
+%  \includegraphics[height=0.9\textheight]{images/standard_model.pdf}
+%
+%  \tiny \url{https://en.wikipedia.org/wiki/Standard_Model}
+%\end{frame}
 
 \begin{frame}{$B$ meson production in $pp$-collisions}
   \begin{columns}
@@ -291,18 +287,12 @@
       \begin{itemize}
         \item non-linear transformation $\vec{x} \rightarrow \vec{y}$
         \item multiple steps called layers of activation \\$\rightarrow$ $\vec{a}^{(n)} = f^{(n)}\left( W^{(n)} \cdot \vec{a}^{(n-1)} + \vec{b}^{n} \right)$
-        \item with $\vec{a}^{(0)} = \vec{x}$ and $\vec{y} = \vec{a}^{(\text{last})}$
         \item activation functions used here:
         \begin{itemize}
           \item $f_\text{ReLU}(z) = \max (0, z)$
           \item $f_\text{Sigmoid}(z) = \frac{1}{1+e^{-z}}$
         \end{itemize}
         \item iterative training through backpropagation (gradient descent)
-        \item regularization used here:
-        \begin{itemize}
-          \item early stopping
-          \item Dropout
-        \end{itemize}
       \end{itemize}
     \end{column}
   \end{columns}
@@ -319,8 +309,8 @@
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \item extension of NNs to allow inputs of sets of vectors
+        \item here: one set $X$ per event, one vector $x$ per track
         \item $f(X) = \rho \left( \sum_{x \in X} \phi(x) \right)$
-        \item here: one $X$ for every event, one $x$ for every track
         \item training is fully analogous to NNs
       \end{itemize}
     \end{column}
@@ -371,7 +361,7 @@
         \item $\phi$-network layer sizes: 23, 64, 128, 64
         \item $\rho$-network layer sizes: 64, 128, 64, 1
         \item $f_\text{ReLU}$ for hidden layers, $f_\text{Sigmoid}$ for output layer 
-        \item Dropout of 50\% and early stopping after 50 iterations 
+        \item regularisation: Dropout of 50\% and early stopping after 50 iterations 
         \item binary cross entropy loss with optimizer Adam
         \item output: $\text{Prob}_{B_s} \in [0,1]$
       \end{itemize}
@@ -402,40 +392,37 @@
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \item run 2 LHCb data selected for $B^0_d \, \text{or} \, B^0_s \rightarrow J/\psi K^0_S$
-        \item background reduction:
-        \begin{itemize}
-          \item trained BDT with 13 features on $B^0_d \rightarrow J/\psi K^0_S$ simulation + combinatorial background from the data
-          \item achieved ROC AUC of 0.989
-          \item misidentification of $K^0_S$ as $\Lambda^0$ or $K^*$
-        \end{itemize}
         \item testing strategy:
         \begin{itemize}
           \item apply the developed algorithm on every event
-          \item 50 cuts of $\text{Prob}_{B_s} \leq x$ and $\text{Prob}_{B_s} \geq x$
+          \item selections with $\text{Prob}_{B_s} \leq x$ and $\text{Prob}_{B_s} \geq x$
           \item fit the resulting mass distributions
           \item estimate $B^0_d$ and $B^0_s$ counts by integration
         \end{itemize}
       \end{itemize}
     \end{column}
+    \pause
     \begin{column}{0.5\textwidth}
       \centering
-      \textbf{Signal B mass after background reduction:\\(peaks at $M_{B_d} = \qty{5280}{\MeV}$ and $M_{B_s} = \qty{5367}{\MeV}$)}
-      \includegraphics[width=0.9\textwidth]{images/BKG_reduced.pdf}
+      \textbf{Example fit of the data:\\(peaks at $M_{B_d} = \qty{5280}{\MeV}$ and $M_{B_s} = \qty{5367}{\MeV}$)}
+      \includegraphics[width=0.9\textwidth]{images/fit_example.pdf}
     \end{column}
   \end{columns}  
 \end{frame}
 
-\begin{frame}{Testing on LHCb data: Fits of the signal B mass}
+\begin{frame}{Testing on LHCb data: Background reduction}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \centering
-      \textbf{Fit of the $B_d$ mode on the simulated sample:}
-      \includegraphics[width=0.9\textwidth]{images/fit_mc.pdf}
+      \begin{itemize}
+        \item trained BDT with 13 features on $B^0_d \rightarrow J/\psi K^0_S$ simulation + combinatorial background from the data
+        \item achieved ROC AUC of 0.989
+        \item manually: misidentification of $K^0_S$ as $\Lambda^0$ or $K^*$
+      \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
       \centering
-      \textbf{Example fit of the data:}
-      \includegraphics[width=0.9\textwidth]{images/fit_example.pdf}
+      \textbf{Signal B mass after background reduction:}
+      \includegraphics[width=0.9\textwidth]{images/BKG_reduced.pdf}
     \end{column}
   \end{columns}
 \end{frame}
@@ -448,7 +435,6 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-        \item numerical integration yields counts $n_{B_d}$ and $n_{B_s}$
         \item without separation: constant ratio $n_{B_s}/n_{B_d}$
         \item expected value: \\
         \begin{equation*}
@@ -541,7 +527,7 @@
 
 \begin{frame}{Correlation Matrix}
   \centering
-  \includegraphics[height=\textheight]{images/backup/correlation_matrix.pdf}
+  \includegraphics[height=0.9\textheight]{images/backup/correlation_matrix.pdf}
 \end{frame}
 
 \begin{frame}{Background BDT}
@@ -572,6 +558,24 @@
       \includegraphics[width=\textwidth]{images/backup/bkg_roc.pdf}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}{Test on LHCb data: DeepSet output}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/backup/data_B_classifier_output.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/backup/data_cut_comparison.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Fit of the $B_d$ mode on the simulated sample:}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/fit_mc.pdf}
 \end{frame}
 
 \begin{frame}{Fit functions}
