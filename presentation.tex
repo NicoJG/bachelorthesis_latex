@@ -64,7 +64,7 @@
 
 \section*{Introduction}
 
-\begin{frame}{Overview}
+\begin{frame}
   \begin{block}{Goal of my thesis:}
     Develop an algorithm that distinguishes between $B^0_d$ and $B^0_s$~mesons based on tracks associated with the signal $B$~meson without tracks of the signal decay. (in $pp$-collisions at the LHCb detector) 
   \end{block}
@@ -93,26 +93,24 @@
 
 \begin{frame}{Motivation}
   \begin{itemize}
-    \item at LHCb: Analysis of $pp$-collisions involving $b$ or $c$ quarks, e.g. $B^0_d \: (bd)$ or $B^0_s \: (bs)$
-    \item mass difference between $B^0_d$ and $B^0_s$ $\rightarrow$ differences in the kinematics of the associated event
-    \item independence of signal decay channel
-    \item support background reduction of the other $B$ meson type
+    \item \underline{support background reduction} where $B^0_d \: \left(\bar{b}d\right)$ or $B^0_s \: \left(\bar{b}s\right)$ is unwanted
     \begin{itemize}
       \item \textit{partial backgrounds} with missing information in the signal decay
       \item backgrounds with similar signal kinematics
       \item e.g. $B^0_s \rightarrow D^+_s K^-$ with $B^0_d$ backgrounds in the signal region
     \end{itemize}
+    \pause
+    \medskip
+    \item excluding the signal decay \\$\rightarrow$ independence of the signal decay channel
+    \item associated event contains enough information (in principle)
+    \begin{itemize}
+      \item mass difference of $B^0_d$ and $B^0_s$ ($\qty{87}{\MeV}$)
+      \item different fragmentation processes
+    \end{itemize} 
   \end{itemize}
 \end{frame}
 
 \section*{Theoretical and experimental background}
-
-%\begin{frame}{The Standard Model of particle physics}
-%  \centering
-%  \includegraphics[height=0.9\textheight]{images/standard_model.pdf}
-%
-%  \tiny \url{https://en.wikipedia.org/wiki/Standard_Model}
-%\end{frame}
 
 \begin{frame}{$B$ meson production in $pp$-collisions}
   \begin{columns}
@@ -136,31 +134,10 @@
 \end{frame}
 
 \begin{frame}{The LHCb detector}
-  \begin{columns}
-    \begin{column}{0.6\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/lhcb_detector.png}
+  \centering
+  \includegraphics[height=0.9\textheight]{images/lhcb_detector.png}
 
-      \tiny \url{https://iopscience.iop.org/article/10.1088/1748-0221/3/08/S08005}
-    \end{column}
-    \begin{column}{0.4\textwidth}
-      \begin{itemize}
-        \item single arm forward-spectrometer at the LHC ($\qty{10}{\milli \radian}$ to $\qty{300}{\milli \radian}$)
-        \item particle tracking: 
-        \begin{itemize}
-          \item Vertex Locator (VELO)
-          \item tracking stations (TT, T1-T3)
-        \end{itemize}
-        \item particle identification: 
-        \begin{itemize}
-          \item magnet
-          \item Ring Imaging Cherenkov detector (RICH1, RICH2)
-          \item calorimeters (ECAL, HCAL)
-          \item muon chambers (M1-M5)
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-  \end{columns}
+  \tiny \url{https://iopscience.iop.org/article/10.1088/1748-0221/3/08/S08005}
 \end{frame}
 
 \section*{Development of a B meson classifier}
@@ -179,11 +156,14 @@
       \pause
       \textbf{Training dataset:}
       \begin{itemize}
-        \item training with LHCb simulation data
-        \item combining $B^0_d \rightarrow J/\psi K^*$ and $B^0_s \rightarrow D_s^+ \pi^-$
-        \item found differences by year and simulation version \\$\rightarrow$ choose 2016 and same simulation version
-        \item dataset contains 18 million tracks and 0.4 million events
-        \item highly correlated features are reduced 
+        \item training with LHCb simulation
+        \item combined dataset:
+        \begin{itemize}
+          \item $B^0_d \rightarrow J/\psi K^*$
+          \item $B^0_s \rightarrow D_s^+ \pi^-$
+        \end{itemize}
+        \item found differences by year and simulation version \\$\rightarrow$ chose 2016 and same simulation version
+        \item dataset contains 0.4 million events and 18 million tracks
       \end{itemize}
     \end{column}
   \end{columns}
@@ -206,7 +186,7 @@
       \begin{itemize}
         \item ensemble of multiple small Decision Trees
         \item weighted sum transformed with logistic function \\$\rightarrow$ estimated class probabilities
-        \item iterative training through gradient boosting \\$\rightarrow$ minimum of the loss function
+        \item iterative training through gradient boosting \\$\rightarrow$ minimum of a loss function
       \end{itemize}
     \end{column}
   \end{columns}
@@ -218,8 +198,7 @@
       \centering
       \begin{tabular}{c c}
         \toprule
-        track- & track- \\
-        feature & feature \\
+        \multicolumn{2}{c}{track features} \\
         \midrule
         $p_\text{T}$        & $\text{IP}_\text{SV}$ \\ 
         $p_\text{proj}$     & $\chi^2(\text{IP}_\text{SV})$ \\ 
@@ -325,8 +304,7 @@
       \centering
       \begin{tabular}{c c}
         \toprule
-        track- & track- \\
-        feature & feature \\
+        \multicolumn{2}{c}{track features} \\
         \midrule
         $p$                 & $\text{Prob}_\text{SS}$ \\ %"Tr_T_P","Tr_ProbSS"
         $p_\text{T}$        & $\text{Prob}_e$ \\ %"Tr_T_PT", "Tr_T_PROBNNe"
@@ -469,7 +447,7 @@
 \end{frame}
 
 \begin{frame}{Animation of $n_{B_s}/n_{B_d}$ and the corresponding fits}
-  \animategraphics[loop,controls,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{95}
+  %\animategraphics[loop,controls,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{95}
 \end{frame}
 
 \section*{Conclusion and outlook}
@@ -542,8 +520,7 @@
       \centering
       \begin{tabular}{c c}
         \toprule
-        signal- & signal- \\
-        feature & feature \\
+        \multicolumn{2}{c}{signal features} \\
         \midrule
         IP$(B^0)$                   & $p_\text{T}(\pi^+)$ \\% "B_IP_OWNPV","piplus_PT"
         IP$(J/\psi)$                & $p_\text{T}(\pi^-)$ \\% "Jpsi_IP_OWNPV","piminus_PT"
@@ -606,6 +583,13 @@
   \begin{equation*}
     F_\text{gauss}\left(x,\mu,\sigma\right) = \frac{1}{\sqrt{2}\pi\sigma} \cdot \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)
   \end{equation*}
+\end{frame}
+
+\begin{frame}{The Standard Model of particle physics}
+  \centering
+  \includegraphics[height=0.9\textheight]{images/standard_model.pdf}
+
+  \tiny \url{https://en.wikipedia.org/wiki/Standard_Model}
 \end{frame}
 
 \end{document}
