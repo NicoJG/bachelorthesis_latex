@@ -379,86 +379,101 @@
 \section*{Testing on LHCb data}
 
 \begin{frame}{Testing on LHCb data: Overview}
-  \begin{columns}
+  \begin{columns}[t]
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \item run 2 LHCb data selected for $B^0_d \, \text{or} \, B^0_s \rightarrow J/\psi K^0_S$
-        \item testing strategy:
-        \begin{itemize}
-          \item apply the developed algorithm on every event
-          \item selections with $\text{Prob}_{B_s} \leq x$ and $\text{Prob}_{B_s} \geq x$
-          \item fit the resulting mass distributions
-          \item estimate $B^0_d$ and $B^0_s$ counts by integration
-        \end{itemize}
+        \item based on an existing analysis
+        \only<2>{%
+          \item visible $B^0_s$ peak after background reduction:
+          \begin{itemize}
+            \item trained BDT with 13 features on \\
+            $B^0_d \rightarrow J/\psi K^0_S$ simulation as signal and \\
+            mass sideband ($\geq \qty{5450}{\MeV}$) as combinatorial background
+            \item manual cuts for $\Lambda^0$ and $K^*$ background\\
+            that got misidentified as $K^0_S$
+          \end{itemize}
+        }
+        \only<3->{%
+          \item visible $B^0_s$ peak after background reduction
+          \item testing strategy:
+          \begin{itemize}
+            \item apply the developed algorithm \\$\rightarrow$ $\text{Prob}_{B_s}$ for every event
+            \item estimate counts of $B^0_d$ and $B^0_s$ events by\\
+            fitting the mass distribution and \\
+            integrating the $B^0_d$ and $B^0_s$ components
+            \item scan through the $\text{Prob}_{B_s}$ distribution
+          \end{itemize}
+        }
       \end{itemize}
     \end{column}
-    \pause
     \begin{column}{0.5\textwidth}
       \centering
-      \textbf{Example fit of the data:\\(peaks at $M_{B_d} = \qty{5280}{\MeV}$ and $M_{B_s} = \qty{5367}{\MeV}$)}
-      \includegraphics[width=0.9\textwidth]{images/fit_example.pdf}
+      \only<1-3>{\visible<2-3>{%
+        \textbf{Signal B mass after background reduction\\
+        (peaks at $M_{B_d} = \qty{5280}{\MeV}$ and $M_{B_s} = \qty{5367}{\MeV}$)}
+        \includegraphics[width=0.85\textwidth]{images/BKG_reduced.pdf}
+      }}
+      \only<4>{%
+        \textbf{Example fit of the mass distribution}
+        \includegraphics[width=0.85\textwidth]{images/fit_example_new.pdf}
+      }
     \end{column}
   \end{columns}  
 \end{frame}
 
-\begin{frame}{Testing on LHCb data: Background reduction}
+\begin{frame}{Testing on LHCb data: Results (ratio $n_{B_s}/n_{B_d}$ by $\text{Prob}_{B_s}$ cut value)}
+  \centering
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{itemize}
-        \item trained BDT with 13 features on $B^0_d \rightarrow J/\psi K^0_S$ simulation + combinatorial background from the data
-        \item achieved ROC AUC of 0.989
-        \item manually: misidentification of $K^0_S$ as $\Lambda^0$ or $K^*$
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.5\textwidth}
       \centering
-      \textbf{Signal B mass after background reduction:}
-      \includegraphics[width=0.9\textwidth]{images/BKG_reduced.pdf}
+      \includegraphics[width=\textwidth]{images/ratio_data.pdf}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Testing on LHCb data: Results (ratio)}
+\begin{frame}{Testing on LHCb data: Animation of $n_{B_s}/n_{B_d}$ and the corresponding fits}
+  \animategraphics[loop,controls,palindrome,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{48}
+\end{frame}
+
+\begin{frame}{Testing on LHCb data: Results (ratio $n_{B_s}/n_{B_d}$ by $\text{Prob}_{B_s}$ cut value)}
   \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.45\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{images/data_ratio.pdf}
+      \includegraphics[width=\textwidth]{images/ratio_data.pdf}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.55\textwidth}
       \begin{itemize}
         \item without separation: constant ratio $n_{B_s}/n_{B_d}$
-        \item expected value: \\
+        \item expected value (with perfect selection efficiencies):
         \begin{equation*}
           \frac{\text{BR}(B_s \rightarrow J/\psi \, K^0_\text{S})}{\text{BR}(B_d \rightarrow J/\psi \, K^0_\text{S})} \cdot f_s/f_d(\qty{13}{\TeV}) = \num{0.0109\pm0.0010}
         \end{equation*}
-        \item $\text{Prob}_{B_s} \leq x$ starts with low statistics in the $B_s$ mode and is then almost constant
-        \item $\text{Prob}_{B_s} \geq x$ starts constant and then shows an increase 
-        \item indication of some separation
-        \item all ratios compatible with the expected value
+        \pause
+        \item $\text{Prob}_{B_s} \leq x$: mostly constant, no clear $B^0_s$ peak for low $x$
+        \pause
+        \item $\text{Prob}_{B_s} \geq x$: starts constant, then increases
+        \pause 
+        \item clearly achieved some separation between $B^0_d$ and $B^0_s$
+        \item comparison to the simulation?
       \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Testing on LHCb data: Results (efficiencies, similar to a ROC curve)}
+\begin{frame}{Testing on LHCb data: Results (ratio $n_{B_s}/n_{B_d}$ by $\text{Prob}_{B_s}$ cut value)}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{images/data_roc.pdf}
+      \textbf{Achieved separation on data}
+      \includegraphics[width=0.9\textwidth]{images/ratio_data.pdf}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \begin{itemize}
-        \item calculated efficiencies $\varepsilon_B = n_B(x)/n_B(\text{no cut})$
-        \item plot $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$
-        \item should be similar to a ROC curve
-        \item no clear separation visible
-      \end{itemize}
+      \centering
+      \textbf{Achieved separation on simulation}
+      \includegraphics[width=0.9\textwidth]{images/ratio_mc.pdf}
     \end{column}
   \end{columns}
-\end{frame}
-
-\begin{frame}{Animation of $n_{B_s}/n_{B_d}$ and the corresponding fits}
-  %\animategraphics[loop,controls,palindrome,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{48}
 \end{frame}
 
 \section*{Conclusion and outlook}
@@ -563,6 +578,23 @@
     \begin{column}{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/backup/data_cut_comparison.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Testing on LHCb data: Results (efficiencies, similar to a ROC curve)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{images/data_roc.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item calculated efficiencies $\varepsilon_B = n_B(x)/n_B(\text{no cut})$
+        \item plot $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$
+        \item should be similar to a ROC curve
+        \item no clear separation visible
+      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
