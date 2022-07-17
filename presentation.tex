@@ -538,11 +538,6 @@
   \end{beamercolorbox}%
 \end{frame}
 
-\begin{frame}{Correlation Matrix}
-  \centering
-  \includegraphics[height=0.9\textheight]{images/backup/correlation_matrix.pdf}
-\end{frame}
-
 \begin{frame}{Background BDT}
   \begin{columns}
     \begin{column}{0.33\textwidth}
@@ -576,11 +571,37 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/backup/data_B_classifier_output.pdf}
+      \includegraphics[width=\textwidth]{images/backup/data_ProbBs.pdf}
     \end{column}
     \begin{column}{0.5\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/backup/data_cut_comparison.pdf}
+      \includegraphics[width=\textwidth]{images/backup/data_ProbBs_logy.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{SS track identification: BDT output}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/backup/SS_output_normal.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/SS_output.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{B meson classification: DeepSet output}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/B_output.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/backup/B_output_logy.pdf}
     \end{column}
   \end{columns}
 \end{frame}
@@ -589,14 +610,14 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{images/data_roc.pdf}
+      \includegraphics[width=0.9\textwidth]{images/data_roc_new.pdf}
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \item calculated efficiencies $\varepsilon_B = n_B(x)/n_B(\text{no cut})$
         \item plot $\varepsilon_{B_d}$ against $\varepsilon_{B_s}$
         \item should be similar to a ROC curve
-        \item no clear separation visible
+        \item separation not really visible
       \end{itemize}
     \end{column}
   \end{columns}
@@ -605,6 +626,11 @@
 \begin{frame}{Fit of the $B_d$ mode on the simulated sample:}
   \centering
   \includegraphics[width=0.5\textwidth]{images/fit_mc.pdf}
+\end{frame}
+
+\begin{frame}{Data cut comparison:}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/backup/data_cut_comparison.pdf}
 \end{frame}
 
 \begin{frame}{Fit functions}
@@ -636,6 +662,11 @@
   \includegraphics[height=0.9\textheight]{images/standard_model.pdf}
 
   \tiny \url{https://en.wikipedia.org/wiki/Standard_Model}
+\end{frame}
+
+\begin{frame}{Correlation Matrix}
+  \centering
+  \includegraphics[height=0.9\textheight]{images/backup/correlation_matrix.pdf}
 \end{frame}
 
 \end{document}
