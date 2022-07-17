@@ -194,7 +194,7 @@
 
 \begin{frame}{SS track identification: Feature Selection}
   \begin{columns}
-    \begin{column}{0.35\textwidth}
+    \begin{column}{0.3\textwidth}
       \centering
       \begin{tabular}{c c}
         \toprule
@@ -214,42 +214,40 @@
         \bottomrule
       \end{tabular}
     \end{column}
-    \begin{column}{0.65\textwidth}
+    \begin{column}{0.7\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/SS_feature_importances.pdf}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{SS track identification: BDT training}
-  \begin{columns}
-    \begin{column}{0.4\textwidth}
-      \centering
-      \includegraphics[width=0.95\textwidth]{images/SS_history_error.pdf}
-    \end{column}
-    \begin{column}{0.6\textwidth}
-      \begin{itemize}
-        \item 60\% training data, 40\% test data
-        \item 2000 decision trees with maximum tree depth of 4
-        \item loss: logistic regression for binary classification
-        \item output: $\text{Prob}_\text{SS} \in [0,1]$
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{SS track identification: Results}
+\begin{frame}{SS track identification: BDT training and results}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \centering
-      \textbf{Distribution of $\text{Prob}_\text{SS}$}
-      \includegraphics[width=0.85\textwidth]{images/SS_output.pdf}
+      \only<1>{%
+        \textbf{Error rate during training}
+        \includegraphics[width=0.85\textwidth]{images/SS_history_error.pdf}
+      }
+      \only<2-3>{%
+        \textbf{Distribution of $\text{Prob}_\text{SS}$}
+        \includegraphics[width=0.85\textwidth]{images/SS_output.pdf}
+      }
     \end{column}
-    \pause
     \begin{column}{0.5\textwidth}
-      \centering
-      \textbf{ROC curve of the BDT predictions}
-      \includegraphics[width=0.85\textwidth]{images/SS_ROC.pdf}
+      \only<1-2>{%
+        \begin{itemize}
+          \item 60\% training data, 40\% test data
+          \item 2000 decision trees with maximum tree depth of 4
+          \item loss: logistic regression for binary classification
+          \item output: $\text{Prob}_\text{SS} \in [0,1]$
+        \end{itemize}
+      }
+      \only<3>{%
+        \centering
+        \textbf{ROC curve of the BDT predictions}
+        \includegraphics[width=0.85\textwidth]{images/SS_ROC.pdf}
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -282,17 +280,30 @@
 \begin{frame}{DeepSet}
   \begin{columns}
     \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item extension of NNs to allow inputs of sets of vectors \\
+        $\rightarrow$ variable input length \\
+        $\rightarrow$ permutation invariant
+        \item $\displaystyle f(X) = \rho \left( \sum_{x_i \in \text{ \normalsize{$X$}}} \phi(x_i) \right)$
+      \end{itemize}
+
+      \medskip
       \centering
       \includegraphics[width=0.9\textwidth]{images/DeepSet_schematic.png}
 
       \tiny \url{https://arxiv.org/abs/1703.06114}
     \end{column}
     \begin{column}{0.5\textwidth}
+      \pause
+      \textbf{DeepSet for B meson classification:}
       \begin{itemize}
-        \item extension of NNs to allow inputs of sets of vectors
-        \item here: one set $X$ per event, one vector $x$ per track
-        \item $f(X) = \rho \left( \sum_{x \in X} \phi(x) \right)$
-        \item training is fully analogous to NNs
+        \item one set $X$ per event
+        \item one vector $x_i$ per track
+        \item $\phi$-network layer sizes: 23, 64, 128, 64
+        \item $\rho$-network layer sizes: 64, 128, 64, 1
+        \item $f_\text{ReLU}$ for hidden layers  
+        \item $f_\text{Sigmoid}$ for the output layer
+        \item output: $\text{Prob}_{B_s} \in [0,1]$
       \end{itemize}
     \end{column}
   \end{columns}
@@ -300,13 +311,13 @@
 
 \begin{frame}{B meson classification: Feature Selection}
   \begin{columns}
-    \begin{column}{0.35\textwidth}
+    \begin{column}{0.25\textwidth}
       \centering
       \begin{tabular}{c c}
         \toprule
         \multicolumn{2}{c}{track features} \\
         \midrule
-        $p$                 & $\text{Prob}_\text{SS}$ \\ %"Tr_T_P","Tr_ProbSS"
+        $p$                 & $\text{\textbf{Prob}}_\text{\textbf{SS}}$ \\ %"Tr_T_P","Tr_ProbSS"
         $p_\text{T}$        & $\text{Prob}_e$ \\ %"Tr_T_PT", "Tr_T_PROBNNe"
         $p_\text{proj}$     & $\text{Prob}_\text{ghost}$ \\ %"Tr_p_proj","Tr_T_PROBNNghost"
         $\Delta p$          & $\text{Prob}_K$ \\ %"Tr_diff_p", "Tr_T_PROBNNk"
@@ -321,46 +332,46 @@
         \bottomrule
     \end{tabular}
     \end{column}
-    \begin{column}{0.65\textwidth}
+    \begin{column}{0.75\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/B_feature_importances.pdf}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{B meson classification: DeepSet training}
+\begin{frame}{B meson classification: DeepSet training and results}
   
   \begin{columns}
-    \begin{column}{0.4\textwidth}
-      \centering
-      \includegraphics[width=0.95\textwidth]{images/B_history_error.pdf}
-    \end{column}
-    \begin{column}{0.6\textwidth}
-      \begin{itemize}
-        \item 60\% training data, 40\% test data (standard scaled)
-        \item $\phi$-network layer sizes: 23, 64, 128, 64
-        \item $\rho$-network layer sizes: 64, 128, 64, 1
-        \item $f_\text{ReLU}$ for hidden layers, $f_\text{Sigmoid}$ for output layer 
-        \item regularisation: Dropout of 50\% and early stopping after 50 iterations 
-        \item binary cross entropy loss with optimizer Adam
-        \item output: $\text{Prob}_{B_s} \in [0,1]$
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{B meson classification: Results}
-  \begin{columns}
     \begin{column}{0.5\textwidth}
       \centering
-      \textbf{Distribution of $\text{Prob}_{B_s}$}
-      \includegraphics[width=0.85\textwidth]{images/B_output.pdf}
+      \only<1>{%
+        \textbf{Error rate during training}
+        \includegraphics[width=0.85\textwidth]{images/B_history_error.pdf}
+      }
+      \only<2-3>{%
+        \textbf{Distribution of $\text{Prob}_{B_s}$}
+        \includegraphics[width=0.85\textwidth]{images/B_output.pdf}
+      }
     \end{column}
-    \pause
     \begin{column}{0.5\textwidth}
-      \centering
-      \textbf{ROC curve of the DeepSet predictions}
-      \includegraphics[width=0.85\textwidth]{images/B_ROC.pdf}
+      \only<1-2>{%
+        \begin{itemize}
+          \item 60\% training data, 40\% test data (standard scaled)
+          \item regularisation: 
+          \begin{itemize}
+            \item early stopping after 50 iterations
+            \item Dropout of 50\%
+          \end{itemize}
+          \item loss: binary cross entropy
+          \item optimizer: Adam
+          \item output: $\text{Prob}_{B_s} \in [0,1]$
+        \end{itemize}
+      }
+      \only<3>{%
+        \centering
+        \textbf{ROC curve of the DeepSet predictions}
+        \includegraphics[width=0.85\textwidth]{images/B_ROC.pdf}
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -447,7 +458,7 @@
 \end{frame}
 
 \begin{frame}{Animation of $n_{B_s}/n_{B_d}$ and the corresponding fits}
-  %\animategraphics[loop,controls,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{95}
+  %\animategraphics[loop,controls,palindrome,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{48}
 \end{frame}
 
 \section*{Conclusion and outlook}
