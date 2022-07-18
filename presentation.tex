@@ -389,7 +389,7 @@
           \begin{itemize}
             \item trained BDT with 13 features on \\
             $B^0_d \rightarrow J/\psi K^0_S$ simulation as signal and \\
-            mass sideband ($\geq \qty{5450}{\MeV}$) as combinatorial background
+            upper mass sideband ($\geq \qty{5450}{\MeV}$) as combinatorial background
             \item manual cuts for $\Lambda^0$ and $K^*$ background\\
             that got misidentified as $K^0_S$
           \end{itemize}
@@ -433,7 +433,7 @@
 \end{frame}
 
 \begin{frame}{Testing on LHCb data: Animation of $n_{B_s}/n_{B_d}$ and the corresponding fits}
-  \animategraphics[loop,controls,palindrome,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{48}
+  %\animategraphics[loop,controls,palindrome,width=\linewidth]{5}{images/ratio_animation/frame_}{0}{48}
 \end{frame}
 
 \begin{frame}{Testing on LHCb data: Results (ratio $n_{B_s}/n_{B_d}$ by $\text{Prob}_{B_s}$ cut value)}
@@ -455,23 +455,7 @@
         \item $\text{Prob}_{B_s} \geq x$: starts constant, then increases
         \pause 
         \item clearly achieved some separation between $B^0_d$ and $B^0_s$
-        \item comparison to the simulation?
       \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Testing on LHCb data: Results (ratio $n_{B_s}/n_{B_d}$ by $\text{Prob}_{B_s}$ cut value)}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \textbf{Achieved separation on data}
-      \includegraphics[width=0.9\textwidth]{images/ratio_data.pdf}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \textbf{Achieved separation on simulation}
-      \includegraphics[width=0.9\textwidth]{images/ratio_mc.pdf}
     \end{column}
   \end{columns}
 \end{frame}
@@ -481,25 +465,30 @@
 \begin{frame}{Conclusion and outlook}
   \textbf{Results:}
   \begin{itemize}
-    \item BDT can identify SS tracks (ROC AUC: 0.76) and helps the DeepSet (feature importances)
-    \item DeepSet achieves clear separation of $B^0_d$ and $B^0_s$ events on the simulated test sample (ROC AUC: 0.74)
-    \item separation on LHCb data cannot be quantified
+    \item on simulation:
     \begin{itemize}
-      \item some level of separation seen in $n_{B_s}/n_{B_d}$
-      \item no sign of separation in ROC curve
+      \item BDT can identify SS tracks (ROC AUC: 0.76) and helps the DeepSet (feature importances)
+      \item DeepSet achieves a clear separation of $B^0_d$ and $B^0_s$ events (ROC AUC: 0.74)
     \end{itemize}
-    \item reasons for performance loss unknown (selection differences? mismodeled simulation?)
+    \item on LHCb data: prove of concept shown
+    \item reasons for incomplete performance portability unknown:
+    \begin{itemize}
+      \item selection differences in training dataset? (combination of $B^0_d \rightarrow J/\psi K^*$ and $B^0_s \rightarrow D_s^+ \pi^-$)
+      \item mismodeled simulation features?
+    \end{itemize}
   \end{itemize}
   
   \pause
   \medskip
   \textbf{Outlook and suggestions:}
   \begin{itemize}
-    \item indications that a similar approach could succeed
-    \item compare simulation kinematics with real world kinematics
-    \item ensure that kinematic differences originate from the mass difference
-    \item potentially equalize the kinematics by reweighting the training data
-    \item if successful, extension to include charged $B$ mesons possible
+    \item feature validation: compare simulation and data
+    \item ensure that kinematic differences originate only from the mass difference:
+    \begin{itemize}
+      \item training dataset with the same final-state particles for both $B$ mesons
+      \item reweighting the training data to equalize kinematics
+    \end{itemize}
+    \item possible extension to include other $b$ hadrons
   \end{itemize}
 \end{frame}
 
@@ -580,19 +569,6 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{SS track identification: BDT output}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/backup/SS_output_normal.pdf}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/SS_output.pdf}
-    \end{column}
-  \end{columns}
-\end{frame}
-
 \begin{frame}{B meson classification: DeepSet output}
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -602,6 +578,19 @@
     \begin{column}{0.5\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/backup/B_output_logy.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{SS track identification: BDT output}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/backup/SS_output_normal.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/SS_output.pdf}
     \end{column}
   \end{columns}
 \end{frame}
@@ -619,6 +608,21 @@
         \item should be similar to a ROC curve
         \item separation not really visible
       \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Testing on LHCb data: Results (ratio $n_{B_s}/n_{B_d}$ by $\text{Prob}_{B_s}$ cut value)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Achieved separation on data}
+      \includegraphics[width=0.9\textwidth]{images/ratio_data.pdf}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \textbf{Achieved separation on simulation}
+      \includegraphics[width=0.9\textwidth]{images/ratio_mc.pdf}
     \end{column}
   \end{columns}
 \end{frame}
