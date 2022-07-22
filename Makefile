@@ -1,4 +1,4 @@
-all: build/presentation.pdf
+all: build/thesis.pdf build/presentation.pdf
 
 
 TeXOptions = -lualatex \
